@@ -589,7 +589,7 @@ YkGui_BuildSettings() {
     YkUi_Toggle(680, 300, 400, "YkG_UpdAuto", "Neue Fassung automatisch herunterladen", "installiert wird erst nach deinem Ja - nie mitten im Spiel")
     YkUi_Text(262, 370, 120, "Adresse", 10)
     YkUi_Add("Edit", "x360 y366 w720 h24 vYkG_UpdUrl gYkGui_Changed -E0x200 Border", "")
-    YkUi_Text(262, 404, 820, "Hinter der Adresse liegt eine Textdatei (z.B. ein GitHub-Gist) mit:`n     Version=3.0.1`n     Url=https://github.com/.../raw/main/Yakuza_Keybinder_v3.0.1.zip`nDeine Einstellungen bleiben bei jedem Update unangetastet - vorher wird zusätzlich eine .bak-Kopie angelegt.", 9, "norm", YkCol.dim, "h90")
+    YkUi_Text(262, 404, 820, "Hinter der Adresse liegt eine Textdatei (z.B. ein GitHub-Gist) mit:`n     Version=3.0.2`n     Url=https://github.com/.../raw/main/Yakuza_Keybinder_v3.0.2.zip`nDeine Einstellungen bleiben bei jedem Update unangetastet - vorher wird zusätzlich eine .bak-Kopie angelegt.", 9, "norm", YkCol.dim, "h90")
     YkUi_Text(262, 506, 820, "Umstieg von einer alten Fassung: ZIP irgendwohin entpacken, die neue YakuzaKeybinder.exe starten, ""Fassung woanders einsetzen ..."" klicken und den alten Ordner wählen. Einstellungen bleiben erhalten.", 9, "norm", YkCol.faint, "h60")
 
     ; ---- 4: Diagnose ----

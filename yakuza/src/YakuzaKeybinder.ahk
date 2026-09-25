@@ -19,6 +19,7 @@
 ;
 ;   v3.0.1: Chat-Befehle nach den Chats von Life of Player (/f = Family-
 ;   Chat der Organisation, /g = Gang-/Mafienchat), Aufnahme beenden
+;   v3.0.2: Gegnerlisten erkennen Online-Spieler zuverlaessiger
 ;
 ;   Technik: reiner Tastensender + LESENDER Speicherzugriff auf
 ;   gta_sa.exe und samp.dll. Nichts wird injiziert. Einziger
@@ -30,7 +31,7 @@
 
 ;@Ahk2Exe-SetName Yakuza Keybinder
 ;@Ahk2Exe-SetDescription Yakuza Keybinder fuer SA-MP / open.mp
-;@Ahk2Exe-SetVersion 3.0.1
+;@Ahk2Exe-SetVersion 3.0.2
 ;@Ahk2Exe-SetCopyright Yakuza Family
 ;@Ahk2Exe-SetMainIcon yakuza.ico
 

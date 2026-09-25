@@ -1,4 +1,4 @@
-# Yakuza Keybinder 3.0.1
+# Yakuza Keybinder 3.0.2
 
 Neue Fassung des Yakuza Keybinders (Yakuza Family, Life of Player). Alles aus v2.0.2 ist geblieben:
 
@@ -21,16 +21,16 @@ Neu sind das Fenster im Stil des Keybinders von Brooklyn 5.0 und die Brooklyn-Fu
 | Aufnahmen | – | `/rec` `/recstop` `/frag` `/beschwerde`, Start-/Stopp-Taste des Aufnahmeprogramms (z.B. `F9`, `Alt+F9`) |
 | Update | Gist mit direktem ZIP-Link | wie bisher; zusätzlich reicht ein Link zum GitHub-Repo |
 
-**Download:** `Yakuza_Keybinder_v3.0.1.zip` im Hauptordner des Repos (`YakuzaKeybinder.exe` + `ANLEITUNG.txt`). Der Aufbau der ZIP ist derselbe wie bisher, deshalb kann v2 sich selbst auf v3.0 aktualisieren.
+**Download:** `Yakuza_Keybinder_v3.0.2.zip` im Hauptordner des Repos (`YakuzaKeybinder.exe` + `ANLEITUNG.txt`). Der Aufbau der ZIP ist derselbe wie bisher, deshalb kann v2 sich selbst auf v3.0 aktualisieren.
 
 ## Update an alle Member verteilen
 
 Im Update-Gist (`https://gist.github.com/marci1160/a08df2cbef9bd6968dd74c9e0b016503`) muss stehen:
 
 ```
-Version=3.0.1
-Info=Chat-Befehle für LoP (/f Family, /g Gang/Mafia), Aufnahme beenden
-Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.1.zip
+Version=3.0.2
+Info=Gegnerlisten erkennen Online-Spieler zuverlässiger
+Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.2.zip
 ```
 
 Die `Url` muss direkt auf die ZIP zeigen, sonst kann v2 nichts herunterladen. Der Link auf `main` funktioniert erst, wenn die ZIP im Zweig `main` liegt.
@@ -82,11 +82,16 @@ Windows, mit installiertem AutoHotkey v1.1:
 yakuza\build\build.bat
 ```
 
-Linux (Wine + AutoHotkey 1.1.37) – baut die EXE und legt `Yakuza_Keybinder_v3.0.1.zip` in den Hauptordner:
+Linux (Wine + AutoHotkey 1.1.37) – baut die EXE und legt `Yakuza_Keybinder_v3.0.2.zip` in den Hauptordner:
 
 ```
 AHK_DIR=/pfad/zu/AutoHotkey_1.1.37 yakuza/build/build.sh
 ```
+
+## Neu in 3.0.2
+
+- **Gegnerlisten:** Ein Gegner galt nur als online, wenn der Name Zeichen für Zeichen stimmte. Jetzt wird ein Teilname beim Hinzufügen gegen die Online-Spieler aufgelöst (`/gegneradd kenji` → `Kenji_Sato`), Groß/klein ist egal, und der Binder meldet, ob der Spieler online ist. Namen werden zusätzlich über den gelernten Weg der Kill-Namen gelesen, falls der SA-MP-Aufbau abweicht. Statt „niemand online“ kommt eine klare Meldung, wenn die Spielerliste leer oder nicht lesbar ist; die Diagnose zeigt „Spielerliste: N Spieler, M Namen lesbar“.
+- Getestet mit einer nachgebauten SA-MP-Spielerliste im Speicher (Standardaufbau, abweichender Aufbau, keine Namen, leere Liste).
 
 ## Neu in 3.0.1
 

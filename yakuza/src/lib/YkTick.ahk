@@ -77,6 +77,7 @@ YkDiag_Text() {
     if (!YK_MemEnabled)
         out .= "`nSpielspeicher lesen ist aus."
     out .= "`nGegnernamen aus SA-MP: " . YkSamp_PlrState()
+    out .= "`nSpielerliste (Gegnerlisten): " . YkSamp_PlrStatText()
     out .= "`nKills/Tode vom Server:  " . YkStats_Text()
     out .= "`nHänger-Protokoll: " . YkStall_State()
     return out

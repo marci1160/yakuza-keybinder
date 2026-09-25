@@ -899,7 +899,7 @@ YkGui_ListsLv() {
 }
 
 YkGui_EnemyMembers(online) {
-    global g_EnemySel, g_H
+    global g_EnemySel, g_H, g_PlrStat
     ; nicht unterbrechen: ein Listen-Ereignis dazwischen wuerde die
     ; gewaehlte Liste umstellen (die Auswahl gilt je Fenster, nicht je Thread)
     wasCrit := A_IsCritical
@@ -918,14 +918,18 @@ YkGui_EnemyMembers(online) {
     YkUi_Set(g_H.enemyCmds, "Im Spiel:  /" . e.key . "   ·   /" . e.key . "add ID   ·   /" . e.key . "del ID")
     names := YkEnemy_Names(e.key)
     on := {}
+    st := online ? "offline" : ""
     if (online) {
         o := YkEnemy_Online(e.key)
-        if (!IsObject(o))
-            YkUi_Set(g_H.enemyInfo, "Online-Status nicht verfügbar - läuft das Spiel und ist ""Spielspeicher lesen"" an?")
-        else {
+        prob := YkEnemy_Problem()
+        if (!IsObject(o) || prob != "") {
+            YkUi_Set(g_H.enemyInfo, prob)
+            st := "?"
+        } else {
+            ; Gross/klein egal (Objekt-Schluessel in AutoHotkey v1)
             for i, p in o
                 on[p.name] := p
-            YkUi_Set(g_H.enemyInfo, YkCnt(o) . " von " . YkCnt(names) . " online.")
+            YkUi_Set(g_H.enemyInfo, YkCnt(o) . " von " . YkCnt(names) . " online  ·  " . g_PlrStat.named . " Spieler auf dem Server.")
         }
     } else {
         YkUi_Set(g_H.enemyInfo, YkCnt(names) . " Namen gespeichert.  Liegt in: Gegnerlisten\" . e.file . ".txt")
@@ -937,7 +941,7 @@ YkGui_EnemyMembers(online) {
         if (IsObject(p))
             LV_Add("", n, "● online", p.id, p.score, p.ping)
         else
-            LV_Add("", n, online ? "offline" : "", "", "", "")
+            LV_Add("", n, st, "", "", "")
     }
     LV_ModifyCol(1, 190), LV_ModifyCol(2, 90), LV_ModifyCol(3, "60 Right"), LV_ModifyCol(4, "60 Right"), LV_ModifyCol(5, "60 Right")
     if (online)
@@ -956,14 +960,14 @@ YkGui_EnemyAdd() {
     v := Trim(v)
     if (v = "" || !IsObject(YkEnemy_Get(g_EnemySel)))
         return
-    name := YkEnemy_ResolveName(v, err)
+    name := YkEnemy_ResolveName(v, err, note)
     if (name = "")
         return YkGui_Toast(err)
     if !YkEnemy_Add(g_EnemySel, name)
         return YkGui_Toast(name . " ist schon in der Liste.")
     GuiControl, Yk:, YkG_EnemyName
     YkGui_EnemyRefresh()
-    YkGui_Toast(name . " hinzugefügt.")
+    YkGui_Toast(name . " hinzugefügt" . (note != "" ? " (" . note . ")" : "") . ".")
 }
 
 YkGui_EnemyRemove() {
