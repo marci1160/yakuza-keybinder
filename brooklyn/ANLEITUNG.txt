@@ -1,0 +1,336 @@
+﻿==============================================================
+   KEYBINDER VON BROOKLYN  v5.0.0
+   für SA-MP 0.3.7 / 0.3.DL  ·  jeder Server  ·  ohne DLL
+==============================================================
+
+   Die Neuauflage des "Keybinder von Brooklyn" 4.60.
+   Alle Tasten und Chat-Befehle von damals sind noch da -
+   aber der Binder braucht keine Brooklyn.dll, keine Downloads,
+   keinen Server des Erstellers und keinen RGN-Launcher mehr.
+
+
+--------------------------------------------------------------
+INHALT
+--------------------------------------------------------------
+   1.  In einer Minute startklar
+   2.  Profil & Job  (Zivilist / Gang / Staat)
+   3.  Tasten belegen
+   4.  Chat-Befehle  (/kd, /wp, /map ...)
+   5.  Platzhalter  ({zone}, {hp}, {id} ...)
+   6.  Was der Binder von allein macht  (Automatik)
+   7.  Gegnerlisten
+   8.  Das Overlay im Spiel
+   9.  Umstieg von Version 4.x
+  10.  Wenn etwas nicht geht
+  11.  Was sich gegenüber 4.60 geändert hat
+  12.  Technik und Sicherheit
+
+
+--------------------------------------------------------------
+1. IN EINER MINUTE STARTKLAR
+--------------------------------------------------------------
+ 1) BrooklynKeybinder.exe starten (liegt am besten in einem
+    eigenen Ordner, zusammen mit dieser Anleitung).
+    Unten rechts neben der Uhr erscheint das orange "B".
+
+ 2) Im Fenster links auf "Profil & Job":
+    Zivilist, Gang oder Staatsfraktion wählen, dazu deine
+    Fraktion und deinen Job.
+
+ 3) Links auf "Tasten": eine Aktion anklicken, unten die
+    gewünschte Taste drücken, "Übernehmen".
+
+ 4) SA-MP ganz normal starten und spielen.
+
+ Das Fenster darfst du schließen - der Binder läuft neben der
+ Uhr weiter. Doppelklick auf das "B" öffnet ihn wieder,
+ Rechtsklick -> "Beenden" beendet ihn.
+
+ Im Spiel:
+   Pause        Binder an/aus (wie früher)
+   Alt + F2     Binder neu starten (wie früher)
+
+
+--------------------------------------------------------------
+2. PROFIL & JOB
+--------------------------------------------------------------
+ Jeder spielt etwas anderes - deshalb aktiviert der Binder nur
+ die Befehle, die zu dir passen:
+
+   ZIVILIST        Allgemein, Fahrzeug, Sprüche, Waffen kaufen,
+                   Drogen, Wanted & Knast.
+                   Kein Fraktions- und kein Gangchat.
+
+   GANG / MAFIA    zusätzlich: Fraktionschat (/f), Gangchat (/g),
+                   Gangwar- und Gangzone-Kills, Gegnerlisten,
+                   Cargo, Kidnap, Orgmember ...
+
+   STAATSFRAKTION  zusätzlich: Funk (/r), Department (/d),
+                   Megafon und die Befehle deiner Behörde:
+                     Polizei (LSPD, SFPD, LVPD, FBI, Army)
+                     Rettungsdienst / Feuerwehr
+                     Presse
+                     Regierung
+                   Staatsfraktionen bekommen KEINE Gang-,
+                   Drogen- und Waffenkauf-Befehle.
+
+ JOB (zusätzlich zu allem oben):
+   Anwalt, Detektiv, Drogendealer, Waffendealer, Mechaniker,
+   Pizzalieferant, Taxifahrer, Busfahrer, Trucker, Hure/Escort,
+   Bodyguard, Fischer, Auftragskiller - jeweils mit eigenen
+   Tasten und Chat-Befehlen.
+
+ CHAT-KANÄLE
+   Auf manchen Servern heißt der Fraktionschat anders. Trag
+   unter "Profil & Job > Chat-Kanäle" ein, was dein Server
+   benutzt. Alle Texte mit {fchat}, {gchat}, {funk}, {dchat}
+   passen sich dann automatisch an.
+
+ Tasten aus Gruppen, die zu deinem Profil nicht passen, bleiben
+ gespeichert, wirken aber nicht. Wechselst du zurück, sind sie
+ sofort wieder da.
+
+
+--------------------------------------------------------------
+3. TASTEN BELEGEN
+--------------------------------------------------------------
+ Links auf "Tasten":
+   - oben suchen oder eine Gruppe wählen
+   - Aktion anklicken
+   - unten in das Feld "Taste" klicken und die Taste drücken
+     (Maustasten, Pause, Num-Tasten: "Sondertaste ..." wählen)
+   - "Übernehmen"
+
+ Rechts daneben steht der Text, den die Taste sendet. Du kannst
+ ihn frei ändern - jede Zeile ist eine eigene Nachricht.
+ "Standardtext" stellt das Original wieder her.
+
+ ⚠ vor einer Taste heißt: doppelt belegt. Dann gewinnt die
+ erste Belegung - bitte eine der beiden ändern.
+
+ Die Tasten wirken NUR im Spiel und NIE, während du im Chat
+ tippst oder ein Dialog (Login, /atm ...) offen ist.
+
+ Eigene Befehle 1-12: in der Gruppe "Eigene Befehle" einfach
+ einen Text eintragen und eine Taste geben.
+
+
+--------------------------------------------------------------
+4. CHAT-BEFEHLE
+--------------------------------------------------------------
+ Im Spiel den Chat öffnen (T), Befehl tippen, Enter.
+ Beispiele:
+   /kd  /gkd  /bkd      Kills, Differenz, K/D (/f, /g, sagen)
+   /dkd /mkd            dasselbe für heute / diesen Monat
+   /wp  /wp2  /wp3      Waffenpaket kaufen
+   /deagle /m4 ...      einzelne Waffe mit deiner Munition
+   /map 1.1             Gebäudekomplex vorlesen (195 Einträge)
+   /aa                  letztes Angebot annehmen (/accept ...)
+   /25k ... /999k       Geld am ATM abheben
+   /aim  /zeit  /mms    fragt im Chat nach (z.B. "ID eingeben:")
+   /partner /kunde      Partner/Opfer über /id merken
+   /ab                  Anrufbeantworter
+   /cd  /stopuhr        Countdown / Stoppuhr (mit < abbrechen)
+   7f  7g  7b ...       Tippfehler-Hilfe: "7f" + Leertaste = "/f "
+
+ Die komplette Liste steht im Fenster unter "Chat-Befehle".
+ Dort kannst du jeden Befehl ausschalten, seinen Text ändern
+ oder mit "+ Eigener Befehl" eigene Befehle anlegen.
+
+ Tippst du etwas, das kein Binder-Befehl ist, geht es ganz
+ normal an den Server.
+
+ Befehle mit Angabe gehen auch direkt:  /aim 12,  /zeit 300,
+ /ballasadd 12,  /setkills 100
+
+
+--------------------------------------------------------------
+5. PLATZHALTER
+--------------------------------------------------------------
+ In jedem Text kannst du Platzhalter benutzen. Der Binder setzt
+ beim Senden den aktuellen Wert ein. Im Editor gibt es dafür
+ den Knopf "Platzhalter ...".
+
+   {zone}  {stadt}  {standort}  {ort}    wo du gerade bist
+   {hp}  {armor}                         Leben, Rüstung
+   {id}  {name}  {ping}  {level}         deine Spielerdaten
+   {geld}                                Geld auf der Hand
+   {wanteds}  {wantedlevel}              Sterne / Server-Wanted
+   {verbrechen}  {zeuge}                 letztes Verbrechen
+   {fahrzeug}  {fzhp}  {kmh}             dein Fahrzeug
+   {kills} {tode} {kd} {diff}            gesamt
+   {dkills} {dtode} {dkd} {ddiff}        heute
+   {mkills} {mtode} {mkd} {mdiff}        diesen Monat
+   {fchat} {gchat} {funk} {dchat}        Chat-Kanäle
+   {partner}  {opfer}                    von /partner, /kunde
+   {zeit}  {datum}
+   {cursor}      Schreibmarke (nur bei "Chat vorbereiten")
+   {sleep 500}   Pause in Millisekunden (eigene Zeile)
+
+
+--------------------------------------------------------------
+6. WAS DER BINDER VON ALLEIN MACHT  (Automatik)
+--------------------------------------------------------------
+ Alles einzeln abschaltbar unter "Automatik":
+
+   Gangwar-/Gangzone-Kills  zählt jeden Kill, wenn der Server
+                            "Gangwarkill"/"Gangzonekill" groß
+                            einblendet, und meldet ihn im /f:
+                            "/f +1 Kill in Idlewood - Kill Nr. 12"
+   Tod                      zählt jeden Tod (Server-Meldung oder
+                            Spielspeicher) und meldet ihn auf
+                            Wunsch im /f
+   Knast                    Knastzeit und Verlust durch Cops
+   Payday                   Zinsen, Kreditkarte, Miete
+   Tanken, Blitzer          fürs Finanzprotokoll
+   Wanteds gehackt/gecleart sagt es auf Wunsch im Chat
+   Drogen-Timer             meldet nach 20 s, dass es wieder geht
+   Kofferraum               29-Sekunden-Countdown
+   Antispam                 bei "Antiflood" kurz nichts senden
+   SMS                      merkt die letzte Nummer (/re, /n)
+
+ Die Statistik (heute / Monat / gesamt) siehst du unter
+ "Übersicht". Das Finanzprotokoll liegt wie früher als
+ finanzlog.txt im Ordner.
+
+
+--------------------------------------------------------------
+7. GEGNERLISTEN
+--------------------------------------------------------------
+ Wie in 4.60 - mit denselben Befehlen:
+   /ballasadd 12      Spieler mit ID 12 (oder Name) hinzufügen
+   /ballasdel 12      entfernen
+   /ballas            wer davon ist online (ID, Level, Ping)
+   /gangallcheck      alle Listen auf einmal
+
+ Vorhanden: all, ck, ballas, brigada, fbi, grove, icf, vagos,
+ triaden, atzen, wheelmen, cops. Eigene Listen legst du unter
+ "Gegnerlisten" an. Die Dateien liegen im Ordner Gegnerlisten.
+
+
+--------------------------------------------------------------
+8. DAS OVERLAY IM SPIEL
+--------------------------------------------------------------
+ Früher hat die Brooklyn.dll Meldungen direkt in den SA-MP-Chat
+ geschrieben ("Organizer: ..."). Das geht nur per Injection -
+ und genau die wurde weggelassen, damit der Binder auf jedem
+ Server sicher läuft.
+
+ Stattdessen erscheinen die Meldungen als kleine Karten über dem
+ Spiel, Countdowns groß in der Bildmitte. Die Maus klickt durch.
+
+ WICHTIG: Im ECHTEN Vollbild kann Windows kein Fenster über GTA
+ legen. Dort ruht das Overlay automatisch (sonst würde das Bild
+ kurz einfrieren). Alles andere läuft ganz normal weiter, und die
+ Meldungen stehen unter "Übersicht > Letzte Meldungen".
+ -> Wer die Meldungen im Spiel sehen will: GTA im Fenster oder
+    im randlosen Fenster starten.
+
+
+--------------------------------------------------------------
+9. UMSTIEG VON VERSION 4.x
+--------------------------------------------------------------
+ Der Binder benutzt denselben Ordner wie früher:
+     Dokumente\Keybinder von Brooklyn
+
+ Beim ersten Start übernimmt er automatisch:
+   - deine Tastenbelegung (Hotkeybelegung.ini)
+   - Name, Gang, Munition, Waffenpakete, Sprüche, Werbung,
+     Befehl 1-12, Killspruch, Pfade (framework.ini)
+   - Kills, Tode, Finanzen, Zähler (Statistik-Dateien)
+   - alle Gegnerlisten (gleiches Format)
+
+ Die alten Dateien bleiben unverändert liegen.
+ Brooklyn.dll, getGametext.dll, time manager.exe und
+ BrooklynAPI.ahk werden nicht mehr gebraucht.
+
+
+--------------------------------------------------------------
+10. WENN ETWAS NICHT GEHT
+--------------------------------------------------------------
+ Schau zuerst unter "Hilfe & Info" > Diagnose.
+
+ EINE TASTE TUT NICHTS
+   - Steht links unten "Pausiert"? -> Pause drücken.
+   - Ist die Gruppe für dein Profil aktiv? (Profil & Job)
+   - ⚠ vor der Taste = doppelt belegt.
+   - GTA muss das aktive Fenster sein.
+
+ DIE FIGUR BLEIBT BEIM SENDEN STEHEN
+   - Einstellungen > Allgemein: "Schnell senden" an,
+     Tipp-Tempo auf 0.
+
+ BUCHSTABEN FEHLEN IM CHAT
+   - Tipp-Tempo auf 10-20 ms stellen.
+
+ SA-MP WIRD NICHT ERKANNT
+   - "Spielspeicher lesen" muss an sein.
+   - Andere SA-MP-Versionen: Tasten und Chat-Befehle gehen
+     trotzdem (über die Tasten-Erkennung). Es fehlen nur
+     {id}, {ping}, der Online-Status der Gegnerlisten und die
+     sofortige Chat-Erkennung.
+   - Spezieller Launcher mit anderem Programmnamen?
+     Einstellungen > Allgemein > Spielprozesse ergänzen.
+
+ KILLS/TODE WERDEN NICHT GEZÄHLT
+   - Automatik prüfen.
+   - Zählt dein Server anders, gibt es Tasten zum Zählen
+     (Gruppe "Kills & Statistik") und /down, /clearkill,
+     /cleartod, /setkills, /settode.
+
+ FEHLERBERICHT
+   Laufzeitfehler landen in Fehler.log im Binder-Ordner.
+   Für eine genaue Spur: in config.ini unter [Allgemein]
+   Debug="1" setzen, Binder neu starten - dann schreibt er
+   debug.log (was gesendet wurde, welche Befehle erkannt
+   wurden). Danach wieder auf "0" stellen.
+
+
+--------------------------------------------------------------
+11. WAS SICH GEGENÜBER 4.60 GEÄNDERT HAT
+--------------------------------------------------------------
+ NEU / BESSER
+   + läuft ohne Brooklyn.dll, getGametext.dll, Dropbox-Downloads
+     und ohne den (nicht mehr erreichbaren) Server des Erstellers
+   + normales SA-MP (gta_sa.exe) - kein RGN-Launcher nötig
+   + neuere SA-MP-Versionen (0.3.7-R3/R5, 0.3.DL)
+   + Profile: Zivilist / Gang / Staatsfraktion + 13 Jobs,
+     neue Befehle für Polizei, Medic, Presse, Regierung und Jobs
+   + neues Fenster: alles an einem Ort, sofort gespeichert
+   + jeder Text änderbar, eigene Chat-Befehle, Platzhalter
+   + Radio ohne VLC (I Love Music, 10 Sender oder eigener Stream)
+   + chatlog.txt wird nur noch gelesen (4.60 hat sie gelöscht!)
+   + Gegnerlisten mit Online-Status direkt aus SA-MP
+   + Tod auch ohne Server-Meldung erkennbar
+
+ ENTFALLEN (ging nur mit dem alten Server / der DLL)
+   - Keybindernutzer-Liste und gemeinsame Rob-Zeiten per MySQL
+     (/robinfo zeigt jetzt die Robs, die DU gesehen hast)
+   - Meldungen direkt im SA-MP-Chat (jetzt: Overlay)
+   - "Chat leeren" (jetzt: Chat ein-/ausblenden mit F7)
+   - Auto-Update über Dropbox
+   - CPU-Anzeige in der Windows-Taskleiste
+     ({cpu} gibt es weiterhin)
+
+
+--------------------------------------------------------------
+12. TECHNIK UND SICHERHEIT
+--------------------------------------------------------------
+ Der Binder tippt wie eine Tastatur und LIEST aus dem Spiel
+ (Standort, Leben, Chat offen?, Spielerliste). Er schreibt
+ nichts in den Spielspeicher und injiziert nichts. Der Prozess
+ wird nur mit Leserechten geöffnet.
+
+ Unterstützt mit voller Erkennung:
+   SA-MP 0.3.7-R1, 0.3.7-R3, 0.3.7-R5, 0.3.DL-R1
+ Alle anderen Versionen: über die Tasten-Erkennung.
+
+ Ordner:  Dokumente\Keybinder von Brooklyn
+   config.ini     Einstellungen, Tasten, eigene Texte
+   stats.ini      Statistik
+   Gegnerlisten\  deine Listen
+   finanzlog.txt  Finanzprotokoll
+   smslog.txt     SMS-Protokoll
+
+ Tragbar: Liegt eine config.ini NEBEN der EXE, benutzt der
+ Binder diesen Ordner (z.B. für einen USB-Stick).
