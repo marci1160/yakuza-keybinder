@@ -6,6 +6,9 @@
 ;  Antworten (/ja, /gok ...), SMS beantworten (/re), Countdown, Stoppuhr,
 ;  Gegnerlisten, Radio, Aufnahmen. Die Befehle von Life of Player stehen
 ;  weiter unter "Server-Befehle" (YkCommands.ahk). Jobs gibt es keine.
+;  Seit v3.0.1 nach den Chats von Life of Player geordnet: /f = Family-
+;  Chat der Organisation, /g = Gang-/Mafienchat (bei Brooklyn/RGN war /f
+;  der Fraktionschat und "b" der normale Chat).
 ;
 ;  Jeder Eintrag:
 ;    cmd   das, was man im Chat tippt (mit Enter ausgefuehrt)
@@ -43,9 +46,12 @@ YkDbg(text) {
 }
 
 YkTbGroups() {
-    return [{id: "stats", name: "Kills & K/D", icon: "E9D2"}
-          , {id: "chat",  name: "Chat & Antworten", icon: "E8BD"}
-          , {id: "tools", name: "Werkzeuge", icon: "E90F"}
+    return [{id: "fchat", name: "Family-Chat /f (Organisation)", icon: "E902"}
+          , {id: "gchat", name: "Gang-/Mafienchat /g", icon: "E8F2"}
+          , {id: "chat",  name: "Normaler Chat & SMS", icon: "E8BD"}
+          , {id: "stats", name: "Statistik (nur für dich)", icon: "E9D2"}
+          , {id: "tools", name: "Werkzeuge & Radio", icon: "E90F"}
+          , {id: "rec",   name: "Aufnahmen", icon: "E714"}
           , {id: "gegner", name: "Gegnerlisten", icon: "E8B7"}
           , {id: "yk",    name: "Binder (lokal, ab v1.x)", icon: "E713"}]
 }
@@ -54,69 +60,79 @@ YkT(cmd, grp, label, type, text := "", fn := "", arg := "") {
     return {id: "tb:" . cmd, cmd: cmd, grp: grp, label: label, type: type, text: text, fn: fn, arg: arg}
 }
 
+; Life of Player: der Buchstabe vor dem Befehl sagt, in welchen Chat er geht
+;   /f...  Family-Chat der Organisation   ({fchat}, Standard /f)
+;   /g...  Gang-/Mafienchat                ({gchat}, Standard /g)
+;   ohne   normaler Chat (in der Naehe)
+YkTbChats() {
+    return [{p: "f", grp: "fchat", pre: "{fchat} ", name: "Family-Chat"}
+          , {p: "g", grp: "gchat", pre: "{gchat} ", name: "Gang-/Mafienchat"}
+          , {p: "",  grp: "chat",  pre: "",         name: "normaler Chat"}]
+}
+
 YkTextDB() {
     static d := ""
     if (IsObject(d))
         return d
     d := []
-    ; ---- Kills & K/D ----
-    d.Push(YkT("/kd", "stats", "K/D im Family-Chat", "send", "{fchat} » Kills: {kills} - Differenz: {diff} Kills - KD: {kd} «"))
-    d.Push(YkT("/gkd", "stats", "K/D im Gangchat", "send", "{gchat} » Kills: {kills} - Differenz: {diff} Kills - KD: {kd} «"))
-    d.Push(YkT("/bkd", "stats", "K/D im normalen Chat", "send", "» Kills: {kills} - Differenz: {diff} Kills - KD: {kd} «"))
-    d.Push(YkT("/infokill", "stats", "Kills/Tode gesamt, heute und Monat (normaler Chat)", "send", "Gesamt: Kills: {kills} - Tode: {tode} - Differenz: {diff} - KD: {kd}`nHeute: Kills: {dkills} - Tode: {dtode} - Differenz: {ddiff} - KD: {dkd}`n{monat}: Kills: {mkills} - Tode: {mtode} - Differenz: {mdiff} - KD: {mkd}"))
-    d.Push(YkT("/kills", "stats", "Kills im Family-Chat", "send", "{fchat} Aktuelle Kills: {kills}"))
-    d.Push(YkT("/gkills", "stats", "Kills im Gangchat", "send", "{gchat} Aktuelle Kills: {kills}"))
-    d.Push(YkT("/tode", "stats", "Tode anzeigen (nur für dich)", "local", "Aktuelle Todesanzahl: {tode}"))
-    d.Push(YkT("/dkills", "stats", "Kills von heute (Family-Chat)", "send", "{fchat} Meine Kills von heute: {dkills} Kills"))
-    d.Push(YkT("/dkd", "stats", "K/D von heute (Family-Chat)", "send", "{fchat} » Kills heute: {dkills} - Differenz: {ddiff} Kills - KD: {dkd} «"))
-    d.Push(YkT("/gdkd", "stats", "K/D von heute (Gangchat)", "send", "{gchat} » Kills heute: {dkills} - Differenz: {ddiff} Kills - KD: {dkd} «"))
-    d.Push(YkT("/bdkd", "stats", "K/D von heute (normaler Chat)", "send", "» Kills heute: {dkills} - Differenz: {ddiff} Kills - KD: {dkd} «"))
-    d.Push(YkT("/mkills", "stats", "Kills im Monat (Family-Chat)", "send", "{fchat} Gesamte Kills im {monatjahr}: {mkills} Kills"))
-    d.Push(YkT("/mkd", "stats", "K/D vom Monat (Family-Chat)", "send", "{fchat} » Kills im {monat}: {mkills} - Differenz: {mdiff} Kills - KD: {mkd} «"))
-    d.Push(YkT("/gmkd", "stats", "K/D vom Monat (Gangchat)", "send", "{gchat} » Kills im {monat}: {mkills} - Differenz: {mdiff} Kills - KD: {mkd} «"))
-    d.Push(YkT("/bmkd", "stats", "K/D vom Monat (normaler Chat)", "send", "» Kills im {monat}: {mkills} - Differenz: {mdiff} Kills - KD: {mkd} «"))
-    d.Push(YkT("/down", "stats", "1 Tod dazuzählen", "fn", "+", "YkFn_StatAdjust", "tode"))
-    d.Push(YkT("/cleartod", "stats", "1 Tod abziehen", "fn", "-", "YkFn_StatAdjust", "tode"))
-    d.Push(YkT("/addkill", "stats", "1 Kill dazuzählen", "fn", "+", "YkFn_StatAdjust", "kills"))
-    d.Push(YkT("/clearkill", "stats", "1 Kill abziehen", "fn", "-", "YkFn_StatAdjust", "kills"))
-    d.Push(YkT("/setkills", "stats", "Kills gesamt festlegen (/setkills 500)", "fn", "setkills", "YkFn_Prompt"))
-    d.Push(YkT("/settode", "stats", "Tode gesamt festlegen (/settode 200)", "fn", "settode", "YkFn_Prompt"))
-    d.Push(YkT("/otime", "stats", "Deine Spielzeit anzeigen (nur für dich)", "local", "Du hast schon {spielzeit} gespielt (heute {spielzeitheute})."))
-    d.Push(YkT("/on", "stats", "Letztes Login sagen", "send", "Letztes Login: {login}"))
-    d.Push(YkT("/gon", "stats", "Letztes Login (Gangchat)", "send", "{gchat} Letztes Login: {login}"))
-    d.Push(YkT("/fon", "stats", "Letztes Login (Family-Chat)", "send", "{fchat} Letztes Login: {login}"))
-    ; ---- Chat & Antworten ----
-    d.Push(YkT("/ja", "chat", "/f Positiv", "send", "{fchat} Positiv"))
-    d.Push(YkT("/nein", "chat", "/f Negativ", "send", "{fchat} Negativ"))
-    d.Push(YkT("/ok", "chat", "/f Verstanden", "send", "{fchat} Verstanden & bestätigt!"))
-    d.Push(YkT("/wo", "chat", "/f Wo befindest du dich?", "send", "{fchat} Wo befindest du dich?"))
-    d.Push(YkT("/gja", "chat", "/g Positiv", "send", "{gchat} Positiv"))
-    d.Push(YkT("/gnein", "chat", "/g Negativ", "send", "{gchat} Negativ"))
-    d.Push(YkT("/gok", "chat", "/g Verstanden", "send", "{gchat} Verstanden & bestätigt!"))
-    d.Push(YkT("/gwo", "chat", "/g Wo befindest du dich?", "send", "{gchat} Wo befindest du dich?"))
-    d.Push(YkT("/bja", "chat", "Positiv (normaler Chat)", "send", "Positiv"))
-    d.Push(YkT("/bnein", "chat", "Negativ (normaler Chat)", "send", "Negativ"))
-    d.Push(YkT("/neg", "chat", "Negativ Sir", "send", "Negativ Sir"))
-    d.Push(YkT("/null", "chat", "Wer hat die 0 gewählt?", "send", "Hat hier jemand die 0 gewählt oder warum meldest du dich zu Wort?"))
-    d.Push(YkT("/ping", "chat", "Aktuellen Ping sagen", "send", "Aktueller Ping: {ping}"))
+    crash := "Warning(opcode): Exception 0xC0000005 at 0x7F0C37"
+    ; ---- dieselben Saetze in allen drei Chats ----
+    ; [Befehl ohne Buchstaben, Beschreibung, Text (jede Zeile bekommt den Chat davor), nur in /f und /g]
+    msgs := [["/kd", "K/D gesamt", "» Kills: {kills} - Differenz: {diff} Kills - KD: {kd} «"]
+          , ["/dkd", "K/D von heute", "» Kills heute: {dkills} - Differenz: {ddiff} Kills - KD: {dkd} «"]
+          , ["/mkd", "K/D vom Monat", "» Kills im {monat}: {mkills} - Differenz: {mdiff} Kills - KD: {mkd} «"]
+          , ["/kills", "Kills gesamt", "Aktuelle Kills: {kills}"]
+          , ["/dkills", "Kills von heute", "Meine Kills von heute: {dkills} Kills"]
+          , ["/mkills", "Kills im Monat", "Gesamte Kills im {monatjahr}: {mkills} Kills"]
+          , ["/infokill", "Kills/Tode gesamt, heute und Monat (3 Zeilen)", "Gesamt: Kills: {kills} - Tode: {tode} - Differenz: {diff} - KD: {kd}`nHeute: Kills: {dkills} - Tode: {dtode} - Differenz: {ddiff} - KD: {dkd}`n{monat}: Kills: {mkills} - Tode: {mtode} - Differenz: {mdiff} - KD: {mkd}"]
+          , ["/ja", "Positiv", "Positiv"]
+          , ["/nein", "Negativ", "Negativ"]
+          , ["/ok", "Verstanden", "Verstanden & bestätigt!"]
+          , ["/wo", "Wo befindest du dich?", "Wo befindest du dich?", 1]
+          , ["/pos", "Mein Standort", "Ich bin gerade in {standort}", 1]
+          , ["/on", "Letztes Login sagen", "Letztes Login: {login}"]
+          , ["/cd", "Countdown 3 - 2 - 1 - LOS", "3`n{sleep 750}`n2`n{sleep 750}`n1`n{sleep 750}`nLOS!"]
+          , ["/exe", "Fake-Absturz (5 Zeilen)", crash . "`n" . crash . "`n" . crash . "`n" . crash . "`n" . crash]]
+    for i, ch in YkTbChats() {
+        for j, m in msgs {
+            if (ch.p = "" && m[4])
+                continue
+            cmd := "/" . ch.p . SubStr(m[1], 2)
+            txt := ""
+            for k, line in StrSplit(m[3], "`n")
+                txt .= (k > 1 ? "`n" : "") . (InStr(line, "{sleep") ? line : ch.pre . line)
+            d.Push(YkT(cmd, ch.grp, m[2] . "  ·  " . ch.name, "send", txt))
+        }
+    }
+    ; ---- nur im normalen Chat ----
+    d.Push(YkT("/exe2", "chat", "Fake-Absturz (10 Zeilen)  ·  normaler Chat", "send", crash . "`n" . crash . "`n" . crash . "`n" . crash . "`n" . crash . "`n{sleep 1100}`n" . crash . "`n" . crash . "`n" . crash . "`n" . crash . "`n" . crash))
+    d.Push(YkT("/ping", "chat", "Aktuellen Ping sagen  ·  normaler Chat", "send", "Aktueller Ping: {ping}"))
     d.Push(YkT("/re", "chat", "Auf die letzte SMS antworten", "prefill", "{smsbefehl} {letztesms} "))
     d.Push(YkT("/n", "chat", "SMS an die letzte Nummer", "prefill", "{smsbefehl} {letztesms} "))
-    d.Push(YkT("/exe", "chat", "Fake-Absturz (5 Zeilen)", "send", "Warning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37"))
-    d.Push(YkT("/exe2", "chat", "Fake-Absturz (10 Zeilen)", "send", "Warning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`n{sleep 1100}`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37`nWarning(opcode): Exception 0xC0000005 at 0x7F0C37"))
-    d.Push(YkT("/gexe", "chat", "Fake-Absturz im Gangchat", "send", "{gchat} Warning(opcode): Exception 0xC0000005 at 0x7F0C37`n{gchat} Warning(opcode): Exception 0xC0000005 at 0x7F0C37`n{gchat} Warning(opcode): Exception 0xC0000005 at 0x7F0C37`n{gchat} Warning(opcode): Exception 0xC0000005 at 0x7F0C37`n{gchat} Warning(opcode): Exception 0xC0000005 at 0x7F0C37"))
     ; Tippfehler-Kurzformen ("7" = "/" ohne Shift) - loesen mit Leertaste aus
-    for i, k in ["f", "g", "u", "w", "s"]
-        d.Push(YkT("7" . k, "chat", "Tippfehler 7" . k . "  ->  /" . k, "prefill", "/" . k . " ", "", "space"))
+    for i, k in [["f", "Family-Chat"], ["g", "Gang-/Mafienchat"], ["u", "Underground-Chat"], ["w", "Flüstern"], ["s", "Schreien"]]
+        d.Push(YkT("7" . k[1], "chat", "Tippfehler 7" . k[1] . "  ->  /" . k[1] . "  (" . k[2] . ")", "prefill", "/" . k[1] . " ", "", "space"))
+    ; ---- Statistik: nur fuer dich / von Hand korrigieren ----
+    d.Push(YkT("/tode", "stats", "Tode anzeigen (nur für dich)", "local", "Aktuelle Todesanzahl: {tode}"))
+    d.Push(YkT("/otime", "stats", "Deine Spielzeit anzeigen (nur für dich)", "local", "Du hast schon {spielzeit} gespielt (heute {spielzeitheute})."))
+    d.Push(YkT("/addkill", "stats", "1 Kill dazuzählen", "fn", "+", "YkFn_StatAdjust", "kills"))
+    d.Push(YkT("/clearkill", "stats", "1 Kill abziehen", "fn", "-", "YkFn_StatAdjust", "kills"))
+    d.Push(YkT("/down", "stats", "1 Tod dazuzählen", "fn", "+", "YkFn_StatAdjust", "tode"))
+    d.Push(YkT("/cleartod", "stats", "1 Tod abziehen", "fn", "-", "YkFn_StatAdjust", "tode"))
+    d.Push(YkT("/setkills", "stats", "Kills gesamt festlegen (/setkills 500)", "fn", "setkills", "YkFn_Prompt"))
+    d.Push(YkT("/settode", "stats", "Tode gesamt festlegen (/settode 200)", "fn", "settode", "YkFn_Prompt"))
     ; ---- Werkzeuge ----
-    d.Push(YkT("/cd", "tools", "Countdown im Chat (mit < abbrechen)", "fn", "", "YkFn_CopCountdown"))
     d.Push(YkT("/stopuhr", "tools", "Stoppuhr im Chat (mit < anhalten)", "fn", "", "YkFn_Stopwatch"))
     d.Push(YkT("/countdown", "tools", "15-Sekunden-Countdown (nur für dich)", "fn", "15", "YkFn_Countdown"))
     d.Push(YkT("/zeit", "tools", "Sekunden in Minuten umrechnen (/zeit 245)", "fn", "zeit", "YkFn_Prompt"))
     d.Push(YkT("/chillen", "tools", "Kurz AFK: Erinnerung nach 10 Minuten", "fn", "10", "YkFn_Chillen"))
     d.Push(YkT("/iloveradio", "tools", "Radio starten", "fn", "", "YkFn_RadioStart"))
     d.Push(YkT("/radiostop", "tools", "Radio stoppen", "fn", "", "YkFn_RadioStop"))
-    d.Push(YkT("/frag", "tools", "Aufnahme stoppen und als Frag ablegen", "fn", "frag", "YkFn_SaveVideo"))
-    d.Push(YkT("/beschwerde", "tools", "Aufnahme stoppen und als Beschwerde ablegen", "fn", "beschwerde", "YkFn_SaveVideo"))
+    ; ---- Aufnahmen ----
+    d.Push(YkT("/rec", "rec", "Aufnahme starten", "fn", "", "YkFn_RecStart"))
+    d.Push(YkT("/recstop", "rec", "Aufnahme beenden", "fn", "", "YkFn_RecStop"))
+    d.Push(YkT("/frag", "rec", "Aufnahme beenden und als Frag ablegen", "fn", "frag", "YkFn_SaveVideo"))
+    d.Push(YkT("/beschwerde", "rec", "Aufnahme beenden und als Beschwerde ablegen", "fn", "beschwerde", "YkFn_SaveVideo"))
     ; ---- Gegnerlisten ----
     d.Push(YkT("/gangallcheck", "gegner", "Alle Gegnerlisten: wer ist online?", "fn", "", "YkFn_EnemyCheck"))
     ; ---- Lokale Befehle aus v1/v2 (sofort, ohne Enter - nur Anzeige) ----
@@ -142,7 +158,9 @@ YkFnKeys() {
         , {id: "greet",   label: "Gruß nach Uhrzeit (Morgen/Tag/Abend/Nacht)", fn: "YkFn_Greeting", def: ""}
         , {id: "cd15",    label: "15-Sekunden-Countdown (nur für dich)", fn: "YkFn_Countdown", def: ""}
         , {id: "enemies", label: "Gegner online prüfen (alle Listen)", fn: "YkFn_EnemyCheck", def: ""}
-        , {id: "radio",   label: "Radio an/aus",                      fn: "YkFn_RadioToggle", def: ""}]
+        , {id: "radio",   label: "Radio an/aus",                      fn: "YkFn_RadioToggle", def: ""}
+        , {id: "rec",     label: "Aufnahme starten / beenden",        fn: "YkFn_RecToggle",  def: ""}
+        , {id: "recfrag", label: "Aufnahme beenden und als Frag ablegen", fn: "YkFn_RecFrag", def: ""}]
     return d
 }
 
@@ -305,6 +323,7 @@ YkSay(line) {
         return false
     if (StrLen(line) > 128)
         line := SubStr(line, 1, 128)
+    YkDbg("Sende: " . line)
     t0 := A_TickCount
     while ((g_Sending || YkSampOpenNow()) && (A_TickCount - t0) < 3000)
         Sleep, 20
@@ -422,7 +441,7 @@ YkPlaceholderList() {
         , ["{mkills}", "Kills im Monat"], ["{mtode}", "Tode im Monat"], ["{mkd}", "K/D im Monat"], ["{mdiff}", "Differenz im Monat"]
         , ["{monat}", "Monatsname"], ["{id}", "deine Spieler-ID"], ["{name}", "dein Name"], ["{ping}", "dein Ping"], ["{level}", "dein Level (Score)"]
         , ["{geld}", "Geld auf der Hand"], ["{fzhp}", "Fahrzeugzustand"], ["{kmh}", "Geschwindigkeit"], ["{online}", "Spieler online"]
-        , ["{fchat}", "Family-Chat (/f)"], ["{gchat}", "Gangchat (/g)"], ["{letztesms}", "Nummer der letzten SMS"], ["{login}", "letztes Login"]
+        , ["{fchat}", "Family-Chat der Organisation (/f)"], ["{gchat}", "Gang-/Mafienchat (/g)"], ["{letztesms}", "Nummer der letzten SMS"], ["{login}", "letztes Login"]
         , ["{spielzeit}", "Spielzeit gesamt"], ["{spielzeitheute}", "Spielzeit heute"]
         , ["{cursor}", "Schreibmarke (nur bei ""Chat vorbereiten"")"], ["{sleep 500}", "Pause in ms (eigene Zeile)"]]
 }
@@ -583,6 +602,7 @@ YkTb_HandleLine(line) {
 YkMsg(text, kind := "info", ms := "") {
     global g_MsgLog, YK_ToastMs, g_GuiMsg, g_GuiMsgT
     text := RegExReplace(text, "\{[0-9A-Fa-f]{6}\}")
+    YkDbg("Meldung: " . text)
     FormatTime, t, , HH:mm:ss
     g_MsgLog.Push({t: t, text: text, kind: kind})
     while (g_MsgLog.MaxIndex() > 200)
@@ -677,21 +697,6 @@ YkFn_Prompt(b, args := "", inChat := false) {
     YkPrompt_Start(kind, YkPromptLabels()[kind])
 }
 
-; Countdown im Chat: 3 - 2 - 1, mit der Taste < abbrechen
-YkFn_CopCountdown(b := "", args := "", inChat := false) {
-    YkSay("Das ist deine Chance - sobald der Countdown abgelaufen ist, wird es ernst!")
-    Sleep, 1000
-    for i, n in [3, 2, 1] {
-        YkSay("--" . n . "--")
-        KeyWait, <, D T1
-        if (!ErrorLevel) {
-            YkSay("Danke für deine Kooperation.")
-            return
-        }
-    }
-    YkSay("Letzte Chance!")
-}
-
 ; Stoppuhr im Chat, mit der Taste < anhalten
 YkFn_Stopwatch(b := "", args := "", inChat := false) {
     YkSay("Ich starte die Stoppuhr.")
@@ -735,6 +740,26 @@ YkFn_EnemyCheck(b := "", args := "", inChat := false) {
 
 YkFn_SaveVideo(b, args := "", inChat := false) {
     YkVideo_Save(b.text)
+}
+
+YkFn_RecStart(b := "", args := "", inChat := false) {
+    YkRec_Start()
+}
+
+YkFn_RecStop(b := "", args := "", inChat := false) {
+    YkRec_Stop()
+}
+
+YkFn_RecToggle(b := "", args := "", inChat := false) {
+    global g_RecOn
+    if (g_RecOn)
+        YkRec_Stop()
+    else
+        YkRec_Start()
+}
+
+YkFn_RecFrag(b := "", args := "", inChat := false) {
+    YkVideo_Save("frag")
 }
 
 YkFn_RadioStart(b := "", args := "", inChat := false) {

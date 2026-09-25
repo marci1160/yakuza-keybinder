@@ -1,4 +1,4 @@
-# Yakuza Keybinder 3.0
+# Yakuza Keybinder 3.0.1
 
 Neue Fassung des Yakuza Keybinders (Yakuza Family, Life of Player). Alles aus v2.0.2 ist geblieben:
 
@@ -14,22 +14,23 @@ Neu sind das Fenster im Stil des Keybinders von Brooklyn 5.0 und die Brooklyn-Fu
 |---|---|---|
 | Fenster | 6 Registerkarten, „Speichern“-Knopf | Seitenleiste, 12 Seiten, alles wirkt sofort; Yakuza-Banner und -Gesicht |
 | Tasten | Keybinds + Tasten in drei Tabs verteilt | alle Tasten in einer Liste, ⚠ bei Doppelbelegung, Pause- und weitere Funktionstasten |
-| Chat | Kurzformen (`/uc`), `/yk…` | zusätzlich Chat-Befehle mit Enter: `/kd` `/dkd` `/mkd` `/infokill` `/re` `/cd` `/stopuhr` `/zeit` `/chillen` `7f` … und eigene |
+| Chat | Kurzformen (`/uc`), `/yk…` | zusätzlich Chat-Befehle mit Enter, nach den Chats von Life of Player: `/f…` = Family-Chat, `/g…` = Gang-/Mafienchat, ohne Buchstaben = normaler Chat (`/fkd` `/gkd` `/kd`, `/fja` `/gok`, `/fpos`, `/gcd` …), dazu `/re` `/stopuhr` `/zeit` `/chillen` `7f` … und eigene |
 | Statistik | Sitzung + Stand vom Server (Taste N) | zusätzlich heute / Monat / gesamt, Spielzeit, Logins, SMS |
 | Gegner | – | Gegnerlisten mit Online-Prüfung über die SA-MP-Spielerliste |
 | Meldungen | Overlay-Zeile | zusätzlich Karten im Spiel, großer Countdown, Radio |
+| Aufnahmen | – | `/rec` `/recstop` `/frag` `/beschwerde`, Start-/Stopp-Taste des Aufnahmeprogramms (z.B. `F9`, `Alt+F9`) |
 | Update | Gist mit direktem ZIP-Link | wie bisher; zusätzlich reicht ein Link zum GitHub-Repo |
 
-**Download:** `Yakuza_Keybinder_v3.0.0.zip` im Hauptordner des Repos (`YakuzaKeybinder.exe` + `ANLEITUNG.txt`). Der Aufbau der ZIP ist derselbe wie bisher, deshalb kann v2 sich selbst auf v3.0 aktualisieren.
+**Download:** `Yakuza_Keybinder_v3.0.1.zip` im Hauptordner des Repos (`YakuzaKeybinder.exe` + `ANLEITUNG.txt`). Der Aufbau der ZIP ist derselbe wie bisher, deshalb kann v2 sich selbst auf v3.0 aktualisieren.
 
 ## Update an alle Member verteilen
 
 Im Update-Gist (`https://gist.github.com/marci1160/a08df2cbef9bd6968dd74c9e0b016503`) muss stehen:
 
 ```
-Version=3.0.0
-Info=Neues Fenster, Chat-Befehle, Statistik, Gegnerlisten
-Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.0.zip
+Version=3.0.1
+Info=Chat-Befehle für LoP (/f Family, /g Gang/Mafia), Aufnahme beenden
+Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.1.zip
 ```
 
 Die `Url` muss direkt auf die ZIP zeigen, sonst kann v2 nichts herunterladen. Der Link auf `main` funktioniert erst, wenn die ZIP im Zweig `main` liegt.
@@ -81,11 +82,17 @@ Windows, mit installiertem AutoHotkey v1.1:
 yakuza\build\build.bat
 ```
 
-Linux (Wine + AutoHotkey 1.1.37) – baut die EXE und legt `Yakuza_Keybinder_v3.0.0.zip` in den Hauptordner:
+Linux (Wine + AutoHotkey 1.1.37) – baut die EXE und legt `Yakuza_Keybinder_v3.0.1.zip` in den Hauptordner:
 
 ```
 AHK_DIR=/pfad/zu/AutoHotkey_1.1.37 yakuza/build/build.sh
 ```
+
+## Neu in 3.0.1
+
+- **Chat-Befehle nach Life of Player:** Bei Brooklyn (RGN) war `/f` der Fraktionschat und „b“ der normale Chat. Jetzt gilt: `/f…` = Family-Chat der Organisation, `/g…` = Gang-/Mafienchat, ohne Buchstaben = normaler Chat. `/kd`, `/ja`, `/ok` … gehen damit in den normalen Chat. Neu sind `/fpos`, `/gpos` und `/fcd`, `/gcd`, `/cd` (3 - 2 - 1 - LOS). Die Polizei-Sprüche aus Brooklyn (`/neg`, `/null`, der alte `/cd`) sind entfernt.
+- **Aufnahme beenden:** Die Taste des Aufnahmeprogramms wurde nur angetippt (Drücken und Loslassen im selben Augenblick). Programme wie OBS fragen die Tasten alle paar Millisekunden ab und haben das verpasst. Im Test mit einer Abfrage alle 25 ms wurden 10 von 10 Tipps nicht erkannt. Jetzt wird die Taste ~0,15 s gehalten, Kombinationen mit Alt/Strg/Shift/Win gehen auch. Neu sind `/rec` und `/recstop`, eine eigene Stopp-Taste, die Knöpfe „Starten“/„Beenden“ unter Extras und zwei Funktionstasten. `/frag` beendet auch ohne Video-Ordner und findet Videos in Unterordnern.
+- Beim ersten Start nach dem Update von 3.0.0 zeigt der Binder einmal, was neu ist.
 
 ## Getestet
 
@@ -97,6 +104,7 @@ Unter Wine (Xvfb + openbox), mit Notepad als Ersatz-Spielfenster (`[General] Gam
 - Kurzform `/uc` → `/use cannabis`, `7f` + Leertaste
 - normaler Text geht unverändert durch
 - Pause-Taste, Overlay, Meldungs-Karten
+- 3.0.1: alle neuen Chat-Befehle (Debug-Log zeigt die gesendeten Zeilen: `/fkd` → `/f » Kills …`, `/gkd` → `/g …`, `/kd` → ohne Präfix, `/cd` → 3/2/1/LOS), `/wo` und `/bkd` gehen unverändert ans Spiel; `/rec`, `/recstop`, `/frag` und die Funktionstasten gegen ein Testprogramm, das wie OBS alle 25 ms per `GetAsyncKeyState` abfragt (F9, Alt+F9, Strg+Shift+F10), Video aus Unterordner verschoben; „Was ist neu?“ nach 3.0.0
 - Umstieg von v2.0.2: v3.0 startet mit der alten `YakuzaKeybinder.ini`, eigene Tasten und Kurzformen bleiben, die neuen Abschnitte werden ergänzt, „Was ist neu?“ erscheint einmal
 
 Die ZIP erfüllt alle Prüfungen des v2-Updaters: ZIP-Kennung, 100 KB bis 40 MB, `YakuzaKeybinder.exe` über 500 KB mit „MZ“ im Hauptverzeichnis. Das Auspacken selbst ließ sich unter Wine nicht nachstellen (dort fehlt die ZIP-Unterstützung von Windows). Ein Test im echten Spiel steht noch aus. Die Teile aus v2 sind unverändert und wurden dort bereits live geprüft.

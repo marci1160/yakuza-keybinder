@@ -82,7 +82,7 @@ YkIni_Section(file, sec) {
 YkLoadConfigV3(p) {
     global YK_GameExes, YK_LineDelay, YK_FamChat, YK_TbEnabled, YK_FnKeys, YK_TbOff, YK_TbTexts, YK_TbKeys, YK_CustomTb
     global YK_SmsCmd, YK_SmsPattern, YK_ToastOn, YK_ToastMs, YK_ToastSide
-    global YK_RadioChan, YK_RadioUrl, YK_RadioVol, YK_RecKey, YK_RecFolder, YK_FragFolder, YK_ComplaintFolder, YK_PathGame
+    global YK_RadioChan, YK_RadioUrl, YK_RadioVol, YK_RecKey, YK_RecStopKey, YK_RecFolder, YK_FragFolder, YK_ComplaintFolder, YK_PathGame
     global YK_V3Seen
 
     YK_GameExes  := Trim(YkIniRead(p, "General", "GameExes", ""))
@@ -139,6 +139,7 @@ YkLoadConfigV3(p) {
     YK_RadioUrl  := Trim(YkIniRead(p, "Extras", "RadioUrl", ""))
     YK_RadioVol  := YkIniRead(p, "Extras", "RadioVol", 60) + 0
     YK_RecKey    := Trim(YkIniRead(p, "Extras", "RecKey", "F9"))
+    YK_RecStopKey := Trim(YkIniRead(p, "Extras", "RecStopKey", ""))
     YK_RecFolder := Trim(YkIniRead(p, "Extras", "RecFolder", ""))
     YK_FragFolder := Trim(YkIniRead(p, "Extras", "FragFolder", ""))
     YK_ComplaintFolder := Trim(YkIniRead(p, "Extras", "ComplaintFolder", ""))
@@ -146,15 +147,17 @@ YkLoadConfigV3(p) {
 }
 
 YkSaveConfigV3(p) {
+    global YK_Version
     global YK_GameExes, YK_LineDelay, YK_FamChat, YK_TbEnabled, YK_FnKeys, YK_TbOff, YK_TbTexts, YK_TbKeys, YK_CustomTb
     global YK_SmsCmd, YK_SmsPattern, YK_ToastOn, YK_ToastMs, YK_ToastSide
-    global YK_RadioChan, YK_RadioUrl, YK_RadioVol, YK_RecKey, YK_RecFolder, YK_FragFolder, YK_ComplaintFolder, YK_PathGame
+    global YK_RadioChan, YK_RadioUrl, YK_RadioVol, YK_RecKey, YK_RecStopKey, YK_RecFolder, YK_FragFolder, YK_ComplaintFolder, YK_PathGame
 
     IniWrite, % YK_GameExes, % p, General, GameExes
     IniWrite, % YK_LineDelay, % p, General, LineDelay
     IniWrite, % YK_FamChat, % p, General, FamChat
     IniWrite, % (YK_TbEnabled ? 1 : 0), % p, General, ChatCmds
-    IniWrite, 3, % p, General, V3Seen
+    ; letzte Fassung, die diese INI benutzt hat (fuer "Was ist neu?")
+    IniWrite, % YK_Version, % p, General, V3Seen
 
     for i, f in YkFnKeys()
         IniWrite, % YK_FnKeys[f.id], % p, Keys, % f.id
@@ -191,6 +194,7 @@ YkSaveConfigV3(p) {
     IniWrite, % YK_RadioUrl, % p, Extras, RadioUrl
     IniWrite, % YK_RadioVol, % p, Extras, RadioVol
     IniWrite, % YK_RecKey, % p, Extras, RecKey
+    IniWrite, % YK_RecStopKey, % p, Extras, RecStopKey
     IniWrite, % YK_RecFolder, % p, Extras, RecFolder
     IniWrite, % YK_FragFolder, % p, Extras, FragFolder
     IniWrite, % YK_ComplaintFolder, % p, Extras, ComplaintFolder

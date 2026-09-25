@@ -17,6 +17,9 @@
 ;   - Gegnerlisten (/liste, /listeadd, /listedel, /gangallcheck)
 ;   - Meldungen als Karten im Spiel, Countdown, Radio
 ;
+;   v3.0.1: Chat-Befehle nach den Chats von Life of Player (/f = Family-
+;   Chat der Organisation, /g = Gang-/Mafienchat), Aufnahme beenden
+;
 ;   Technik: reiner Tastensender + LESENDER Speicherzugriff auf
 ;   gta_sa.exe und samp.dll. Nichts wird injiziert. Einziger
 ;   Schreibzugriff: die abschaltbare Backup-Fahne in der
@@ -27,7 +30,7 @@
 
 ;@Ahk2Exe-SetName Yakuza Keybinder
 ;@Ahk2Exe-SetDescription Yakuza Keybinder fuer SA-MP / open.mp
-;@Ahk2Exe-SetVersion 3.0.0
+;@Ahk2Exe-SetVersion 3.0.1
 ;@Ahk2Exe-SetCopyright Yakuza Family
 ;@Ahk2Exe-SetMainIcon yakuza.ico
 
@@ -93,7 +96,7 @@ return
 ;  Start
 ; =====================================================================
 YkMain() {
-    global YK_IniPath, YK_StartPaused, YK_Paused, YK_V3Seen
+    global YK_IniPath, YK_StartPaused, YK_Paused, YK_V3Seen, YK_Version
     OnExit(Func("YkOnExit"))
     OnError("YkOnError")
 
@@ -103,6 +106,8 @@ YkMain() {
 
     YkLoadConfig()
     fromV2 := (!firstRun && YK_V3Seen = "")
+    ; Update innerhalb von v3 (3.0.0 schrieb hier noch "3")
+    fromV3 := (!firstRun && YK_V3Seen != "" && YK_V3Seen != YK_Version)
     YkZone_Init()
     YkBuildMoveKeys()
     YkApplyPriority()
@@ -143,6 +148,8 @@ YkMain() {
     YkShowGui()
     if (fromV2)
         YkGui_WhatsNew()
+    else if (fromV3)
+        YkGui_WhatsNewPatch()
 }
 
 ; Fehler: in YakuzaFehler.log festhalten. Mitten im Spiel keine

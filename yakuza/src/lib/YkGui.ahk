@@ -30,9 +30,9 @@ YkGui_Titles() {
     return {dash: ["", ""]
         , keys: ["Tasten", "Alle belegten Tasten auf einen Blick. Eintrag anklicken, unten ändern - wirkt sofort."]
         , server: ["Server-Befehle", "Die Befehle von Life of Player. Befehl anklicken, dann Taste und/oder Kurzform vergeben."]
-        , chat: ["Chat-Befehle", "Im Spiel in den Chat tippen und mit Enter ausführen, z.B. /kd oder /dkd. Bleiben im Binder."]
+        , chat: ["Chat-Befehle", "Tippen + Enter. Der Buchstabe davor ist der Chat: /fkd = Family-Chat (/f), /gkd = Gang-/Mafienchat (/g), /kd = normaler Chat."]
         , enemy: ["Gegnerlisten", "Merk dir Gegner und sieh sofort, wer von ihnen online ist - ohne Befehl an den Server."]
-        , auto: ["Meldungen & Kampf", "Standort, Kills und Tode im Gangchat - was der Binder von selbst meldet."]
+        , auto: ["Meldungen & Kampf", "Standort, Kills und Tode im Gang-/Mafienchat (/g) - was der Binder von selbst meldet."]
         , family: ["Familie & Member", "Backup-Rufe, Fahnen auf der Karte, Ziel wählen und laufende Kriege."]
         , overlay: ["Overlay", "Die Anzeige über dem Spiel und die Meldungs-Karten."]
         , sprint: ["Sprint (Laufscript)", "Leertaste beim Laufen halten = deine Figur rennt dauerhaft schnell."]
@@ -442,7 +442,7 @@ YkGui_BuildHelp() {
        . "2.  TASTEN: Strg+G Standort · Strg+K Kill melden · Strg+M /familymap · Strg+O Overlay · Strg+P Member · Strg+Leertaste Sprint · Strg+Num1-4 Backup, Komme, Sammeln, Unterwegs.`n`n"
        . "3.  SPRINT: Leertaste beim Laufen halten - die Figur rennt dauerhaft. Ducken (C) unterbricht, bis du die Leertaste neu drückst.`n`n"
        . "4.  KURZFORMEN: /uc wird sofort zu /use cannabis (Server-Befehle). /ykzu Name + Leertaste setzt ein Ziel.`n`n"
-       . "5.  CHAT-BEFEHLE (neu): /kd, /dkd, /mkd, /infokill, /re, /cd, /stopuhr, /otime ... im Chat tippen und Enter drücken. Wird nichts erkannt, geht Enter ganz normal ans Spiel.`n`n"
+       . "5.  CHAT-BEFEHLE: im Chat tippen und Enter drücken. Der Buchstabe davor ist der Chat: /fkd = Family-Chat (/f), /gkd = Gang-/Mafienchat (/g), /kd = normaler Chat. Dazu /re, /stopuhr, /rec ... Wird nichts erkannt, geht Enter ganz normal ans Spiel.`n`n"
        . "6.  GEGNERLISTEN (neu): Liste anlegen (z.B. Kürzel vla), dann im Spiel /vlaadd 12, /vla = wer ist online.`n`n"
        . "7.  Während du tippst, ruhen alle Tasten. Die Pause-Taste schaltet den ganzen Binder aus und wieder an.`n`n"
        . "8.  Im echten Vollbild zeigt Windows kein Fenster über dem Spiel - Overlay und Karten ruhen dann. Randloses Fenster funktioniert."
@@ -456,7 +456,7 @@ YkGui_BuildHelp() {
     YkUi_Text(820, 352, 260, "Nur lesend - nichts wird ins Spiel eingeschleust.", 8, "norm", YkCol.faint, "Center")
     YkUi_Card(800, 416, 300, 284, "Dateien", "E8B7")
     YkUi_Button(820, 456, 260, 36, "Anleitung öffnen", "YkGui_Manual", "primary")
-    YkUi_Button(820, 500, 260, 36, "Was ist neu in v3.0?", "YkGui_WhatsNew")
+    YkUi_Button(820, 500, 260, 36, "Was ist neu?", "YkGui_WhatsNew")
     YkUi_Button(820, 544, 260, 36, "Einstellungsdatei öffnen", "YkGui_OpenIni")
     YkUi_Button(820, 588, 260, 36, "Ordner öffnen", "YkGui_OpenDir")
     YkUi_Button(820, 632, 260, 36, "Nach Update suchen", "YkGui_UpdCheck")
@@ -484,15 +484,34 @@ YkGui_OpenDir() {
 YkGui_WhatsNew() {
     global YK_Version
     t := "Yakuza Keybinder " . YK_Version . " - was ist neu?`n`n"
+       . YkGui_PatchNotes() . "`n`n"
+       . "NEU IN v3.0:`n"
        . "Alles aus v2 ist geblieben: deine Tasten, Texte, Server-Befehle, Kurzformen, Kill- und Tod-Meldungen, Backup-Fahnen, Kriege, Member-Positionen, Overlay, Sprint, Wanteds, Lotto und das automatische Update.`n`n"
-       . "NEU:`n"
        . "·  Neues Fenster - links die Seiten, rechts die Einstellungen. Alles wirkt sofort.`n"
-       . "·  Chat-Befehle: /kd /gkd /dkd /mkd /infokill /kills /tode /otime, /ja /gok ..., /re (SMS beantworten), /cd, /stopuhr, /zeit, /chillen, 7f + Leertaste = /f.`n"
+       . "·  Chat-Befehle: /fkd /gkd /kd, /fja /gok ..., /infokill, /tode, /otime, /re (SMS beantworten), /stopuhr, /zeit, /chillen, 7f + Leertaste = /f.`n"
        . "·  Statistik heute / Monat / gesamt und Spielzeit (Übersicht).`n"
        . "·  Gegnerlisten mit Online-Prüfung (Seite Gegnerlisten).`n"
        . "·  Meldungen als kleine Karten im Spiel, 15-s-Countdown, Radio.`n"
        . "·  Neue Funktionstasten: Pause (Taste Pause), Fenster, Tasten lösen, Zeile wiederholen ...`n`n"
        . "Deine Einstellungen aus v2 wurden übernommen. Alles Weitere steht in der ANLEITUNG.txt."
+    MsgBox, 64, Was ist neu?, %t%
+}
+
+YkGui_PatchNotes() {
+    return "NEU IN v3.0.1:`n"
+       . "·  Chat-Befehle nach den Chats von Life of Player: der Buchstabe davor ist der Chat.`n"
+       . "      /f... = Family-Chat der Organisation (/fkd, /fja, /fok, /fwo, /fpos ...)`n"
+       . "      /g... = Gang-/Mafienchat (/gkd, /gja, /gok, /gwo, /gpos ...)`n"
+       . "      ohne Buchstaben = normaler Chat (/kd, /ja, /ok ...)`n"
+       . "   ACHTUNG: /kd, /ja, /ok ... gehen jetzt in den normalen Chat, nicht mehr in /f.`n"
+       . "·  /cd, /fcd, /gcd: Countdown 3 - 2 - 1 - LOS (Text änderbar).`n"
+       . "·  Aufnahmen lassen sich jetzt auch beenden: /rec startet, /recstop beendet, /frag und /beschwerde beenden und legen das Video ab. Start- und Stopp-Taste unter Extras > Aufnahmen (z.B. F9 oder Alt+F9)."
+}
+
+; Nach einem Update innerhalb von v3 (z.B. 3.0.0 -> 3.0.1) einmal zeigen
+YkGui_WhatsNewPatch() {
+    global YK_Version
+    t := "Yakuza Keybinder " . YK_Version . " - was ist neu?`n`n" . YkGui_PatchNotes()
     MsgBox, 64, Was ist neu?, %t%
 }
 
