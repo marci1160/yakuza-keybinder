@@ -1,0 +1,518 @@
+﻿; =====================================================================
+;  Brooklyn Keybinder - Zonen- & Stadt-Datenbank (GTA San Andreas)
+;  Uebernommen aus dem Yakuza Keybinder (gleiche Technik, live geprueft).
+; =====================================================================
+; =====================================================================
+;  Brooklyn Keybinder - Zonen- & Stadt-Datenbank + Nachschlage-Logik
+;  Koordinaten: GTA San Andreas Map-Zonen (offizielle SA Zonentabelle)
+;  Automatisch generiert - bitte nicht von Hand editieren.
+; =====================================================================
+
+global BK_ZonesArr := []
+global BK_CitiesArr := []
+global BK_ZonesReady := false
+
+BkZone_Init() {
+    global BK_ZonesArr, BK_CitiesArr, BK_ZonesReady
+    if (BK_ZonesReady)
+        return
+    BkZone_Load()
+    BK_ZonesReady := true
+}
+
+BkZone_GetZone(x, y, z) {
+    global BK_ZonesArr
+    BkZone_Init()
+    for i, o in BK_ZonesArr {
+        if (x >= o.x1 && y >= o.y1 && z >= o.z1 && x <= o.x2 && y <= o.y2 && z <= o.z2)
+            return o.name
+    }
+    return ""
+}
+
+BkZone_GetCity(x, y, z) {
+    global BK_CitiesArr
+    BkZone_Init()
+    best := ""
+    bestSize := 0
+    for i, o in BK_CitiesArr {
+        if (x >= o.x1 && y >= o.y1 && z >= o.z1 && x <= o.x2 && y <= o.y2 && z <= o.z2) {
+            sz := (o.x2 - o.x1) * (o.y2 - o.y1) * (o.z2 - o.z1)
+            if (best = "" || sz < bestSize) {
+                best := o.name
+                bestSize := sz
+            }
+        }
+    }
+    return best
+}
+
+BkZone_Load() {
+    global BK_ZonesArr, BK_CitiesArr
+    BK_CitiesArr.Push({name: "Las Venturas", x1: 685.0, y1: 476.093, z1: -500.0, x2: 3000.0, y2: 3000.0, z2: 500.0})
+    BK_CitiesArr.Push({name: "San Fierro", x1: -3000.0, y1: -742.306, z1: -500.0, x2: -1270.53, y2: 1530.24, z2: 500.0})
+    BK_CitiesArr.Push({name: "San Fierro", x1: -1270.53, y1: -402.481, z1: -500.0, x2: -1038.45, y2: 832.495, z2: 500.0})
+    BK_CitiesArr.Push({name: "San Fierro", x1: -1038.45, y1: -145.539, z1: -500.0, x2: -897.546, y2: 376.632, z2: 500.0})
+    BK_CitiesArr.Push({name: "Los Santos", x1: 480.0, y1: -3000.0, z1: -500.0, x2: 3000.0, y2: -850.0, z2: 500.0})
+    BK_CitiesArr.Push({name: "Los Santos", x1: 80.0, y1: -2101.61, z1: -500.0, x2: 1075.0, y2: -1239.61, z2: 500.0})
+    BK_CitiesArr.Push({name: "Tierra Robada", x1: -1213.91, y1: 596.349, z1: -242.99, x2: -480.539, y2: 1659.68, z2: 900.0})
+    BK_CitiesArr.Push({name: "Red County", x1: -1213.91, y1: -768.027, z1: -242.99, x2: 2997.06, y2: 596.349, z2: 900.0})
+    BK_CitiesArr.Push({name: "Flint County", x1: -1213.91, y1: -2892.97, z1: -242.99, x2: 44.6147, y2: -768.027, z2: 900.0})
+    BK_CitiesArr.Push({name: "Whetstone", x1: -2997.47, y1: -2892.97, z1: -242.99, x2: -1213.91, y2: -1115.58, z2: 900.0})
+    BK_ZonesArr.Push({name: "Avispa Country Club", x1: -2667.810, y1: -302.135, z1: -28.831, x2: -2646.400, y2: -262.320, z2: 71.169})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1315.420, y1: -405.388, z1: 15.406, x2: -1264.400, y2: -209.543, z2: 25.406})
+    BK_ZonesArr.Push({name: "Avispa Country Club", x1: -2550.040, y1: -355.493, z1: 0.000, x2: -2470.040, y2: -318.493, z2: 39.700})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1490.330, y1: -209.543, z1: 15.406, x2: -1264.400, y2: -148.388, z2: 25.406})
+    BK_ZonesArr.Push({name: "Garcia", x1: -2395.140, y1: -222.589, z1: -5.3, x2: -2354.090, y2: -204.792, z2: 200.000})
+    BK_ZonesArr.Push({name: "Shady Cabin", x1: -1632.830, y1: -2263.440, z1: -3.0, x2: -1601.330, y2: -2231.790, z2: 200.000})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2381.680, y1: -1494.030, z1: -89.084, x2: 2421.030, y2: -1454.350, z2: 110.916})
+    BK_ZonesArr.Push({name: "LVA Freight Depot", x1: 1236.630, y1: 1163.410, z1: -89.084, x2: 1277.050, y2: 1203.280, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blackfield Intersection", x1: 1277.050, y1: 1044.690, z1: -89.084, x2: 1315.350, y2: 1087.630, z2: 110.916})
+    BK_ZonesArr.Push({name: "Avispa Country Club", x1: -2470.040, y1: -355.493, z1: 0.000, x2: -2270.040, y2: -318.493, z2: 46.100})
+    BK_ZonesArr.Push({name: "Temple", x1: 1252.330, y1: -926.999, z1: -89.084, x2: 1357.000, y2: -910.170, z2: 110.916})
+    BK_ZonesArr.Push({name: "Unity Station", x1: 1692.620, y1: -1971.800, z1: -20.492, x2: 1812.620, y2: -1932.800, z2: 79.508})
+    BK_ZonesArr.Push({name: "LVA Freight Depot", x1: 1315.350, y1: 1044.690, z1: -89.084, x2: 1375.600, y2: 1087.630, z2: 110.916})
+    BK_ZonesArr.Push({name: "Los Flores", x1: 2581.730, y1: -1454.350, z1: -89.084, x2: 2632.830, y2: -1393.420, z2: 110.916})
+    BK_ZonesArr.Push({name: "Starfish Casino", x1: 2437.390, y1: 1858.100, z1: -39.084, x2: 2495.090, y2: 1970.850, z2: 60.916})
+    BK_ZonesArr.Push({name: "Easter Bay Chemicals", x1: -1132.820, y1: -787.391, z1: 0.000, x2: -956.476, y2: -768.027, z2: 200.000})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1370.850, y1: -1170.870, z1: -89.084, x2: 1463.900, y2: -1130.850, z2: 110.916})
+    BK_ZonesArr.Push({name: "Esplanade East", x1: -1620.300, y1: 1176.520, z1: -4.5, x2: -1580.010, y2: 1274.260, z2: 200.000})
+    BK_ZonesArr.Push({name: "Market Station", x1: 787.461, y1: -1410.930, z1: -34.126, x2: 866.009, y2: -1310.210, z2: 65.874})
+    BK_ZonesArr.Push({name: "Linden Station", x1: 2811.250, y1: 1229.590, z1: -39.594, x2: 2861.250, y2: 1407.590, z2: 60.406})
+    BK_ZonesArr.Push({name: "Montgomery Intersection", x1: 1582.440, y1: 347.457, z1: 0.000, x2: 1664.620, y2: 401.750, z2: 200.000})
+    BK_ZonesArr.Push({name: "Frederick Bridge", x1: 2759.250, y1: 296.501, z1: 0.000, x2: 2774.250, y2: 594.757, z2: 200.000})
+    BK_ZonesArr.Push({name: "Yellow Bell Station", x1: 1377.480, y1: 2600.430, z1: -21.926, x2: 1492.450, y2: 2687.360, z2: 78.074})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1507.510, y1: -1385.210, z1: 110.916, x2: 1582.550, y2: -1325.310, z2: 335.916})
+    BK_ZonesArr.Push({name: "Jefferson", x1: 2185.330, y1: -1210.740, z1: -89.084, x2: 2281.450, y2: -1154.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1318.130, y1: -910.170, z1: -89.084, x2: 1357.000, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Avispa Country Club", x1: -2361.510, y1: -417.199, z1: 0.000, x2: -2270.040, y2: -355.493, z2: 200.000})
+    BK_ZonesArr.Push({name: "Jefferson", x1: 1996.910, y1: -1449.670, z1: -89.084, x2: 2056.860, y2: -1350.720, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway West", x1: 1236.630, y1: 2142.860, z1: -89.084, x2: 1297.470, y2: 2243.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Jefferson", x1: 2124.660, y1: -1494.030, z1: -89.084, x2: 2266.210, y2: -1449.670, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 1848.400, y1: 2478.490, z1: -89.084, x2: 1938.800, y2: 2553.490, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 422.680, y1: -1570.200, z1: -89.084, x2: 466.223, y2: -1406.050, z2: 110.916})
+    BK_ZonesArr.Push({name: "Cranberry Station", x1: -2007.830, y1: 56.306, z1: 0.000, x2: -1922.000, y2: 224.782, z2: 100.000})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1391.050, y1: -1026.330, z1: -89.084, x2: 1463.900, y2: -926.999, z2: 110.916})
+    BK_ZonesArr.Push({name: "Redsands West", x1: 1704.590, y1: 2243.230, z1: -89.084, x2: 1777.390, y2: 2342.830, z2: 110.916})
+    BK_ZonesArr.Push({name: "Little Mexico", x1: 1758.900, y1: -1722.260, z1: -89.084, x2: 1812.620, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blackfield Intersection", x1: 1375.600, y1: 823.228, z1: -89.084, x2: 1457.390, y2: 919.447, z2: 110.916})
+    BK_ZonesArr.Push({name: "Los Santos International", x1: 1974.630, y1: -2394.330, z1: -39.084, x2: 2089.000, y2: -2256.590, z2: 60.916})
+    BK_ZonesArr.Push({name: "Beacon Hill", x1: -399.633, y1: -1075.520, z1: -1.489, x2: -319.033, y2: -977.516, z2: 198.511})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 334.503, y1: -1501.950, z1: -89.084, x2: 422.680, y2: -1406.050, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 225.165, y1: -1369.620, z1: -89.084, x2: 334.503, y2: -1292.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1724.760, y1: -1250.900, z1: -89.084, x2: 1812.620, y2: -1150.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Strip", x1: 2027.400, y1: 1703.230, z1: -89.084, x2: 2137.400, y2: 1783.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1378.330, y1: -1130.850, z1: -89.084, x2: 1463.900, y2: -1026.330, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blackfield Intersection", x1: 1197.390, y1: 1044.690, z1: -89.084, x2: 1277.050, y2: 1163.390, z2: 110.916})
+    BK_ZonesArr.Push({name: "Conference Center", x1: 1073.220, y1: -1842.270, z1: -89.084, x2: 1323.900, y2: -1804.210, z2: 110.916})
+    BK_ZonesArr.Push({name: "Montgomery", x1: 1451.400, y1: 347.457, z1: -6.1, x2: 1582.440, y2: 420.802, z2: 200.000})
+    BK_ZonesArr.Push({name: "Foster Valley", x1: -2270.040, y1: -430.276, z1: -1.2, x2: -2178.690, y2: -324.114, z2: 200.000})
+    BK_ZonesArr.Push({name: "Blackfield Chapel", x1: 1325.600, y1: 596.349, z1: -89.084, x2: 1375.600, y2: 795.010, z2: 110.916})
+    BK_ZonesArr.Push({name: "Los Santos International", x1: 2051.630, y1: -2597.260, z1: -39.084, x2: 2152.450, y2: -2394.330, z2: 60.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1096.470, y1: -910.170, z1: -89.084, x2: 1169.130, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Yellow Bell Golf Course", x1: 1457.460, y1: 2723.230, z1: -89.084, x2: 1534.560, y2: 2863.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Strip", x1: 2027.400, y1: 1783.230, z1: -89.084, x2: 2162.390, y2: 1863.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Jefferson", x1: 2056.860, y1: -1210.740, z1: -89.084, x2: 2185.330, y2: -1126.320, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 952.604, y1: -937.184, z1: -89.084, x2: 1096.470, y2: -860.619, z2: 110.916})
+    BK_ZonesArr.Push({name: "Aldea Malvada", x1: -1372.140, y1: 2498.520, z1: 0.000, x2: -1277.590, y2: 2615.350, z2: 200.000})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 2126.860, y1: -1126.320, z1: -89.084, x2: 2185.330, y2: -934.489, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 1994.330, y1: -1100.820, z1: -89.084, x2: 2056.860, y2: -920.815, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 647.557, y1: -954.662, z1: -89.084, x2: 768.694, y2: -860.619, z2: 110.916})
+    BK_ZonesArr.Push({name: "LVA Freight Depot", x1: 1277.050, y1: 1087.630, z1: -89.084, x2: 1375.600, y2: 1203.280, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 1377.390, y1: 2433.230, z1: -89.084, x2: 1534.560, y2: 2507.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 2201.820, y1: -2095.000, z1: -89.084, x2: 2324.000, y2: -1989.900, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 1704.590, y1: 2342.830, z1: -89.084, x2: 1848.400, y2: 2433.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Temple", x1: 1252.330, y1: -1130.850, z1: -89.084, x2: 1378.330, y2: -1026.330, z2: 110.916})
+    BK_ZonesArr.Push({name: "Little Mexico", x1: 1701.900, y1: -1842.270, z1: -89.084, x2: 1812.620, y2: -1722.260, z2: 110.916})
+    BK_ZonesArr.Push({name: "Queens", x1: -2411.220, y1: 373.539, z1: 0.000, x2: -2253.540, y2: 458.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Las Venturas Airport", x1: 1515.810, y1: 1586.400, z1: -12.500, x2: 1729.950, y2: 1714.560, z2: 87.500})
+    BK_ZonesArr.Push({name: "Richman", x1: 225.165, y1: -1292.070, z1: -89.084, x2: 466.223, y2: -1235.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Temple", x1: 1252.330, y1: -1026.330, z1: -89.084, x2: 1391.050, y2: -926.999, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2266.260, y1: -1494.030, z1: -89.084, x2: 2381.680, y2: -1372.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway East", x1: 2623.180, y1: 943.235, z1: -89.084, x2: 2749.900, y2: 1055.960, z2: 110.916})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 2541.700, y1: -1941.400, z1: -89.084, x2: 2703.580, y2: -1852.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 2056.860, y1: -1126.320, z1: -89.084, x2: 2126.860, y2: -920.815, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway East", x1: 2625.160, y1: 2202.760, z1: -89.084, x2: 2685.160, y2: 2442.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 225.165, y1: -1501.950, z1: -89.084, x2: 334.503, y2: -1369.620, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Brujas", x1: -365.167, y1: 2123.010, z1: -3.0, x2: -208.570, y2: 2217.680, z2: 200.000})
+    BK_ZonesArr.Push({name: "Julius Thruway East", x1: 2536.430, y1: 2442.550, z1: -89.084, x2: 2685.160, y2: 2542.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 334.503, y1: -1406.050, z1: -89.084, x2: 466.223, y2: -1292.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Vinewood", x1: 647.557, y1: -1227.280, z1: -89.084, x2: 787.461, y2: -1118.280, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 422.680, y1: -1684.650, z1: -89.084, x2: 558.099, y2: -1570.200, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 2498.210, y1: 2542.550, z1: -89.084, x2: 2685.160, y2: 2626.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1724.760, y1: -1430.870, z1: -89.084, x2: 1812.620, y2: -1250.900, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 225.165, y1: -1684.650, z1: -89.084, x2: 312.803, y2: -1501.950, z2: 110.916})
+    BK_ZonesArr.Push({name: "Jefferson", x1: 2056.860, y1: -1449.670, z1: -89.084, x2: 2266.210, y2: -1372.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "Hampton Barns", x1: 603.035, y1: 264.312, z1: 0.000, x2: 761.994, y2: 366.572, z2: 200.000})
+    BK_ZonesArr.Push({name: "Temple", x1: 1096.470, y1: -1130.840, z1: -89.084, x2: 1252.330, y2: -1026.330, z2: 110.916})
+    BK_ZonesArr.Push({name: "Kincaid Bridge", x1: -1087.930, y1: 855.370, z1: -89.084, x2: -961.950, y2: 986.281, z2: 110.916})
+    BK_ZonesArr.Push({name: "Verona Beach", x1: 1046.150, y1: -1722.260, z1: -89.084, x2: 1161.520, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Commerce", x1: 1323.900, y1: -1722.260, z1: -89.084, x2: 1440.900, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1357.000, y1: -926.999, z1: -89.084, x2: 1463.900, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 466.223, y1: -1570.200, z1: -89.084, x2: 558.099, y2: -1385.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 911.802, y1: -860.619, z1: -89.084, x2: 1096.470, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 768.694, y1: -954.662, z1: -89.084, x2: 952.604, y2: -860.619, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway South", x1: 2377.390, y1: 788.894, z1: -89.084, x2: 2537.390, y2: 897.901, z2: 110.916})
+    BK_ZonesArr.Push({name: "Idlewood", x1: 1812.620, y1: -1852.870, z1: -89.084, x2: 1971.660, y2: -1742.310, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2089.000, y1: -2394.330, z1: -89.084, x2: 2201.820, y2: -2235.840, z2: 110.916})
+    BK_ZonesArr.Push({name: "Commerce", x1: 1370.850, y1: -1577.590, z1: -89.084, x2: 1463.900, y2: -1384.950, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 2121.400, y1: 2508.230, z1: -89.084, x2: 2237.400, y2: 2663.170, z2: 110.916})
+    BK_ZonesArr.Push({name: "Temple", x1: 1096.470, y1: -1026.330, z1: -89.084, x2: 1252.330, y2: -910.170, z2: 110.916})
+    BK_ZonesArr.Push({name: "Glen Park", x1: 1812.620, y1: -1449.670, z1: -89.084, x2: 1996.910, y2: -1350.720, z2: 110.916})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1242.980, y1: -50.096, z1: 0.000, x2: -1213.910, y2: 578.396, z2: 200.000})
+    BK_ZonesArr.Push({name: "Martin Bridge", x1: -222.179, y1: 293.324, z1: 0.000, x2: -122.126, y2: 476.465, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Strip", x1: 2106.700, y1: 1863.230, z1: -89.084, x2: 2162.390, y2: 2202.760, z2: 110.916})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 2541.700, y1: -2059.230, z1: -89.084, x2: 2703.580, y2: -1941.400, z2: 110.916})
+    BK_ZonesArr.Push({name: "Marina", x1: 807.922, y1: -1577.590, z1: -89.084, x2: 926.922, y2: -1416.250, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Venturas Airport", x1: 1457.370, y1: 1143.210, z1: -89.084, x2: 1777.400, y2: 1203.280, z2: 110.916})
+    BK_ZonesArr.Push({name: "Idlewood", x1: 1812.620, y1: -1742.310, z1: -89.084, x2: 1951.660, y2: -1602.310, z2: 110.916})
+    BK_ZonesArr.Push({name: "Esplanade East", x1: -1580.010, y1: 1025.980, z1: -6.1, x2: -1499.890, y2: 1274.260, z2: 200.000})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1370.850, y1: -1384.950, z1: -89.084, x2: 1463.900, y2: -1170.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Mako Span", x1: 1664.620, y1: 401.750, z1: 0.000, x2: 1785.140, y2: 567.203, z2: 200.000})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 312.803, y1: -1684.650, z1: -89.084, x2: 422.680, y2: -1501.950, z2: 110.916})
+    BK_ZonesArr.Push({name: "Pershing Square", x1: 1440.900, y1: -1722.260, z1: -89.084, x2: 1583.500, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 687.802, y1: -860.619, z1: -89.084, x2: 911.802, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Gant Bridge", x1: -2741.070, y1: 1490.470, z1: -6.1, x2: -2616.400, y2: 1659.680, z2: 200.000})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 2185.330, y1: -1154.590, z1: -89.084, x2: 2281.450, y2: -934.489, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1169.130, y1: -910.170, z1: -89.084, x2: 1318.130, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 1938.800, y1: 2508.230, z1: -89.084, x2: 2121.400, y2: 2624.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Commerce", x1: 1667.960, y1: -1577.590, z1: -89.084, x2: 1812.620, y2: -1430.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 72.648, y1: -1544.170, z1: -89.084, x2: 225.165, y2: -1404.970, z2: 110.916})
+    BK_ZonesArr.Push({name: "Roca Escalante", x1: 2536.430, y1: 2202.760, z1: -89.084, x2: 2625.160, y2: 2442.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 72.648, y1: -1684.650, z1: -89.084, x2: 225.165, y2: -1544.170, z2: 110.916})
+    BK_ZonesArr.Push({name: "Market", x1: 952.663, y1: -1310.210, z1: -89.084, x2: 1072.660, y2: -1130.850, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 2632.740, y1: -1135.040, z1: -89.084, x2: 2747.740, y2: -945.035, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 861.085, y1: -674.885, z1: -89.084, x2: 1156.550, y2: -600.896, z2: 110.916})
+    BK_ZonesArr.Push({name: "King's", x1: -2253.540, y1: 373.539, z1: -9.1, x2: -1993.280, y2: 458.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Redsands East", x1: 1848.400, y1: 2342.830, z1: -89.084, x2: 2011.940, y2: 2478.490, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown", x1: -1580.010, y1: 744.267, z1: -6.1, x2: -1499.890, y2: 1025.980, z2: 200.000})
+    BK_ZonesArr.Push({name: "Conference Center", x1: 1046.150, y1: -1804.210, z1: -89.084, x2: 1323.900, y2: -1722.260, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 647.557, y1: -1118.280, z1: -89.084, x2: 787.461, y2: -954.662, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Flats", x1: -2994.490, y1: 277.411, z1: -9.1, x2: -2867.850, y2: 458.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Greenglass College", x1: 964.391, y1: 930.890, z1: -89.084, x2: 1166.530, y2: 1044.690, z2: 110.916})
+    BK_ZonesArr.Push({name: "Glen Park", x1: 1812.620, y1: -1100.820, z1: -89.084, x2: 1994.330, y2: -973.380, z2: 110.916})
+    BK_ZonesArr.Push({name: "LVA Freight Depot", x1: 1375.600, y1: 919.447, z1: -89.084, x2: 1457.370, y2: 1203.280, z2: 110.916})
+    BK_ZonesArr.Push({name: "Regular Tom", x1: -405.770, y1: 1712.860, z1: -3.0, x2: -276.719, y2: 1892.750, z2: 200.000})
+    BK_ZonesArr.Push({name: "Verona Beach", x1: 1161.520, y1: -1722.260, z1: -89.084, x2: 1323.900, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2281.450, y1: -1372.040, z1: -89.084, x2: 2381.680, y2: -1135.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "Caligula's Palace", x1: 2137.400, y1: 1703.230, z1: -89.084, x2: 2437.390, y2: 1783.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Idlewood", x1: 1951.660, y1: -1742.310, z1: -89.084, x2: 2124.660, y2: -1602.310, z2: 110.916})
+    BK_ZonesArr.Push({name: "Pilgrim", x1: 2624.400, y1: 1383.230, z1: -89.084, x2: 2685.160, y2: 1783.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Idlewood", x1: 2124.660, y1: -1742.310, z1: -89.084, x2: 2222.560, y2: -1494.030, z2: 110.916})
+    BK_ZonesArr.Push({name: "Queens", x1: -2533.040, y1: 458.411, z1: 0.000, x2: -2329.310, y2: 578.396, z2: 200.000})
+    BK_ZonesArr.Push({name: "Downtown", x1: -1871.720, y1: 1176.420, z1: -4.5, x2: -1620.300, y2: 1274.260, z2: 200.000})
+    BK_ZonesArr.Push({name: "Commerce", x1: 1583.500, y1: -1722.260, z1: -89.084, x2: 1758.900, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2381.680, y1: -1454.350, z1: -89.084, x2: 2462.130, y2: -1135.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "Marina", x1: 647.712, y1: -1577.590, z1: -89.084, x2: 807.922, y2: -1416.250, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 72.648, y1: -1404.970, z1: -89.084, x2: 225.165, y2: -1235.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Vinewood", x1: 647.712, y1: -1416.250, z1: -89.084, x2: 787.461, y2: -1227.280, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2222.560, y1: -1628.530, z1: -89.084, x2: 2421.030, y2: -1494.030, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 558.099, y1: -1684.650, z1: -89.084, x2: 647.522, y2: -1384.930, z2: 110.916})
+    BK_ZonesArr.Push({name: "Easter Tunnel", x1: -1709.710, y1: -833.034, z1: -1.5, x2: -1446.010, y2: -730.118, z2: 200.000})
+    BK_ZonesArr.Push({name: "Rodeo", x1: 466.223, y1: -1385.070, z1: -89.084, x2: 647.522, y2: -1235.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Redsands East", x1: 1817.390, y1: 2202.760, z1: -89.084, x2: 2011.940, y2: 2342.830, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Clown's Pocket", x1: 2162.390, y1: 1783.230, z1: -89.084, x2: 2437.390, y2: 1883.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Idlewood", x1: 1971.660, y1: -1852.870, z1: -89.084, x2: 2222.560, y2: -1742.310, z2: 110.916})
+    BK_ZonesArr.Push({name: "Montgomery Intersection", x1: 1546.650, y1: 208.164, z1: 0.000, x2: 1745.830, y2: 347.457, z2: 200.000})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 2089.000, y1: -2235.840, z1: -89.084, x2: 2201.820, y2: -1989.900, z2: 110.916})
+    BK_ZonesArr.Push({name: "Temple", x1: 952.663, y1: -1130.840, z1: -89.084, x2: 1096.470, y2: -937.184, z2: 110.916})
+    BK_ZonesArr.Push({name: "Prickle Pine", x1: 1848.400, y1: 2553.490, z1: -89.084, x2: 1938.800, y2: 2863.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Los Santos International", x1: 1400.970, y1: -2669.260, z1: -39.084, x2: 2189.820, y2: -2597.260, z2: 60.916})
+    BK_ZonesArr.Push({name: "Garver Bridge", x1: -1213.910, y1: 950.022, z1: -89.084, x2: -1087.930, y2: 1178.930, z2: 110.916})
+    BK_ZonesArr.Push({name: "Garver Bridge", x1: -1339.890, y1: 828.129, z1: -89.084, x2: -1213.910, y2: 1057.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "Kincaid Bridge", x1: -1339.890, y1: 599.218, z1: -89.084, x2: -1213.910, y2: 828.129, z2: 110.916})
+    BK_ZonesArr.Push({name: "Kincaid Bridge", x1: -1213.910, y1: 721.111, z1: -89.084, x2: -1087.930, y2: 950.022, z2: 110.916})
+    BK_ZonesArr.Push({name: "Verona Beach", x1: 930.221, y1: -2006.780, z1: -89.084, x2: 1073.220, y2: -1804.210, z2: 110.916})
+    BK_ZonesArr.Push({name: "Verdant Bluffs", x1: 1073.220, y1: -2006.780, z1: -89.084, x2: 1249.620, y2: -1842.270, z2: 110.916})
+    BK_ZonesArr.Push({name: "Vinewood", x1: 787.461, y1: -1130.840, z1: -89.084, x2: 952.604, y2: -954.662, z2: 110.916})
+    BK_ZonesArr.Push({name: "Vinewood", x1: 787.461, y1: -1310.210, z1: -89.084, x2: 952.663, y2: -1130.840, z2: 110.916})
+    BK_ZonesArr.Push({name: "Commerce", x1: 1463.900, y1: -1577.590, z1: -89.084, x2: 1667.960, y2: -1430.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Market", x1: 787.461, y1: -1416.250, z1: -89.084, x2: 1072.660, y2: -1310.210, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rockshore West", x1: 2377.390, y1: 596.349, z1: -89.084, x2: 2537.390, y2: 788.894, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 2237.400, y1: 2542.550, z1: -89.084, x2: 2498.210, y2: 2663.170, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Beach", x1: 2632.830, y1: -1668.130, z1: -89.084, x2: 2747.740, y2: -1393.420, z2: 110.916})
+    BK_ZonesArr.Push({name: "Fallow Bridge", x1: 434.341, y1: 366.572, z1: 0.000, x2: 603.035, y2: 555.680, z2: 200.000})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 2089.000, y1: -1989.900, z1: -89.084, x2: 2324.000, y2: -1852.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Chinatown", x1: -2274.170, y1: 578.396, z1: -7.6, x2: -2078.670, y2: 744.170, z2: 200.000})
+    BK_ZonesArr.Push({name: "El Castillo del Diablo", x1: -208.570, y1: 2337.180, z1: 0.000, x2: 8.430, y2: 2487.180, z2: 200.000})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2324.000, y1: -2145.100, z1: -89.084, x2: 2703.580, y2: -2059.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Easter Bay Chemicals", x1: -1132.820, y1: -768.027, z1: 0.000, x2: -956.476, y2: -578.118, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Visage", x1: 1817.390, y1: 1703.230, z1: -89.084, x2: 2027.400, y2: 1863.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Flats", x1: -2994.490, y1: -430.276, z1: -1.2, x2: -2831.890, y2: -222.589, z2: 200.000})
+    BK_ZonesArr.Push({name: "Richman", x1: 321.356, y1: -860.619, z1: -89.084, x2: 687.802, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Green Palms", x1: 176.581, y1: 1305.450, z1: -3.0, x2: 338.658, y2: 1520.720, z2: 200.000})
+    BK_ZonesArr.Push({name: "Richman", x1: 321.356, y1: -768.027, z1: -89.084, x2: 700.794, y2: -674.885, z2: 110.916})
+    BK_ZonesArr.Push({name: "Starfish Casino", x1: 2162.390, y1: 1883.230, z1: -89.084, x2: 2437.390, y2: 2012.180, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Beach", x1: 2747.740, y1: -1668.130, z1: -89.084, x2: 2959.350, y2: -1498.620, z2: 110.916})
+    BK_ZonesArr.Push({name: "Jefferson", x1: 2056.860, y1: -1372.040, z1: -89.084, x2: 2281.450, y2: -1210.740, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1463.900, y1: -1290.870, z1: -89.084, x2: 1724.760, y2: -1150.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown Los Santos", x1: 1463.900, y1: -1430.870, z1: -89.084, x2: 1724.760, y2: -1290.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Garver Bridge", x1: -1499.890, y1: 696.442, z1: -179.615, x2: -1339.890, y2: 925.353, z2: 20.385})
+    BK_ZonesArr.Push({name: "Julius Thruway South", x1: 1457.390, y1: 823.228, z1: -89.084, x2: 2377.390, y2: 863.229, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2421.030, y1: -1628.530, z1: -89.084, x2: 2632.830, y2: -1454.350, z2: 110.916})
+    BK_ZonesArr.Push({name: "Greenglass College", x1: 964.391, y1: 1044.690, z1: -89.084, x2: 1197.390, y2: 1203.220, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 2747.740, y1: -1120.040, z1: -89.084, x2: 2959.350, y2: -945.035, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 737.573, y1: -768.027, z1: -89.084, x2: 1142.290, y2: -674.885, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2201.820, y1: -2730.880, z1: -89.084, x2: 2324.000, y2: -2418.330, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Los Santos", x1: 2462.130, y1: -1454.350, z1: -89.084, x2: 2581.730, y2: -1135.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ganton", x1: 2222.560, y1: -1722.330, z1: -89.084, x2: 2632.830, y2: -1628.530, z2: 110.916})
+    BK_ZonesArr.Push({name: "Avispa Country Club", x1: -2831.890, y1: -430.276, z1: -6.1, x2: -2646.400, y2: -222.589, z2: 200.000})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 1970.620, y1: -2179.250, z1: -89.084, x2: 2089.000, y2: -1852.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Esplanade North", x1: -1982.320, y1: 1274.260, z1: -4.5, x2: -1524.240, y2: 1358.900, z2: 200.000})
+    BK_ZonesArr.Push({name: "The High Roller", x1: 1817.390, y1: 1283.230, z1: -89.084, x2: 2027.390, y2: 1469.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2201.820, y1: -2418.330, z1: -89.084, x2: 2324.000, y2: -2095.000, z2: 110.916})
+    BK_ZonesArr.Push({name: "Last Dime Motel", x1: 1823.080, y1: 596.349, z1: -89.084, x2: 1997.220, y2: 823.228, z2: 110.916})
+    BK_ZonesArr.Push({name: "Bayside Marina", x1: -2353.170, y1: 2275.790, z1: 0.000, x2: -2153.170, y2: 2475.790, z2: 200.000})
+    BK_ZonesArr.Push({name: "King's", x1: -2329.310, y1: 458.411, z1: -7.6, x2: -1993.280, y2: 578.396, z2: 200.000})
+    BK_ZonesArr.Push({name: "El Corona", x1: 1692.620, y1: -2179.250, z1: -89.084, x2: 1812.620, y2: -1842.270, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blackfield Chapel", x1: 1375.600, y1: 596.349, z1: -89.084, x2: 1558.090, y2: 823.228, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Pink Swan", x1: 1817.390, y1: 1083.230, z1: -89.084, x2: 2027.390, y2: 1283.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway West", x1: 1197.390, y1: 1163.390, z1: -89.084, x2: 1236.630, y2: 2243.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Los Flores", x1: 2581.730, y1: -1393.420, z1: -89.084, x2: 2747.740, y2: -1135.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Visage", x1: 1817.390, y1: 1863.230, z1: -89.084, x2: 2106.700, y2: 2011.830, z2: 110.916})
+    BK_ZonesArr.Push({name: "Prickle Pine", x1: 1938.800, y1: 2624.230, z1: -89.084, x2: 2121.400, y2: 2861.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Verona Beach", x1: 851.449, y1: -1804.210, z1: -89.084, x2: 1046.150, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Robada Intersection", x1: -1119.010, y1: 1178.930, z1: -89.084, x2: -862.025, y2: 1351.450, z2: 110.916})
+    BK_ZonesArr.Push({name: "Linden Side", x1: 2749.900, y1: 943.235, z1: -89.084, x2: 2923.390, y2: 1198.990, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2703.580, y1: -2302.330, z1: -89.084, x2: 2959.350, y2: -2126.900, z2: 110.916})
+    BK_ZonesArr.Push({name: "Willowfield", x1: 2324.000, y1: -2059.230, z1: -89.084, x2: 2541.700, y2: -1852.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "King's", x1: -2411.220, y1: 265.243, z1: -9.1, x2: -1993.280, y2: 373.539, z2: 200.000})
+    BK_ZonesArr.Push({name: "Commerce", x1: 1323.900, y1: -1842.270, z1: -89.084, x2: 1701.900, y2: -1722.260, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1269.130, y1: -768.027, z1: -89.084, x2: 1414.070, y2: -452.425, z2: 110.916})
+    BK_ZonesArr.Push({name: "Marina", x1: 647.712, y1: -1804.210, z1: -89.084, x2: 851.449, y2: -1577.590, z2: 110.916})
+    BK_ZonesArr.Push({name: "Battery Point", x1: -2741.070, y1: 1268.410, z1: -4.5, x2: -2533.040, y2: 1490.470, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Four Dragons Casino", x1: 1817.390, y1: 863.232, z1: -89.084, x2: 2027.390, y2: 1083.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blackfield", x1: 964.391, y1: 1203.220, z1: -89.084, x2: 1197.390, y2: 1403.220, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway North", x1: 1534.560, y1: 2433.230, z1: -89.084, x2: 1848.400, y2: 2583.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Yellow Bell Golf Course", x1: 1117.400, y1: 2723.230, z1: -89.084, x2: 1457.460, y2: 2863.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Idlewood", x1: 1812.620, y1: -1602.310, z1: -89.084, x2: 2124.660, y2: -1449.670, z2: 110.916})
+    BK_ZonesArr.Push({name: "Redsands West", x1: 1297.470, y1: 2142.860, z1: -89.084, x2: 1777.390, y2: 2243.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Doherty", x1: -2270.040, y1: -324.114, z1: -1.2, x2: -1794.920, y2: -222.589, z2: 200.000})
+    BK_ZonesArr.Push({name: "Hilltop Farm", x1: 967.383, y1: -450.390, z1: -3.0, x2: 1176.780, y2: -217.900, z2: 200.000})
+    BK_ZonesArr.Push({name: "Las Barrancas", x1: -926.130, y1: 1398.730, z1: -3.0, x2: -719.234, y2: 1634.690, z2: 200.000})
+    BK_ZonesArr.Push({name: "Pirates in Men's Pants", x1: 1817.390, y1: 1469.230, z1: -89.084, x2: 2027.400, y2: 1703.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "City Hall", x1: -2867.850, y1: 277.411, z1: -9.1, x2: -2593.440, y2: 458.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Avispa Country Club", x1: -2646.400, y1: -355.493, z1: 0.000, x2: -2270.040, y2: -222.589, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Strip", x1: 2027.400, y1: 863.229, z1: -89.084, x2: 2087.390, y2: 1703.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Hashbury", x1: -2593.440, y1: -222.589, z1: -1.0, x2: -2411.220, y2: 54.722, z2: 200.000})
+    BK_ZonesArr.Push({name: "Los Santos International", x1: 1852.000, y1: -2394.330, z1: -89.084, x2: 2089.000, y2: -2179.250, z2: 110.916})
+    BK_ZonesArr.Push({name: "Whitewood Estates", x1: 1098.310, y1: 1726.220, z1: -89.084, x2: 1197.390, y2: 2243.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Sherman Reservoir", x1: -789.737, y1: 1659.680, z1: -89.084, x2: -599.505, y2: 1929.410, z2: 110.916})
+    BK_ZonesArr.Push({name: "El Corona", x1: 1812.620, y1: -2179.250, z1: -89.084, x2: 1970.620, y2: -1852.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown", x1: -1700.010, y1: 744.267, z1: -6.1, x2: -1580.010, y2: 1176.520, z2: 200.000})
+    BK_ZonesArr.Push({name: "Foster Valley", x1: -2178.690, y1: -1250.970, z1: 0.000, x2: -1794.920, y2: -1115.580, z2: 200.000})
+    BK_ZonesArr.Push({name: "Las Payasadas", x1: -354.332, y1: 2580.360, z1: 2.0, x2: -133.625, y2: 2816.820, z2: 200.000})
+    BK_ZonesArr.Push({name: "Valle Ocultado", x1: -936.668, y1: 2611.440, z1: 2.0, x2: -715.961, y2: 2847.900, z2: 200.000})
+    BK_ZonesArr.Push({name: "Blackfield Intersection", x1: 1166.530, y1: 795.010, z1: -89.084, x2: 1375.600, y2: 1044.690, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ganton", x1: 2222.560, y1: -1852.870, z1: -89.084, x2: 2632.830, y2: -1722.330, z2: 110.916})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1213.910, y1: -730.118, z1: 0.000, x2: -1132.820, y2: -50.096, z2: 200.000})
+    BK_ZonesArr.Push({name: "Redsands East", x1: 1817.390, y1: 2011.830, z1: -89.084, x2: 2106.700, y2: 2202.760, z2: 110.916})
+    BK_ZonesArr.Push({name: "Esplanade East", x1: -1499.890, y1: 578.396, z1: -79.615, x2: -1339.890, y2: 1274.260, z2: 20.385})
+    BK_ZonesArr.Push({name: "Caligula's Palace", x1: 2087.390, y1: 1543.230, z1: -89.084, x2: 2437.390, y2: 1703.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Royal Casino", x1: 2087.390, y1: 1383.230, z1: -89.084, x2: 2437.390, y2: 1543.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 72.648, y1: -1235.070, z1: -89.084, x2: 321.356, y2: -1008.150, z2: 110.916})
+    BK_ZonesArr.Push({name: "Starfish Casino", x1: 2437.390, y1: 1783.230, z1: -89.084, x2: 2685.160, y2: 2012.180, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1281.130, y1: -452.425, z1: -89.084, x2: 1641.130, y2: -290.913, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown", x1: -1982.320, y1: 744.170, z1: -6.1, x2: -1871.720, y2: 1274.260, z2: 200.000})
+    BK_ZonesArr.Push({name: "Hankypanky Point", x1: 2576.920, y1: 62.158, z1: 0.000, x2: 2759.250, y2: 385.503, z2: 200.000})
+    BK_ZonesArr.Push({name: "K.A.C.C. Military Fuels", x1: 2498.210, y1: 2626.550, z1: -89.084, x2: 2749.900, y2: 2861.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Harry Gold Parkway", x1: 1777.390, y1: 863.232, z1: -89.084, x2: 1817.390, y2: 2342.830, z2: 110.916})
+    BK_ZonesArr.Push({name: "Bayside Tunnel", x1: -2290.190, y1: 2548.290, z1: -89.084, x2: -1950.190, y2: 2723.290, z2: 110.916})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2324.000, y1: -2302.330, z1: -89.084, x2: 2703.580, y2: -2145.100, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 321.356, y1: -1044.070, z1: -89.084, x2: 647.557, y2: -860.619, z2: 110.916})
+    BK_ZonesArr.Push({name: "Randolph Industrial Estate", x1: 1558.090, y1: 596.349, z1: -89.084, x2: 1823.080, y2: 823.235, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Beach", x1: 2632.830, y1: -1852.870, z1: -89.084, x2: 2959.350, y2: -1668.130, z2: 110.916})
+    BK_ZonesArr.Push({name: "Flint Water", x1: -314.426, y1: -753.874, z1: -89.084, x2: -106.339, y2: -463.073, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blueberry", x1: 19.607, y1: -404.136, z1: 3.8, x2: 349.607, y2: -220.137, z2: 200.000})
+    BK_ZonesArr.Push({name: "Linden Station", x1: 2749.900, y1: 1198.990, z1: -89.084, x2: 2923.390, y2: 1548.990, z2: 110.916})
+    BK_ZonesArr.Push({name: "Glen Park", x1: 1812.620, y1: -1350.720, z1: -89.084, x2: 2056.860, y2: -1100.820, z2: 110.916})
+    BK_ZonesArr.Push({name: "Downtown", x1: -1993.280, y1: 265.243, z1: -9.1, x2: -1794.920, y2: 578.396, z2: 200.000})
+    BK_ZonesArr.Push({name: "Redsands West", x1: 1377.390, y1: 2243.230, z1: -89.084, x2: 1704.590, y2: 2433.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Richman", x1: 321.356, y1: -1235.070, z1: -89.084, x2: 647.522, y2: -1044.070, z2: 110.916})
+    BK_ZonesArr.Push({name: "Gant Bridge", x1: -2741.450, y1: 1659.680, z1: -6.1, x2: -2616.400, y2: 2175.150, z2: 200.000})
+    BK_ZonesArr.Push({name: "Lil' Probe Inn", x1: -90.218, y1: 1286.850, z1: -3.0, x2: 153.859, y2: 1554.120, z2: 200.000})
+    BK_ZonesArr.Push({name: "Flint Intersection", x1: -187.700, y1: -1596.760, z1: -89.084, x2: 17.063, y2: -1276.600, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Colinas", x1: 2281.450, y1: -1135.040, z1: -89.084, x2: 2632.740, y2: -945.035, z2: 110.916})
+    BK_ZonesArr.Push({name: "Sobell Rail Yards", x1: 2749.900, y1: 1548.990, z1: -89.084, x2: 2923.390, y2: 1937.250, z2: 110.916})
+    BK_ZonesArr.Push({name: "The Emerald Isle", x1: 2011.940, y1: 2202.760, z1: -89.084, x2: 2237.400, y2: 2508.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "El Castillo del Diablo", x1: -208.570, y1: 2123.010, z1: -7.6, x2: 114.033, y2: 2337.180, z2: 200.000})
+    BK_ZonesArr.Push({name: "Santa Flora", x1: -2741.070, y1: 458.411, z1: -7.6, x2: -2533.040, y2: 793.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Playa del Seville", x1: 2703.580, y1: -2126.900, z1: -89.084, x2: 2959.350, y2: -1852.870, z2: 110.916})
+    BK_ZonesArr.Push({name: "Market", x1: 926.922, y1: -1577.590, z1: -89.084, x2: 1370.850, y2: -1416.250, z2: 110.916})
+    BK_ZonesArr.Push({name: "Queens", x1: -2593.440, y1: 54.722, z1: 0.000, x2: -2411.220, y2: 458.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Pilson Intersection", x1: 1098.390, y1: 2243.230, z1: -89.084, x2: 1377.390, y2: 2507.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Spinybed", x1: 2121.400, y1: 2663.170, z1: -89.084, x2: 2498.210, y2: 2861.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Pilgrim", x1: 2437.390, y1: 1383.230, z1: -89.084, x2: 2624.400, y2: 1783.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blackfield", x1: 964.391, y1: 1403.220, z1: -89.084, x2: 1197.390, y2: 1726.220, z2: 110.916})
+    BK_ZonesArr.Push({name: "'The Big Ear'", x1: -410.020, y1: 1403.340, z1: -3.0, x2: -137.969, y2: 1681.230, z2: 200.000})
+    BK_ZonesArr.Push({name: "Dillimore", x1: 580.794, y1: -674.885, z1: -9.5, x2: 861.085, y2: -404.790, z2: 200.000})
+    BK_ZonesArr.Push({name: "El Quebrados", x1: -1645.230, y1: 2498.520, z1: 0.000, x2: -1372.140, y2: 2777.850, z2: 200.000})
+    BK_ZonesArr.Push({name: "Esplanade North", x1: -2533.040, y1: 1358.900, z1: -4.5, x2: -1996.660, y2: 1501.210, z2: 200.000})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1499.890, y1: -50.096, z1: -1.0, x2: -1242.980, y2: 249.904, z2: 200.000})
+    BK_ZonesArr.Push({name: "Fisher's Lagoon", x1: 1916.990, y1: -233.323, z1: -100.000, x2: 2131.720, y2: 13.800, z2: 200.000})
+    BK_ZonesArr.Push({name: "Mulholland", x1: 1414.070, y1: -768.027, z1: -89.084, x2: 1667.610, y2: -452.425, z2: 110.916})
+    BK_ZonesArr.Push({name: "East Beach", x1: 2747.740, y1: -1498.620, z1: -89.084, x2: 2959.350, y2: -1120.040, z2: 110.916})
+    BK_ZonesArr.Push({name: "San Andreas Sound", x1: 2450.390, y1: 385.503, z1: -100.000, x2: 2759.250, y2: 562.349, z2: 200.000})
+    BK_ZonesArr.Push({name: "Shady Creeks", x1: -2030.120, y1: -2174.890, z1: -6.1, x2: -1820.640, y2: -1771.660, z2: 200.000})
+    BK_ZonesArr.Push({name: "Market", x1: 1072.660, y1: -1416.250, z1: -89.084, x2: 1370.850, y2: -1130.850, z2: 110.916})
+    BK_ZonesArr.Push({name: "Rockshore West", x1: 1997.220, y1: 596.349, z1: -89.084, x2: 2377.390, y2: 823.228, z2: 110.916})
+    BK_ZonesArr.Push({name: "Prickle Pine", x1: 1534.560, y1: 2583.230, z1: -89.084, x2: 1848.400, y2: 2863.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Easter Basin", x1: -1794.920, y1: -50.096, z1: -1.04, x2: -1499.890, y2: 249.904, z2: 200.000})
+    BK_ZonesArr.Push({name: "Leafy Hollow", x1: -1166.970, y1: -1856.030, z1: 0.000, x2: -815.624, y2: -1602.070, z2: 200.000})
+    BK_ZonesArr.Push({name: "LVA Freight Depot", x1: 1457.390, y1: 863.229, z1: -89.084, x2: 1777.400, y2: 1143.210, z2: 110.916})
+    BK_ZonesArr.Push({name: "Prickle Pine", x1: 1117.400, y1: 2507.230, z1: -89.084, x2: 1534.560, y2: 2723.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blueberry", x1: 104.534, y1: -220.137, z1: 2.3, x2: 349.607, y2: 152.236, z2: 200.000})
+    BK_ZonesArr.Push({name: "El Castillo del Diablo", x1: -464.515, y1: 2217.680, z1: 0.000, x2: -208.570, y2: 2580.360, z2: 200.000})
+    BK_ZonesArr.Push({name: "Downtown", x1: -2078.670, y1: 578.396, z1: -7.6, x2: -1499.890, y2: 744.267, z2: 200.000})
+    BK_ZonesArr.Push({name: "Rockshore East", x1: 2537.390, y1: 676.549, z1: -89.084, x2: 2902.350, y2: 943.235, z2: 110.916})
+    BK_ZonesArr.Push({name: "San Fierro Bay", x1: -2616.400, y1: 1501.210, z1: -3.0, x2: -1996.660, y2: 1659.680, z2: 200.000})
+    BK_ZonesArr.Push({name: "Paradiso", x1: -2741.070, y1: 793.411, z1: -6.1, x2: -2533.040, y2: 1268.410, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Camel's Toe", x1: 2087.390, y1: 1203.230, z1: -89.084, x2: 2640.400, y2: 1383.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Old Venturas Strip", x1: 2162.390, y1: 2012.180, z1: -89.084, x2: 2685.160, y2: 2202.760, z2: 110.916})
+    BK_ZonesArr.Push({name: "Juniper Hill", x1: -2533.040, y1: 578.396, z1: -7.6, x2: -2274.170, y2: 968.369, z2: 200.000})
+    BK_ZonesArr.Push({name: "Juniper Hollow", x1: -2533.040, y1: 968.369, z1: -6.1, x2: -2274.170, y2: 1358.900, z2: 200.000})
+    BK_ZonesArr.Push({name: "Roca Escalante", x1: 2237.400, y1: 2202.760, z1: -89.084, x2: 2536.430, y2: 2542.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Julius Thruway East", x1: 2685.160, y1: 1055.960, z1: -89.084, x2: 2749.900, y2: 2626.550, z2: 110.916})
+    BK_ZonesArr.Push({name: "Verona Beach", x1: 647.712, y1: -2173.290, z1: -89.084, x2: 930.221, y2: -1804.210, z2: 110.916})
+    BK_ZonesArr.Push({name: "Foster Valley", x1: -2178.690, y1: -599.884, z1: -1.2, x2: -1794.920, y2: -324.114, z2: 200.000})
+    BK_ZonesArr.Push({name: "Arco del Oeste", x1: -901.129, y1: 2221.860, z1: 0.000, x2: -592.090, y2: 2571.970, z2: 200.000})
+    BK_ZonesArr.Push({name: "Fallen Tree", x1: -792.254, y1: -698.555, z1: -5.3, x2: -452.404, y2: -380.043, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Farm", x1: -1209.670, y1: -1317.100, z1: 114.981, x2: -908.161, y2: -787.391, z2: 251.981})
+    BK_ZonesArr.Push({name: "The Sherman Dam", x1: -968.772, y1: 1929.410, z1: -3.0, x2: -481.126, y2: 2155.260, z2: 200.000})
+    BK_ZonesArr.Push({name: "Esplanade North", x1: -1996.660, y1: 1358.900, z1: -4.5, x2: -1524.240, y2: 1592.510, z2: 200.000})
+    BK_ZonesArr.Push({name: "Financial", x1: -1871.720, y1: 744.170, z1: -6.1, x2: -1701.300, y2: 1176.420, z2: 300.000})
+    BK_ZonesArr.Push({name: "Garcia", x1: -2411.220, y1: -222.589, z1: -1.14, x2: -2173.040, y2: 265.243, z2: 200.000})
+    BK_ZonesArr.Push({name: "Montgomery", x1: 1119.510, y1: 119.526, z1: -3.0, x2: 1451.400, y2: 493.323, z2: 200.000})
+    BK_ZonesArr.Push({name: "Creek", x1: 2749.900, y1: 1937.250, z1: -89.084, x2: 2921.620, y2: 2669.790, z2: 110.916})
+    BK_ZonesArr.Push({name: "Los Santos International", x1: 1249.620, y1: -2394.330, z1: -89.084, x2: 1852.000, y2: -2179.250, z2: 110.916})
+    BK_ZonesArr.Push({name: "Santa Maria Beach", x1: 72.648, y1: -2173.290, z1: -89.084, x2: 342.648, y2: -1684.650, z2: 110.916})
+    BK_ZonesArr.Push({name: "Mulholland Intersection", x1: 1463.900, y1: -1150.870, z1: -89.084, x2: 1812.620, y2: -768.027, z2: 110.916})
+    BK_ZonesArr.Push({name: "Angel Pine", x1: -2324.940, y1: -2584.290, z1: -6.1, x2: -1964.220, y2: -2212.110, z2: 200.000})
+    BK_ZonesArr.Push({name: "Verdant Meadows", x1: 37.032, y1: 2337.180, z1: -3.0, x2: 435.988, y2: 2677.900, z2: 200.000})
+    BK_ZonesArr.Push({name: "Octane Springs", x1: 338.658, y1: 1228.510, z1: 0.000, x2: 664.308, y2: 1655.050, z2: 200.000})
+    BK_ZonesArr.Push({name: "Come-A-Lot", x1: 2087.390, y1: 943.235, z1: -89.084, x2: 2623.180, y2: 1203.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Redsands West", x1: 1236.630, y1: 1883.110, z1: -89.084, x2: 1777.390, y2: 2142.860, z2: 110.916})
+    BK_ZonesArr.Push({name: "Santa Maria Beach", x1: 342.648, y1: -2173.290, z1: -89.084, x2: 647.712, y2: -1684.650, z2: 110.916})
+    BK_ZonesArr.Push({name: "Verdant Bluffs", x1: 1249.620, y1: -2179.250, z1: -89.084, x2: 1692.620, y2: -1842.270, z2: 110.916})
+    BK_ZonesArr.Push({name: "Las Venturas Airport", x1: 1236.630, y1: 1203.280, z1: -89.084, x2: 1457.370, y2: 1883.110, z2: 110.916})
+    BK_ZonesArr.Push({name: "Flint Range", x1: -594.191, y1: -1648.550, z1: 0.000, x2: -187.700, y2: -1276.600, z2: 200.000})
+    BK_ZonesArr.Push({name: "Verdant Bluffs", x1: 930.221, y1: -2488.420, z1: -89.084, x2: 1249.620, y2: -2006.780, z2: 110.916})
+    BK_ZonesArr.Push({name: "Palomino Creek", x1: 2160.220, y1: -149.004, z1: 0.000, x2: 2576.920, y2: 228.322, z2: 200.000})
+    BK_ZonesArr.Push({name: "Ocean Docks", x1: 2373.770, y1: -2697.090, z1: -89.084, x2: 2809.220, y2: -2330.460, z2: 110.916})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1213.910, y1: -50.096, z1: -4.5, x2: -947.980, y2: 578.396, z2: 200.000})
+    BK_ZonesArr.Push({name: "Whitewood Estates", x1: 883.308, y1: 1726.220, z1: -89.084, x2: 1098.310, y2: 2507.230, z2: 110.916})
+    BK_ZonesArr.Push({name: "Calton Heights", x1: -2274.170, y1: 744.170, z1: -6.1, x2: -1982.320, y2: 1358.900, z2: 200.000})
+    BK_ZonesArr.Push({name: "Easter Basin", x1: -1794.920, y1: 249.904, z1: -9.1, x2: -1242.980, y2: 578.396, z2: 200.000})
+    BK_ZonesArr.Push({name: "Los Santos Inlet", x1: -321.744, y1: -2224.430, z1: -89.084, x2: 44.615, y2: -1724.430, z2: 110.916})
+    BK_ZonesArr.Push({name: "Doherty", x1: -2173.040, y1: -222.589, z1: -1.0, x2: -1794.920, y2: 265.243, z2: 200.000})
+    BK_ZonesArr.Push({name: "Mount Chiliad", x1: -2178.690, y1: -2189.910, z1: -47.917, x2: -2030.120, y2: -1771.660, z2: 576.083})
+    BK_ZonesArr.Push({name: "Fort Carson", x1: -376.233, y1: 826.326, z1: -3.0, x2: 123.717, y2: 1220.440, z2: 200.000})
+    BK_ZonesArr.Push({name: "Foster Valley", x1: -2178.690, y1: -1115.580, z1: 0.000, x2: -1794.920, y2: -599.884, z2: 200.000})
+    BK_ZonesArr.Push({name: "Ocean Flats", x1: -2994.490, y1: -222.589, z1: -1.0, x2: -2593.440, y2: 277.411, z2: 200.000})
+    BK_ZonesArr.Push({name: "Fern Ridge", x1: 508.189, y1: -139.259, z1: 0.000, x2: 1306.660, y2: 119.526, z2: 200.000})
+    BK_ZonesArr.Push({name: "Bayside", x1: -2741.070, y1: 2175.150, z1: 0.000, x2: -2353.170, y2: 2722.790, z2: 200.000})
+    BK_ZonesArr.Push({name: "Las Venturas Airport", x1: 1457.370, y1: 1203.280, z1: -89.084, x2: 1777.390, y2: 1883.110, z2: 110.916})
+    BK_ZonesArr.Push({name: "Blueberry Acres", x1: -319.676, y1: -220.137, z1: 0.000, x2: 104.534, y2: 293.324, z2: 200.000})
+    BK_ZonesArr.Push({name: "Palisades", x1: -2994.490, y1: 458.411, z1: -6.1, x2: -2741.070, y2: 1339.610, z2: 200.000})
+    BK_ZonesArr.Push({name: "North Rock", x1: 2285.370, y1: -768.027, z1: 0.000, x2: 2770.590, y2: -269.740, z2: 200.000})
+    BK_ZonesArr.Push({name: "Hunter Quarry", x1: 337.244, y1: 710.840, z1: -115.239, x2: 860.554, y2: 1031.710, z2: 203.761})
+    BK_ZonesArr.Push({name: "Los Santos International", x1: 1382.730, y1: -2730.880, z1: -89.084, x2: 2201.820, y2: -2394.330, z2: 110.916})
+    BK_ZonesArr.Push({name: "Missionary Hill", x1: -2994.490, y1: -811.276, z1: 0.000, x2: -2178.690, y2: -430.276, z2: 200.000})
+    BK_ZonesArr.Push({name: "San Fierro Bay", x1: -2616.400, y1: 1659.680, z1: -3.0, x2: -1996.660, y2: 2175.150, z2: 200.000})
+    BK_ZonesArr.Push({name: "Restricted Area", x1: -91.586, y1: 1655.050, z1: -50.000, x2: 421.234, y2: 2123.010, z2: 250.000})
+    BK_ZonesArr.Push({name: "Mount Chiliad", x1: -2997.470, y1: -1115.580, z1: -47.917, x2: -2178.690, y2: -971.913, z2: 576.083})
+    BK_ZonesArr.Push({name: "Mount Chiliad", x1: -2178.690, y1: -1771.660, z1: -47.917, x2: -1936.120, y2: -1250.970, z2: 576.083})
+    BK_ZonesArr.Push({name: "Easter Bay Airport", x1: -1794.920, y1: -730.118, z1: -3.0, x2: -1213.910, y2: -50.096, z2: 200.000})
+    BK_ZonesArr.Push({name: "The Panopticon", x1: -947.980, y1: -304.320, z1: -1.1, x2: -319.676, y2: 327.071, z2: 200.000})
+    BK_ZonesArr.Push({name: "Shady Creeks", x1: -1820.640, y1: -2643.680, z1: -8.0, x2: -1226.780, y2: -1771.660, z2: 200.000})
+    BK_ZonesArr.Push({name: "Back o Beyond", x1: -1166.970, y1: -2641.190, z1: 0.000, x2: -321.744, y2: -1856.030, z2: 200.000})
+    BK_ZonesArr.Push({name: "Mount Chiliad", x1: -2994.490, y1: -2189.910, z1: -47.917, x2: -2178.690, y2: -1115.580, z2: 576.083})
+    BK_ZonesArr.Push({name: "Tierra Robada", x1: -1213.910, y1: 596.349, z1: -242.990, x2: -480.539, y2: 1659.680, z2: 900.000})
+    BK_ZonesArr.Push({name: "Flint County", x1: -1213.910, y1: -2892.970, z1: -242.990, x2: 44.615, y2: -768.027, z2: 900.000})
+    BK_ZonesArr.Push({name: "Whetstone", x1: -2997.470, y1: -2892.970, z1: -242.990, x2: -1213.910, y2: -1115.580, z2: 900.000})
+    BK_ZonesArr.Push({name: "Bone County", x1: -480.539, y1: 596.349, z1: -242.990, x2: 869.461, y2: 2993.870, z2: 900.000})
+    BK_ZonesArr.Push({name: "Tierra Robada", x1: -2997.470, y1: 1659.680, z1: -242.990, x2: -480.539, y2: 2993.870, z2: 900.000})
+    BK_ZonesArr.Push({name: "San Fierro", x1: -2997.470, y1: -1115.580, z1: -242.990, x2: -1213.910, y2: 1659.680, z2: 900.000})
+    BK_ZonesArr.Push({name: "Las Venturas", x1: 869.461, y1: 596.349, z1: -242.990, x2: 2997.060, y2: 2993.870, z2: 900.000})
+    BK_ZonesArr.Push({name: "Red County", x1: -1213.910, y1: -768.027, z1: -242.990, x2: 2997.060, y2: 596.349, z2: 900.000})
+    BK_ZonesArr.Push({name: "Los Santos", x1: 44.615, y1: -2892.970, z1: -242.990, x2: 2997.060, y2: -768.027, z2: 900.000})
+}
+
+
+; Frueher stand diese Logik dreimal fast gleich im Code - und hatte zwei
+; Fehler:
+;
+;  1) Die Staedte-Tabelle von GTA kennt kein "Bone County", und zwischen
+;     Los Santos und Red County klafft ein schmaler Streifen, der zu
+;     keiner Stadt gehoert. Herauskam dann "Bone County (San Andreas)".
+;  2) Die grossen Gebiete stehen in BEIDEN Tabellen. Im offenen Land kam
+;     deshalb "Red County (Red County)" heraus.
+;
+; Jetzt gilt: fehlt die Stadt, wird das Gebiet aus der Zonen-Tabelle
+; genommen (die deckt die ganze Karte ab); sind Zone und Gebiet gleich,
+; steht nur noch ein Name da.
+
+; Die neun grossen Gebiete decken ganz San Andreas ab. Sie stehen am Ende
+; der Zonen-Tabelle - von dort werden sie einmalig herausgesucht.
+BkZone_Regions() {
+    global BK_ZonesArr
+    static regs := ""
+    if (IsObject(regs))
+        return regs
+    BkZone_Init()
+    static want := {"Los Santos": 1, "San Fierro": 1, "Las Venturas": 1, "Red County": 1
+        , "Flint County": 1, "Bone County": 1, "Tierra Robada": 1, "Whetstone": 1}
+    regs := []
+    for i, o in BK_ZonesArr
+        if (want.HasKey(o.name))
+            regs.Push(o)
+    return regs
+}
+
+; Grosses Gebiet an dieser Stelle ("" wenn ausserhalb, z.B. Innenraum)
+BkZone_Region(x, y, z) {
+    best := "", bestSz := 0
+    for i, o in BkZone_Regions() {
+        if (x >= o.x1 && y >= o.y1 && z >= o.z1 && x <= o.x2 && y <= o.y2 && z <= o.z2) {
+            sz := (o.x2 - o.x1) * (o.y2 - o.y1)
+            if (best = "" || sz < bestSz)
+                best := o.name, bestSz := sz
+        }
+    }
+    return best
+}
+
+; Zone und uebergeordnetes Gebiet zu einer Position.
+; own = true: eigene Position (dann darf "Innenraum" benutzt werden)
+BkZone_Parts(pos, ByRef zone, ByRef city, own := true) {
+    zone := "", city := ""
+    if (!IsObject(pos))
+        return false
+    zone := BkZone_GetZone(pos.x, pos.y, pos.z)
+    city := BkZone_GetCity(pos.x, pos.y, pos.z)
+    if (city = "")
+        city := BkZone_Region(pos.x, pos.y, pos.z)
+    if (zone = "")
+        zone := (own && BkMem_GetInterior() > 0) ? "Innenraum" : city
+    if (zone = "")
+        zone := "Unbekannt"
+    if (city = "")
+        city := "San Andreas"
+    return true
+}
+
+; Fertiger Text: "Idlewood (Los Santos)" - oder nur "Red County", wenn
+; Zone und Gebiet dasselbe sind.
+BkZone_Describe(pos, own := true) {
+    if (!BkZone_Parts(pos, zone, city, own))
+        return ""
+    return (zone = city || zone = "") ? city : zone . " (" . city . ")"
+}
+
+; ---------------------------------------------------------------------
+;  Platzhalter
+; ---------------------------------------------------------------------
+; Ersetzt bekannte Platzhalter (Gross/klein egal). Unbekannte {...} bleiben
+; stehen. Nur was im Text vorkommt, wird auch ausgelesen.
+; posOverride: feste Position statt der aktuellen (fuer die Tod-Meldung -
+; dort zaehlt der Sterbeort, nicht der Spawnort).
