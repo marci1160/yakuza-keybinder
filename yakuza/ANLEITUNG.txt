@@ -1,0 +1,1546 @@
+﻿==============================================================
+   YAKUZA KEYBINDER  v3.0
+   für SA-MP / open.mp  ·  Yakuza Family  ·  Life of Player
+==============================================================
+
+   Diese Anleitung ist bewusst einfach geschrieben.
+   Du musst nichts auswendig lernen - such dir einfach die
+   Überschrift, die zu deiner Frage passt.
+
+   Neu in v3.0? Dann lies zuerst Punkt 1 und Punkt 20.
+
+
+--------------------------------------------------------------
+INHALT
+--------------------------------------------------------------
+   1.  Was ist das?  (und was ist neu in v3.0)
+   2.  In einer Minute startklar
+   3.  Das Fenster
+   4.  Die Tasten
+   5.  Was der Binder von allein macht
+   6.  Backup rufen und Backup geben
+   7.  "Ich bin unterwegs zu ..."   (Ziel wählen)
+   8.  Kriege: Gangwar, Family-War, Bizfight
+   9.  Eigene Tasten belegen
+  10.  Platzhalter - Infos automatisch einsetzen
+  11.  Kurzformen im Chat
+  12.  Chat-Befehle  (/kd, /re, /cd ...)          NEU
+  13.  Statistik: heute, Monat, gesamt           NEU
+  14.  Gegnerlisten                              NEU
+  15.  Sprint (Laufscript)
+  16.  Das Overlay und die Meldungen im Spiel
+  17.  Extras: Wanteds, Lotto, SMS, Radio, Aufnahmen
+  18.  Wenn etwas nicht geht
+  19.  Weitergeben und Update
+  20.  Was neu ist
+  21.  Was der Binder NICHT tut
+
+--------------------------------------------------------------
+1. WAS IST DAS?
+--------------------------------------------------------------
+ Der Yakuza Keybinder ist ein kleines Programm neben dem Spiel.
+
+ Du drückst eine Taste - er schreibt den passenden Satz in den
+ Chat. Mit deinem Standort, deinem Leben und allem, was du
+ sonst noch möchtest.
+
+ Dazu meldet er deine Kills und deine Tode automatisch im
+ Gangchat und zeigt dir, wo deine Member gerade sind.
+
+ WAS IST NEU IN v3.0?
+   Alles aus v2 ist geblieben - deine Tasten, Texte, Server-
+   Befehle, Kurzformen, die Kill- und Tod-Meldungen, Backup-
+   Fahnen, Kriege, Member, Overlay, Sprint, Wanteds, Lotto und
+   das Update. Deine Einstellungen werden beim Update einfach
+   übernommen.
+
+   Dazu kommt:
+     · ein neues, übersichtliches Fenster (Punkt 3)
+     · Chat-Befehle wie /kd, /dkd, /re, /cd (Punkt 12)
+     · Statistik für heute, den Monat und gesamt (Punkt 13)
+     · Gegnerlisten mit Online-Prüfung (Punkt 14)
+     · kleine Meldungs-Karten im Spiel, Countdown, Radio
+     · neue Funktionstasten, z.B. Pause (Punkt 4)
+
+   Diese Teile stammen aus dem "Keybinder von Brooklyn" -
+   übernommen wurde aber nur, was NICHT von einem bestimmten
+   Server abhängt. Die Befehle von Life of Player bleiben die
+   aus v2 (Seite "Server-Befehle"). Jobs gibt es keine.
+
+--------------------------------------------------------------
+2. IN EINER MINUTE STARTKLAR
+--------------------------------------------------------------
+ 1) Den Ordner entpacken. YakuzaKeybinder.exe und diese
+    Anleitung bleiben zusammen in einem Ordner.
+
+ 2) YakuzaKeybinder.exe doppelklicken.
+    Das Fenster geht auf, unten rechts in der Taskleiste
+    erscheint das Yakuza-Symbol.
+
+ 3) GTA starten und einloggen.
+
+ Unten links im Fenster steht dann zum Beispiel:
+
+    ● AKTIV
+    SA-MP 0.3.7-R5 erkannt
+    Chatlog gefunden
+
+ Fertig. Mehr musst du nicht einstellen.
+
+ Das Kreuz oben rechts versteckt nur das Fenster - der Binder
+ läuft weiter. Wieder öffnen: Doppelklick auf das Yakuza-Symbol
+ unten rechts.
+
+ Beenden: Rechtsklick auf das Symbol -> Beenden.
+
+ UPDATE von v2
+    Normalerweise musst du gar nichts tun: dein v2 holt sich
+    v3.0 von selbst (Punkt 19). Von Hand: Binder beenden, die
+    neue YakuzaKeybinder.exe über die alte kopieren. Deine
+    Tasten und Einstellungen bleiben erhalten. Beim ersten Start
+    zeigt v3.0 einmal kurz, was neu ist.
+
+--------------------------------------------------------------
+3. DAS FENSTER
+--------------------------------------------------------------
+ Links stehen die Seiten, rechts die Einstellungen dazu. Jede
+ Änderung wirkt sofort und wird automatisch gespeichert - einen
+ "Speichern"-Knopf gibt es nicht mehr.
+
+   Übersicht           Kills, Tode und K/D von heute, Statistik,
+                       was gerade im Spiel los ist, Schnellzugriff
+                       und die letzten Meldungen
+   Tasten              ALLE belegten Tasten in einer Liste -
+                       eigene Tasten, Funktionen, Server- und
+                       Chat-Befehle. Anklicken, unten ändern.
+   Server-Befehle      die Befehle von Life of Player: Taste
+                       und/oder Kurzform vergeben
+   Chat-Befehle        /kd, /re, /cd ... an/aus, Text ändern,
+                       eigene Chat-Befehle anlegen
+   Gegnerlisten        Listen anlegen, Namen eintragen, online?
+   Meldungen & Kampf   Standort, Kills, Tode, Medic, /familymap
+   Familie & Member    Fahnen, Töne, Member-Liste, Ziel, Kriege
+   Overlay             Anzeige im Spiel und Meldungs-Karten
+   Sprint (Laufscript) Sprint-Automatik und "Hängende Tasten"
+   Extras              Taste N, Wanteds, Lotto, SMS, Radio,
+                       Aufnahmen
+   Einstellungen       Allgemein, Spiel & Erkennung, Update,
+                       Diagnose
+   Hilfe & Info        Kurzanleitung, Dateien, Update
+
+ Unten links steht immer, ob der Binder gerade wirkt - und der
+ Knopf "Pausieren".
+
+--------------------------------------------------------------
+4. DIE TASTEN
+--------------------------------------------------------------
+ So ist es ab Werk. Alles lässt sich ändern (Punkt 9).
+
+   Strg + G           Standort in den Gangchat schreiben
+   Strg + K           Kill melden (Notfall-Taste, normal geht
+                      das von allein)
+   Strg + M           /familymap
+   Strg + O           Overlay ein/aus
+   Strg + P           Member-Positionen ein/aus
+   Strg + Leertaste   Sprint-Automatik ein/aus
+
+   Strg + Num 1       Backup rufen - mit Standort, HP, Rüstung
+                      und roter Fahne für die anderen
+   Strg + Num 2       "Komme zu ..." - Antwort auf den letzten
+                      Hilfe-Ruf
+   Strg + Num 3       "Sammeln in ..." mit deinem Standort
+   Strg + Num 4       "Bin unterwegs zu ..." (siehe Punkt 7)
+
+   Pause              Binder pausieren / fortsetzen   (NEU)
+
+ NEUE FUNKTIONSTASTEN (ab Werk frei, Seite "Tasten", Auswahl
+ "Auch freie Funktionen"):
+   Keybinder-Fenster öffnen · Hängende Tasten lösen · Letzte
+   Chatzeile wiederholen · Gruß nach Uhrzeit · 15-Sekunden-
+   Countdown · Gegner online prüfen · Radio an/aus
+
+ DU BLEIBST DABEI NICHT STEHEN.
+ Der Binder öffnet den Chat, schreibt und schickt ab - alles
+ in einem einzigen Spielbild. Deine Figur läuft und fährt
+ normal weiter. Klappt das auf deinem PC einmal nicht, nimmt
+ er von selbst den langsameren Weg.
+
+ SPRINT
+ Halte beim Laufen die Leertaste gedrückt - deine Figur rennt
+ dann dauerhaft schnell. Wirkt nur zu Fuß. Mehr in Punkt 15.
+
+ WÄHREND DU TIPPST ruhen alle Tasten. Ist der Chat oder ein
+ Dialog offen (z.B. das Login-Passwort), landen deine Tasten
+ ganz normal als Buchstaben im Textfeld.
+
+
+--------------------------------------------------------------
+5. WAS DER BINDER VON ALLEIN MACHT
+--------------------------------------------------------------
+ KILLS MELDEN
+   Der Binder merkt im Spiel selbst, wenn du jemanden umlegst -
+   auch im Krieg, wo der Server nichts in den Chat schreibt.
+
+   Ein Kill zählt nur, wenn DEIN Treffer der letzte war.
+   Gefragt wird in dieser Reihenfolge:
+
+     · Zuerst das Spiel selbst: an jedem Gegner steht, WER ihn
+       zuletzt verletzt hat. Steht dort deine Figur oder dein
+       Fahrzeug, zählt der Kill - auch wenn drei Leute mit MP5
+       danebenstehen und feuern. Steht dort jemand anders,
+       zählt er nicht.
+     · Schweigt das Spiel, muss der Gegner höchstens 600 ms
+       nach deinem Schuss auf genau ihn fallen.  ("Fall")
+     · Dann entscheidet die Zeit: erst wer mehr als 150 ms
+       NACH dir auf ihn gefeuert hat, nimmt dir den Kill
+       weg.                                      ("fremd")
+
+   Diese Zeiten stehen auf der Seite "Meldungen & Kampf" rechts unten und sind
+   alle in Millisekunden. Die dritte ("doppelt", 900 ms) sagt,
+   wie weit zwei Meldungen zum selben Kill auseinanderliegen
+   dürfen - so zählt derselbe Kill nie doppelt, und trotzdem
+   zählt jeder Gegner einzeln, wenn im War drei kurz
+   hintereinander fallen.
+
+   Hoher Ping? Dann "Fall" hochsetzen (z.B. 900).
+   Ständig im Rudel unterwegs? "fremd" hochsetzen, dann
+   bekommst du im Zweifel den Kill.
+
+   Zusätzlich erkennt er Server-Meldungen wie
+     [BIZ FIGHT] +1 Kill fuer Yakuza (Marci)
+     Amore wurde von Marci erschossen ...
+   Dafür muss dein Name stimmen - den lernt der Binder selbst,
+   sobald du einmal etwas über ihn in /g oder /f schreibst.
+
+   DEN NAMEN DES GEGNERS liest der Binder aus der Spielerliste
+   von SA-MP - deshalb steht auch im War der richtige Name in
+   {opfer}, obwohl der Server dort nichts in den Chat schreibt.
+   Findet er den Namen nicht sicher, bleibt es bei "unbekannt"
+   (Seite "Einstellungen" -> Diagnose zeigt, ob es klappt).
+
+ DEIN STAND VOM SERVER  (TASTE N)
+   Der Binder zählt selbst mit, wie viele Kills und Tode du in
+   dieser Sitzung hattest. Der Server führt aber einen
+   Gesamtstand - und der steht in deinem Charaktermenü.
+
+   Drückst du N und das Menü geht auf, liest der Binder die
+   beiden Zahlen ab und übernimmt sie. Ab da zeigt
+
+     {kills}   deinen Gesamtstand vom Server
+     {tode}    dasselbe für die Tode
+
+   Jeder weitere eigene Kill zählt eins hoch, bis du das Menü
+   wieder aufmachst. So stimmt "Kill Nr. {kills}" auch ohne
+   ständiges Nachsehen. Willst du weiterhin nur diese Sitzung,
+   nimm {kills_sitzung} und {tode_sitzung}.
+
+   Der Binder liest das Menü NUR ab: er klickt nichts an und
+   schickt dafür keinen Befehl. Steht bei deinem Server etwas
+   anderes als "Kills:" und "Tode:", kannst du die beiden
+   Suchmuster auf der Seite "Extras" ändern. Ob es geklappt hat,
+   steht dort gleich darunter und in der Diagnose.
+
+ TODE MELDEN
+   Der Binder schreibt, WO du gestorben bist und WER dich
+   erwischt hat - nicht, wo du wieder aufwachst.
+
+     /g Getötet in Idlewood (Los Santos) von Amore
+
+   Den Mörder holt er sich aus zwei Quellen: aus der Zeile des
+   Servers ("Marci wurde von Amore erschossen") und, wenn der
+   Server nichts schreibt - also im Krieg -, direkt aus dem
+   Spiel. Findet er beides nicht, steht dort "unbekannt";
+   kommt der Name kurz darauf doch noch im Chat, wird er noch
+   vor dem Absenden eingesetzt.
+
+   Der Platzhalter dafür heißt {mörder}. Hattest du deinen
+   Tod-Text noch nie geändert, stellt der Binder ihn beim
+   ersten Start selbst auf den Satz oben um. Hast du deinen
+   eigenen Text, bleibt der unangetastet - schreib {mörder}
+   einfach dort hinein, wo er stehen soll.
+
+   · Im Gangwar, Family-War oder Bizfight bist du nicht
+     bewusstlos, sondern spawnst sofort neu.
+     Dann geht die Meldung SOFORT raus.
+   · Sonst bist du erst bewusstlos und darfst nichts
+     schreiben. Der Binder wartet und schickt die Meldung,
+     sobald du wieder darfst (Krankenhaus oder Medic).
+     Lehnt der Server noch ab (z.B. /warten), versucht er es
+     alle 20 Sekunden erneut.
+
+   HOLT DICH EIN MEDIC HOCH, geht statt der Tod-Meldung das
+   hier raus:
+
+     /g Von einem Medic wiederbelebt | Standort: Idlewood
+        (Los Santos) | HP: 85
+
+   Standort und HP sind dabei der Stand NACH der Wiederbelebung
+   - die Member sehen also sofort, wo du stehst und wie es dir
+   geht. Den Text änderst du unter "Automatik -> Medic-Text";
+   leer = aus, dann kommt wie früher die normale Tod-Meldung.
+   Kommst du stattdessen im Krankenhaus wieder zu dir, bleibt
+   es bei "Tod in ..." mit deinem Sterbeort.
+
+   Solange du bewusstlos bist, steht das im Overlay und unten
+   links im Fenster.
+
+   Jeder Tod zählt im Overlay einzeln - auch dann, wenn du
+   stirbst, während eine ältere Meldung noch auf eine
+   Gelegenheit zum Senden wartet.
+
+   Jeder Tod wird außerdem nur EINMAL gemeldet. Der Server
+   wiederholt "Du bist bewusstlos", solange du liegst; daraus
+   macht der Binder keine zweite Meldung mehr.
+
+ /FAMILYMAP
+   Wird nach dem Einloggen automatisch geschickt.
+
+ MEMBER-POSITIONEN
+   Alles, was deine Member in /g oder /f schreiben, landet in
+   einer Liste: wer wo ist, wie weit weg und in welche
+   Richtung ("850 m NO"), und wie lange das her ist.
+   Der Binder liest dafür NUR den Chat mit.
+
+ NIE MITTEN IM GEFECHT
+   Automatische Meldungen warten, solange du zielst oder
+   schießt. Dein C-Bug wird also nie von einem aufgehenden
+   Chat unterbrochen.
+   AUSNAHME: die Tod-Meldung im Krieg - die geht sofort raus,
+   du bist ja bereits tot.
+   Tasten, die du selbst drückst, gehen immer sofort raus.
+
+
+--------------------------------------------------------------
+6. BACKUP RUFEN UND BACKUP GEBEN
+--------------------------------------------------------------
+ BACKUP RUFEN:  Strg + Num 1
+
+   Schreibt zum Beispiel:
+     /g Brauche Backup in Idlewood (Los Santos) - HP 34 /
+        Rüstung 0 (GPS 2066 -1703)
+
+   Die Zahlen am Ende sind deine Koordinaten. Damit sehen die
+   anderen dich genau auf der Karte. In Gebäuden werden keine
+   Koordinaten gesendet, dort bringen sie nichts.
+
+ BACKUP GEBEN
+
+   Ruft ein Member Backup, passiert bei dir:
+     · es piept kurz (hörst du auch im Vollbild),
+     · sein Name steht ROT im Overlay,
+     · auf deiner Minimap UND auf der großen Karte (ESC ->
+       Karte) erscheint eine ROTE FAHNE an seiner Position.
+
+   Mit Strg + Num 2 antwortest du sofort:
+     /g Komme zu Marci nach Idlewood (Los Santos)!
+
+   Kommt ein Ruf ohne Koordinaten (von Hand getippt), markiert
+   die Fahne die Mitte der genannten Zone.
+   Höchstens 5 Fahnen gleichzeitig.
+
+ DIE FAHNE VERSCHWINDET AUTOMATISCH
+
+     · wenn du angekommen bist (30 Meter),
+     · wenn der Member STIRBT,
+     · wenn er absagt ("erledigt", "kein Backup mehr", "danke"),
+     · spätestens nach 10 MINUTEN,
+     · beim Reconnect, mit /ykclear und beim Beenden.
+
+   Im Overlay steht dann nicht mehr "braucht Hilfe", sondern
+   "† tot" bzw. "Ruf abgelaufen" - und der Name ist nicht mehr
+   rot.
+
+   Die Dauer stellst du auf der Seite "Familie & Member" ein
+   (1 bis 10 Minuten). Mehr als 10 Minuten gibt es mit Absicht
+   nicht.
+
+   Deine EIGENEN Rufe bekommen keine Fahne - du weißt ja, wo
+   du bist.
+
+
+--------------------------------------------------------------
+7. "ICH BIN UNTERWEGS ZU ..."   (ZIEL WÄHLEN)
+--------------------------------------------------------------
+ Du kannst dir einen Member als ZIEL setzen - auch wenn er gar
+ kein Backup gerufen hat. Zum Beispiel, weil ihr euch treffen
+ wollt.
+
+ SO GEHT ES. Drei Wege, such dir einen aus:
+
+  A) IM FENSTER  (am einfachsten)
+     Seite "Familie & Member" -> rechts die Member-Liste ->
+     DOPPELKLICK auf den Member.
+     Oder: Member anklicken und "Als Ziel setzen".
+
+  B) IM CHAT ÜBER DEN NAMEN  (ohne aus dem Spiel zu gehen)
+     Tippe im Spiel:
+        /ykzu marci
+     und dann LEERTASTE.
+     Der Namensanfang reicht. Die Leertaste am Ende schickt
+     den Befehl ab. Er geht NICHT an den Server.
+
+  C) IM CHAT ÜBER DIE NUMMER
+     /ykzu1  bis  /ykzu9
+     = Member Nummer 1 bis 9 aus der Liste, in derselben
+     Reihenfolge wie im Overlay.
+
+ ZIEL WIEDER LÖSCHEN
+     /ykzuaus   oder Knopf "Ziel löschen".
+
+ WAS DANN PASSIERT
+   · Im Overlay steht oben:
+        Unterwegs zu:  Marci   ·   Idlewood (Los Santos)
+   · In der Member-Liste steht ein Pfeil → vor dem Namen.
+   · Auf der Karte erscheint eine Fahne in anderer Farbe zu ihm.
+     Sie verschwindet nach denselben Regeln wie die Backup-
+     Fahne - und sobald du ein anderes Ziel wählst.
+   · In deinen Texten kannst du {ziel} und {ziel_ort} benutzen:
+        /g Bin unterwegs zu {ziel} nach {ziel_ort}
+     (liegt ab Werk auf Strg + Num 4)
+
+ Hast du kein Ziel gesetzt, funktionieren {ziel} und
+ {ziel_ort} trotzdem - dann nehmen sie den letzten Hilfe-Ruf.
+
+
+--------------------------------------------------------------
+8. KRIEGE: GANGWAR, FAMILY-WAR, BIZFIGHT
+--------------------------------------------------------------
+ Der Binder kennt drei Arten von Krieg:
+
+   Gangwar      Kampf um ein Turf-Gebiet
+   Family-War   Kampf um eine Zone
+   Bizfight     Angriff auf ein Business  (/attackbiz)
+
+ Im Overlay steht unter "KRIEGE" für jeden laufenden Krieg
+ eine Zeile - mit der ART davor, dem Stand, dem Gegner und der
+ Restzeit auf die Sekunde genau:
+
+   Gangwar  ·  Gangwar Gebiet 4   5 : 0   gegen VLA   noch 8:41
+   Bizfight ·  Burgershot         2 : 1   gegen TMF   noch 4:12
+
+ GRÜN = ihr führt.   ROT = ihr liegt zurück.
+
+ Der Stand kommt aus der Anzeige, die der Server rechts im
+ Bild zeigt - also sekundengenau. Auf die Chatzeile (die nur
+ alle 5 Minuten kommt) wartet der Binder nicht.
+
+ KRIEGE, BEI DENEN YAKUZA (NOCH) NICHT DABEI IST
+ Family-Wars meldet der Server an alle. Solche Kriege stehen
+ jetzt in Grau da - mit dem, was wirklich zählt: WER FÜHRT.
+
+   Family-War · Unity Station   führt: FIB 7 : 3 GS   noch 4:05
+
+ Dort steht nie "gewonnen" oder "verloren" - es ist ja nicht
+ unser Gebiet. Greifst du trotzdem ein, taucht [YAK] in der
+ Anzeige des Servers auf: ab dann ist es unser Krieg, die
+ Zeile wird farbig und zeigt deinen eigenen Stand.
+
+ Wird Yakuza angegriffen, gibt es einen Warnton. Das gilt auch
+ für Gebiete, die ihr in dieser Sitzung selbst erobert habt -
+ die merkt sich der Binder. Nach dem Ende eines EIGENEN Kriegs
+ steht kurz "gewonnen" oder "verloren" da.
+
+ Ist der Binder sich bei einer Anzeige nicht sicher, um welche
+ Art es geht, schreibt er neutral "War". Lieber unbestimmt als
+ falsch.
+
+ Schreibt dein Server die Meldungen anders?
+ Dann unter "Einstellungen" -> "Spiel & Erkennung" die
+ Muster anpassen.
+
+
+
+ Den Stand siehst du auch im Fenster: Seite "Familie &
+ Member", unten links.
+
+--------------------------------------------------------------
+9. EIGENE TASTEN BELEGEN
+--------------------------------------------------------------
+ Seite "Tasten":
+
+  1) "Neue Taste" klicken.
+  2) Ins Feld "Taste" klicken und die Taste drücken, die du
+     haben willst (z.B. Strg + Num 5). Maustasten, Pause, #, +
+     usw. gibt es in der Auswahl "Sondertaste ...".
+  3) Ins Feld "Text" den Satz schreiben, z.B.
+        /g Ich bin in {standort} und habe noch {hp} HP
+  4) "Übernehmen" klicken.
+
+ Die Taste wirkt sofort.
+
+ ÄNDERN
+   Eintrag in der Liste anklicken, unten anpassen,
+   "Übernehmen" klicken. "Entfernen" löscht eine eigene Taste
+   ganz - bei allen anderen Einträgen nur die Taste.
+
+ IN DER LISTE
+   Oben rechts kannst du wählen, was gezeigt wird: alle belegten
+   Tasten, nur eigene, Funktionen, Server- oder Chat-Befehle -
+   oder "Auch freie Funktionen", um eine neue Funktionstaste zu
+   belegen.
+
+ ⚠ VOR DER TASTE
+   Diese Taste ist doppelt vergeben. Dann wirkt nur die erste
+   Belegung. Beim Übernehmen fragt der Binder, ob er die Taste
+   bei der anderen Aktion entfernen soll.
+
+ SCHALTER "SOFORT SENDEN"
+   an  = wird sofort abgeschickt
+   aus = der Text bleibt im Chat stehen, du kannst noch etwas
+         dazu tippen
+
+ "ANHÄNGEN"
+   hängt HP, Rüstung, Standort oder Fahrzeug hinten an deinen
+   Satz an:
+     /g Backup! | Standort: Temple (Los Santos) | HP: 76
+   Die Reihenfolge stellst du unter "Einstellungen" ein
+   (Reihenfolge Anhänge, z.B.  loc,hp,armor,veh).
+
+ SERVER-BEFEHLE (Seite "Server-Befehle")
+   Dort sind alle Befehle von Life of Player schon drin.
+   Befehl anklicken -> Taste und/oder Kurzform eintragen ->
+   "Zuweisen".
+
+ "VORSCHAU" zeigt dir, wie der Satz im Moment aussehen würde.
+
+--------------------------------------------------------------
+10. PLATZHALTER - INFOS AUTOMATISCH EINSETZEN
+--------------------------------------------------------------
+ Platzhalter sind Wörter in geschweiften Klammern. Der Binder
+ ersetzt sie beim Senden durch den echten Wert.
+
+   {standort}    Idlewood (Los Santos)
+   {zone}        Idlewood
+   {stadt}       Los Santos
+   {hp}          dein Leben
+   {ruestung}    deine Rüstung
+   {fahrzeug}    z.B. Sultan   (oder "zu Fuß")
+   {unterwegs}   "im Sultan"   (oder "zu Fuß")
+   {zeit}        aktuelle Uhrzeit
+   {ruf}         wer zuletzt um Hilfe gerufen hat
+   {ruf_ort}     wo dieser Ruf herkam
+   {ziel}        dein gewähltes Ziel        (Punkt 7)
+   {ziel_ort}    wo dein Ziel ist           (Punkt 7)
+   {opfer}       wen du zuletzt erwischt hast (Name aus der
+                 Spielerliste, auch im War)
+   {mörder}      wer DICH zuletzt umgelegt hat
+   {wanteds}     die aktuellen Wanteds      (Punkt 17)
+   {kills}       deine Kills - Gesamtstand vom Server, sobald
+                 du einmal N gedrückt hast (sonst die Sitzung)
+   {tode}        dasselbe für die Tode
+   {kills_sitzung}   nur diese Sitzung
+   {tode_sitzung}    nur diese Sitzung
+   {gps}         deine Koordinaten, z.B. (GPS 2066 -1703)
+
+ NEU IN v3.0
+   {kd}          K/D gesamt          {diff}   Kills minus Tode
+   {dkills}      Kills heute         {dtode}  Tode heute
+   {dkd}         K/D heute           {ddiff}  Differenz heute
+   {mkills}      Kills im Monat      {mtode}  Tode im Monat
+   {mkd}         K/D im Monat        {mdiff}  Differenz im Monat
+   {monat}       z.B. September      {datum}  z.B. 25.09.2026
+   {id}          deine Spieler-ID    {name}   dein Name
+   {ping}        dein Ping           {level}  dein Level
+   {geld}        Geld auf der Hand   {online} Spieler online
+   {fzhp}        Fahrzeugzustand     {kmh}    Geschwindigkeit
+   {ort}         Zone - oder "einem Interior"
+   {fchat}       Family-Chat (/f)    {gchat}  Gangchat (/g)
+   {letztesms}   Nummer der letzten SMS
+   {login}       wann du dich zuletzt eingeloggt hast
+   {spielzeit}   Spielzeit gesamt    {spielzeitheute}
+
+   WICHTIG: {kills} und {tode} zeigen den Stand vom Server,
+   sobald du einmal N gedrückt hast. Vorher zählen sie jetzt
+   ALLE Kills, die der Binder selbst gezählt hat (bis v2.0.2
+   war es nur die laufende Sitzung - dafür gibt es weiter
+   {kills_sitzung} und {tode_sitzung}).
+
+ BEISPIELE
+
+   /g Ich bin in {standort} und habe noch {hp} HP
+    -> /g Ich bin in Idlewood (Los Santos) und habe noch 76 HP
+
+   /f Bin {unterwegs} in {standort}
+    -> /f Bin im Sultan in Idlewood (Los Santos)
+
+   /g Komme zu {ruf} nach {ruf_ort}!
+    -> /g Komme zu Kenji_Sato nach Vinewood (Los Santos)!
+
+   /g Bin unterwegs zu {ziel} nach {ziel_ort}
+    -> /g Bin unterwegs zu Marci nach Temple (Los Santos)
+
+   /g Kill Nr. {kills} - {opfer} liegt in {standort}
+    -> /g Kill Nr. 413 - Amore liegt in Idlewood (Los Santos)
+
+ Tipp: "in einem {fahrzeug}" wird zu Fuß automatisch zu
+ "zu Fuß" - der Satz bleibt also immer richtig.
+
+ Der Knopf "Platzhalter ..." unter dem Textfeld setzt einen
+ Platzhalter an der Stelle ein, wo dein Cursor steht.
+
+ Zu den Ortsnamen: Steht deine Zone genauso wie das Gebiet
+ (z.B. mitten im Nichts in Red County), schreibt der Binder
+ den Namen nur EINMAL - also "Red County" statt
+ "Red County (Red County)".
+
+
+--------------------------------------------------------------
+11. KURZFORMEN IM CHAT
+--------------------------------------------------------------
+ Du kannst kurze Abkürzungen vergeben. Tippst du sie im Chat,
+ macht der Binder sofort den vollen Befehl daraus.
+
+   Beispiel:   /uc   wird zu   /use cannabis
+
+ Einstellen: Seite "Server-Befehle" -> Befehl anklicken ->
+ Feld "Kurzform" ausfüllen -> "Zuweisen".
+
+ Kurzformen wirken SOFORT beim Tippen - ohne Enter. Die Chat-
+ Befehle aus Punkt 12 dagegen erst mit Enter.
+
+ EIGENE BEFEHLE DES BINDERS
+ (bleiben im Binder, der Server sieht sie nie)
+
+   /ykpos      Member-Positionen ein/aus
+   /ykhud      Overlay ein/aus
+   /ykclear    gemerkte Positionen und Fahnen löschen
+   /ykzu NAME  Ziel setzen - danach LEERTASTE   (Punkt 7)
+   /ykzu1 ... /ykzu9   Ziel über die Nummer
+   /ykzuaus    Ziel löschen
+
+
+--------------------------------------------------------------
+12. CHAT-BEFEHLE  (NEU)
+--------------------------------------------------------------
+ Chat öffnen (T), Befehl tippen, Enter. Erkennt der Binder den
+ Befehl, macht er daraus den fertigen Satz - sonst geht Enter
+ ganz normal ans Spiel. Der Server sieht nur das Ergebnis.
+
+ KILLS UND K/D
+   /kd         /f » Kills: 413 - Differenz: 120 Kills - KD: 1.41 «
+   /gkd        dasselbe im Gangchat (/g)
+   /bkd        dasselbe im normalen Chat
+   /infokill   Gesamt, Heute und Monat in drei Zeilen
+   /kills      /f Aktuelle Kills: 413      (/gkills im /g)
+   /tode       Tode - nur für dich (Karte im Spiel)
+   /dkills /dkd /gdkd /bdkd     dasselbe für HEUTE
+   /mkills /mkd /gmkd /bmkd     dasselbe für den MONAT
+   /otime      deine Spielzeit - nur für dich
+   /on /gon /fon   "Letztes Login: ..." sagen
+
+ VON HAND KORRIGIEREN
+   /addkill /clearkill   1 Kill dazu / weg
+   /down /cleartod       1 Tod dazu / weg
+   /setkills 500         Kills gesamt festlegen
+   /settode 200          Tode gesamt festlegen
+   Ohne Zahl fragt der Binder im Chat nach ("Kills: ").
+
+ CHAT UND ANTWORTEN
+   /ja /nein /ok /wo           im Family-Chat (/f)
+   /gja /gnein /gok /gwo       im Gangchat (/g)
+   /bja /bnein /neg /null      im normalen Chat
+   /ping       "Aktueller Ping: 42"
+   /re  /n     auf die letzte SMS antworten: "/sms 1234 " steht
+               im Chat, du tippst weiter (Punkt 17)
+   /exe /exe2 /gexe   Fake-Absturz
+
+ TIPPFEHLER
+   7f, 7g, 7u, 7w, 7s + LEERTASTE  ->  /f , /g , /u , /w , /s
+   (wer auf der deutschen Tastatur das Shift vergisst)
+
+ WERKZEUGE
+   /cd          Countdown im Chat --3-- --2-- --1--
+                (mit der Taste < abbrechen)
+   /stopuhr     Stoppuhr im Chat (mit < anhalten)
+   /countdown   15-Sekunden-Countdown - nur für dich
+   /zeit 245    "245 Sekunden sind 4 Minuten und 5 Sekunden"
+   /chillen     kurz AFK: nach 10 Minuten erinnert dich der
+                Binder und holt das Spiel wieder nach vorn
+   /iloveradio  /radiostop   Radio an / aus
+   /frag  /beschwerde        Aufnahme stoppen und ablegen
+
+ ANPASSEN (Seite "Chat-Befehle")
+   · Befehl anklicken -> Text ändern -> "Übernehmen".
+     "Standardtext" holt den ursprünglichen Text zurück.
+   · Schalter "Aktiv" aus = der Befehl wird nicht mehr erkannt.
+   · Feld "Taste": derselbe Befehl zusätzlich auf einer Taste.
+   · EIGENE CHAT-BEFEHLE (rechts): Befehl (z.B. /treff) und Text
+     eintragen, "Speichern". Mehrere Zeilen = mehrere
+     Nachrichten, {sleep 500} = Pause.
+   · Alle Chat-Befehle auf einmal aus: Seite "Einstellungen".
+
+--------------------------------------------------------------
+13. STATISTIK: HEUTE, MONAT, GESAMT  (NEU)
+--------------------------------------------------------------
+ Jeder Kill und jeder Tod, den der Binder erkennt, zählt jetzt
+ dreimal: für heute, für den Monat und gesamt. Dazu die
+ Spielzeit (nur solange GTA vorne ist), deine Logins und die
+ SMS, die du bekommst.
+
+ Zu sehen auf der Seite "Übersicht" - oben die Zahlen von
+ heute, darunter die Tabelle mit Sitzung, Heute, Monat und
+ Gesamt. Im Spiel mit /infokill, /dkd, /mkd usw. (Punkt 12).
+
+ Die Zahlen stehen in YakuzaStatistik.ini neben dem Programm.
+ Ein neuer Tag / Monat fängt von selbst bei 0 an; die alten
+ Tage bleiben in der Datei stehen.
+
+ "Gesamt" ist derselbe Stand wie {kills}: nach einmal N der
+ Stand vom Server, sonst alles, was der Binder gezählt hat.
+
+--------------------------------------------------------------
+14. GEGNERLISTEN  (NEU)
+--------------------------------------------------------------
+ Merk dir die Namen deiner Gegner und sieh mit einem Befehl,
+ wer davon gerade online ist - mit ID, Level und Ping.
+
+ LISTE ANLEGEN (Seite "Gegnerlisten", links unten)
+   Name, z.B. "VLA", und Kürzel, z.B. "vla" -> "Anlegen".
+   Ab Werk gibt es eine Liste "Gegner" (Kürzel gegner).
+
+ IM SPIEL
+   /vla            wer aus der Liste ist online?
+   /vlaadd 12      Spieler mit der ID 12 eintragen
+   /vlaadd Name    oder über den Namen
+   /vladel 12      wieder austragen
+   /gangallcheck   alle Listen auf einmal
+
+ Das Ergebnis erscheint als Karte im Spiel und im Fenster.
+
+ Der Binder liest dafür die Spielerliste von SA-MP (dieselbe,
+ die du mit TAB siehst) - er schickt KEINEN Befehl an den
+ Server. Die Listen liegen als Textdateien im Ordner
+ "Gegnerlisten" neben dem Programm.
+
+--------------------------------------------------------------
+15. SPRINT (LAUFSCRIPT)
+--------------------------------------------------------------
+ In GTA rennt die Figur nur schnell, wenn man die Sprint-Taste
+ immer wieder antippt. Der Binder übernimmt das: halte beim
+ Laufen einfach die Leertaste gedrückt - er tippt für dich.
+
+   An/Aus         Strg + Leertaste (oder Seite "Sprint")
+   Tempo          ab Werk 30 ms - kleiner = schneller tippen
+   Nur zu Fuß     im Fahrzeug bleibt die Leertaste normal
+   Nur beim Laufen  wirkt nur, solange W/A/S/D oder die
+                  Pfeiltasten gedrückt sind
+   Ducken (C)     unterbricht das Antippen, bis du die
+                  Leertaste neu drückst - der C-Bug bleibt frei
+
+ Während du im Chat tippst, ruht der Sprint.
+
+ HÄNGENDE TASTEN
+ Läuft die Figur von allein weiter oder wirken C und F nicht
+ mehr: Seite "Sprint (Laufscript)" -> "Hängende Tasten lösen"
+ (oder Rechtsklick auf das Yakuza-Symbol). Der Binder räumt so
+ etwas auch selbst auf - der Knopf ist nur die Notbremse.
+
+--------------------------------------------------------------
+16. DAS OVERLAY UND DIE MELDUNGEN IM SPIEL
+--------------------------------------------------------------
+ Das Overlay ist die kleine Anzeige am Bildschirmrand:
+ dein Standort, Kills/Tode, laufende Kriege, deine Member und
+ deine Tastenbelegung. Die Maus klickt einfach durch.
+
+ *** WICHTIG: VOLLBILD ***
+
+ Im echten Vollbild kann Windows kein zweites Fenster über das
+ Spiel legen. Bei manchen führt das dazu, dass das Spielbild
+ für ein paar Sekunden komplett einfriert.
+
+ Deshalb ist ab Werk eingestellt:
+     Vollbild:  "Automatisch - im Vollbild aus (empfohlen)"
+
+ Der Binder fragt Windows selbst, ob du im echten Vollbild
+ bist. Wenn ja, baut er gar kein Overlay. Alles andere -
+ Tasten, Kills, Tode, Töne, Fahnen auf der Karte - läuft ganz
+ normal weiter. Unten im Fenster steht dann
+ "Overlay ruht (Vollbild)".
+
+ WILLST DU DAS OVERLAY SEHEN?
+ Starte GTA im RANDLOSEN FENSTER oder im Fenstermodus. In
+ vielen Startern heißt das "Borderless" oder "Fenster".
+ Das erkennt der Binder - dort bleibt das Overlay an und
+ funktioniert ohne Ruckler.
+
+ Hast du GTA umgestellt, während der Binder lief? Dann GTA
+ einmal neu starten, damit er es merkt.
+
+ EINSTELLEN (Seite "Overlay")
+   Seite       links oder rechts
+   Höhe        Schieberegler von ganz oben bis ganz unten
+   Größe       klein / normal / groß
+   Deckkraft   wie durchsichtig
+   Inhalt      was angezeigt wird
+   Im Fahrzeug über den Tacho ausweichen:
+               Im Auto zeigt der Server unten rechts Fahrzeug,
+               km/h und Tank. Mit diesem Haken rutscht das
+               Overlay dann automatisch darüber.
+   Kriegsende  Wie lange die Zeile "Gangwar gewonnen: ..."
+               nach dem Ende noch stehen bleibt (in Sekunden,
+               ab Werk 120). 0 heißt: stehen lassen, bis der
+               nächste Krieg anfängt.
+
+ Welche Tasten im Overlay stehen, hakst du in der Liste
+ rechts an.
+
+ AUFNEHMEN UND STREAMEN
+ Ab Werk ist NICHT angehakt:
+     "Overlay nicht in Aufnahmen zeigen (OBS, Spielleiste)"
+
+ Mit Haken blendet Windows das Overlay aus jeder Aufnahme und
+ aus jedem Bildschirmfoto aus. Du siehst es weiter ganz normal
+ auf dem Bildschirm - nur im Video ist es nicht drin.
+
+ SETZ DEN HAKEN NUR, WENN DU WIRKLICH AUFNIMMST. Für Windows
+ ist so ein Fenster "geschützter Inhalt". Der Fenstermanager
+ muss dafür seinen schnellen Weg verlassen, auf dem ein
+ Vollbildspiel sein Bild direkt auf den Bildschirm schiebt -
+ auf manchen Rechnern ruckelt oder hängt GTA dadurch. Genau
+ das war der Fehler in v2.0.0, wo der Haken ab Werk saß.
+
+ Im echten Vollbild wird der Schalter nie angewendet, auch
+ wenn er gesetzt ist. Auf älteren Windows-Fassungen (vor
+ Windows 10, Version 2004) wird das Overlay in der Aufnahme
+ schwarz statt unsichtbar - auf dem Bildschirm bleibt es
+ unverändert.
+
+
+
+ MELDUNGEN ALS KARTEN  (NEU)
+ Ergebnisse von /tode, /otime, den Gegnerlisten usw. erscheinen
+ als kleine Karte über dem Spiel - nur für dich, der Server
+ sieht davon nichts. Ab Werk auf der anderen Seite als das
+ Overlay. Seite, Dauer und an/aus: Seite "Overlay", unten
+ rechts ("Testen" zeigt eine Probe).
+ Für die Karten gilt dasselbe wie fürs Overlay: im echten
+ Vollbild ruhen sie, im randlosen Fenster gehen sie.
+ Alle Meldungen stehen außerdem im Fenster unter "Übersicht"
+ -> "Letzte Meldungen".
+--------------------------------------------------------------
+17. EXTRAS: WANTEDS, LOTTO, SMS, RADIO, AUFNAHMEN
+--------------------------------------------------------------
+ Beides steht auf der Seite "Extras".
+
+ WANTEDS  ->  {wanteds}
+   Schreib {wanteds} in einen deiner Texte, zum Beispiel
+
+     /g Aktuell {wanteds} Wanteds - passt auf
+
+   Der Binder schickt dann kurz vorher /wanteds, wartet auf die
+   Antwort des Servers (höchstens 2,5 Sekunden) und schickt
+   erst danach deinen Satz - mit der frischen Zahl.
+
+   Gefragt wird nur, wenn du es wirklich brauchst: ist die
+   letzte Antwort keine halbe Minute alt, nimmt er die einfach.
+   Ohne {wanteds} in einem Text passiert gar nichts.
+
+   Einstellen kannst du den Befehl, die Wartezeit und die
+   Zeile, an der der Binder die Antwort erkennt.
+
+   Was NICHT geht: die Antwort des Servers aus deinem Chat
+   wegnehmen. Der Binder liest den Speicher nur - er kann
+   SA-MP keine Zeile entfernen.
+
+ LOTTO-BOT
+   Kündigt der Server das nächste Lotto an
+     [LOTTO] In ca. 10 Minuten ...
+   kauft der Binder auf Wunsch selbst Lose mit einer
+   Zufallszahl.
+
+   Einstellen:
+     Anzahl       wie viele Lose (1 bis 20)
+     Abstand      Pause zwischen zwei Losen (ab Werk 1500 ms,
+                  gegen einen Kick wegen Spam)
+     Befehl       ab Werk  /lotto {zahl}
+     Ankündigung  die Zeile, auf die gewartet wird
+     Zahl von/bis ab Werk 1 bis 100
+
+   Die Lose gehen über dieselbe Warteschlange wie alle anderen
+   automatischen Meldungen: der Binder wartet also ab, bis der
+   Chat wirklich offen ist, und nichts davon landet als
+   Spieltaste im Spiel. Wirst du dazwischen bewusstlos, werden
+   die wartenden Lose verworfen.
+
+   ⚠ WICHTIG
+   Das ist der einzige Teil des Binders, der von sich aus
+   Befehle an den Server schickt, ohne dass du eine Taste
+   drückst. Je nach Serverregeln kann das als Botting gelten.
+   Deshalb ist es ab Werk AUS - einschalten musst du es
+   selbst, und zwar auf eigene Verantwortung.
+
+
+
+ SMS BEANTWORTEN  (/re)
+   Der Binder merkt sich, wer dir zuletzt eine SMS geschickt
+   hat. /re oder /n + Enter schreibt "/sms <Nummer> " in den
+   Chat - du tippst nur noch die Antwort.
+   Befehl und Erkennung stellst du unter "Extras" ein, falls
+   dein Server SMS anders schreibt (Gruppe 1 = Absender,
+   Gruppe 2 = Nummer).
+
+ RADIO
+   I LOVE RADIO & Co. direkt über den Windows Media Player -
+   ohne Zusatzprogramm. Sender und Lautstärke unter "Extras",
+   an/aus mit /iloveradio und /radiostop oder dem Knopf in der
+   Übersicht.
+
+ AUFNAHMEN  (/frag, /beschwerde)
+   Stoppt die Aufnahme (Stopp-Taste deines Aufnahmeprogramms,
+   ab Werk F9) und verschiebt das neueste Video in den Ordner
+   "Aufnahmen\Frags" bzw. "Aufnahmen\Beschwerden" neben dem
+   Programm. Vorher unter "Extras" den Ordner eintragen, in dem
+   dein Aufnahmeprogramm speichert.
+--------------------------------------------------------------
+18. WENN ETWAS NICHT GEHT
+--------------------------------------------------------------
+ Schau zuerst immer unten links in das Fenster (Status).
+
+ EINE TASTE TUT NICHTS
+   · Steht ⚠ davor? Dann ist sie doppelt vergeben.
+   · Steht unten links "PAUSIERT"? Auf "Fortsetzen" klicken
+     oder die Taste Pause drücken.
+   · Ist der Chat offen? Solange du tippst, ruhen alle Tasten
+     mit Absicht.
+   · GTA muss das aktive Fenster sein.
+
+ DIE FIGUR LÄUFT ODER RENNT VON ALLEIN -
+ ODER C UND F GEHEN NICHT MEHR
+   · Klick auf der Seite "Extras" auf "Hängende Tasten lösen".
+     Dasselbe gibt es im Symbol neben der Uhr (Rechtsklick).
+   · Das ist nur die Notbremse: der Binder räumt so etwas
+     seit dieser Fassung selbst auf, spätestens wenn du aus
+     dem Spiel klickst oder auf Pause gehst.
+   · Kommt es trotzdem oft vor, schreib bitte kurz durch, was
+     du dabei gemacht hast - dann lässt es sich abstellen.
+
+ DER BINDER SCHREIBT NICHTS IN DEN CHAT
+   · Steht unten "Spiel nicht gestartet"? Dann GTA starten.
+   · Steht unten "SA-MP ... erkannt"? Nur dann kann der Binder
+     genau abwarten, bis der Chat wirklich offen ist.
+
+ DIE FIGUR BLEIBT BEIM DRÜCKEN STEHEN
+   · Seite "Einstellungen": "Schnell senden" muss an sein.
+   · "Tipp-Tempo" auf 0 lassen.
+
+ KILLS ODER TODE WERDEN NICHT GEMELDET
+   · Steht unten "Chatlog fehlt"? Dann hat GTA noch nie eine
+     Chatdatei angelegt. Einmal einloggen und etwas schreiben -
+     danach findet der Binder sie von allein.
+   · Seite "Einstellungen": "Spielspeicher lesen" muss an sein.
+   · Seite "Meldungen & Kampf": "Kills automatisch melden" an.
+   · Steht bei "Dein Name" nichts? Schreib einmal etwas über
+     den Binder in /g - dann lernt er ihn. Du kannst ihn auch
+     selbst eintragen.
+   · Sehr hoher Ping (über 250)? Dann fällt der Gegner später
+     als 600 ms nach deinem Schuss. Seite "Meldungen & Kampf", bei
+     "Zeiten" die erste Zahl ("Fall") z.B. auf 900 setzen.
+   · Kämpft ihr immer im Rudel? Dann die zweite Zahl ("fremd")
+     hochsetzen - erst wer SO VIEL später als du feuert, gilt
+     als der Killer.
+
+ BEI {opfer} STEHT "unbekannt"
+   · Seite "Einstellungen" -> Diagnose, letzte Zeile:
+       "erkannt"        alles in Ordnung
+       "wird gesucht"   es waren noch zu wenige Spieler in der
+                        Nähe - klappt beim nächsten Gefecht
+       "nicht gefunden" deine SA-MP-Version passt nicht dazu;
+                        {opfer} funktioniert dann nur bei
+                        Kills, die der Server in den Chat
+                        schreibt
+   · "Spielspeicher lesen" muss an sein.
+   · Abschalten lässt sich das in YakuzaKeybinder.ini unter
+     [Combat] mit  VictimNames=0.
+
+ BEI {mörder} STEHT "unbekannt"
+   · Im Krieg kommt der Name aus dem Spiel - dafür muss
+     "Spielspeicher lesen" an sein und die Diagnose-Zeile
+     "Gegnernamen aus SA-MP" muss "erkannt" sagen.
+   · Hat dich kein Spieler umgebracht (Sturz, Auto, Ertrinken),
+     gibt es auch keinen Namen.
+   · Schreibt dein Server die Zeile anders als
+     "NAME wurde von NAME erschossen", trag ein eigenes Muster
+     in YakuzaKeybinder.ini unter [Combat] bei KillerPattern
+     ein. Der Name muss dort in der ersten Klammer stehen.
+
+ MEINE AUFNAHME STARTET NICHT ODER BRICHT AB
+   · Seite "Overlay", Schalter "Overlay nicht in Aufnahmen
+     zeigen" setzen (ab Werk ist er AUS).
+   · Hilft das nicht, stell das Overlay testweise ganz aus
+     (Strg+O) und probier die Aufnahme noch einmal.
+
+ DAS SPIEL HÄNGT ODER RUCKELT, SOBALD DAS OVERLAY DA IST
+   · Nimm den Haken bei "Overlay nicht in Aufnahmen zeigen"
+     wieder aus (Seite "Overlay"). Ab v2.0.1 ist er ab Werk aus;
+     in v2.0.0 saß er ab Werk drin, und genau das hat GTA auf
+     manchen Rechnern hängen lassen.
+   · Läuft GTA im ECHTEN Vollbild, stell "Vollbild" wieder auf
+     "Automatisch". Jedes zusätzliche Fenster zwingt Direct3D
+     dort zu einem Neustart - das sind die Sekunden, in denen
+     das Bild steht. Im randlosen Fenster gibt es das nicht.
+
+ ALLES STEHT 10-20 SEKUNDEN, AUCH ALT+TAB UND DER TASK-MANAGER
+   So etwas kann ein einzelnes Programm normalerweise gar nicht.
+   Sieh deshalb ZUERST nach, wer es war - der Binder schreibt das
+   seit v2.0.2 selbst mit, in YakuzaHaenger.log neben der
+   Programmdatei:
+
+     "LANGER ABSCHNITT: ..."   -> der Binder war es. Sag Bescheid,
+                                  dann ist es ein Fehler im Binder.
+     "SYSTEM STAND 12.4 s"     -> der Binder kam selbst nicht dran.
+                                  Dann liegt es NICHT an ihm.
+
+   Steht dort "SYSTEM STAND", geh diese Liste der Reihe nach durch -
+   es sind die üblichen Verdächtigen, alle drei legen sich über das
+   Spiel:
+     1) Xbox-Spielleiste und Hintergrundaufnahme ausschalten
+        (Windows-Einstellungen > Spielen > Xbox Game Bar AUS und
+        Aufzeichnen > "Im Hintergrund aufzeichnen" AUS).
+        Das ist mit Abstand der häufigste Grund.
+     2) Overlay der Grafikkarten-Software aus
+        (AMD: Radeon Software > Aufnahme/ReLive und Overlay;
+         NVIDIA: GeForce Experience > In-Game-Overlay).
+     3) Discord: Einstellungen > Spiel-Overlay aus.
+   Nach jedem Schritt eine Runde spielen. Das Protokoll sagt dir,
+   ob es besser geworden ist.
+
+ IM KRIEG WERDEN MEINE KILLS NICHT GEZÄHLT
+   · Auf Life of Player schreibt der Server zu einem Kill im
+     Gang- oder Family-War KEINE Chatzeile. Der Binder erkennt
+     diese Kills deshalb im Spiel selbst - dafür muss
+     "Spielspeicher lesen" (Seite "Einstellungen") an sein.
+   · Zum Nachsehen, warum ein Gegner nicht gezählt wurde:
+     in YakuzaKeybinder.ini unter [Combat] KillLog=1 setzen
+     und den Binder neu starten. Danach liegt neben der
+     Programmdatei eine YakuzaKills.log, in der zu jedem
+     gefallenen Gegner die Begründung steht.
+   · Der Notnagel bleibt Strg+K: damit meldest du einen Kill
+     von Hand.
+
+ KILLS UND TODE STIMMEN NICHT MIT DEM SERVER ÜBEREIN
+   · Einmal N drücken - dann übernimmt der Binder den
+     Gesamtstand aus deinem Charaktermenü.
+   · Die Seite "Extras" zeigt gleich darunter, ob es geklappt hat.
+     Steht dort weiter "noch nicht abgeglichen", passen die
+     Suchmuster nicht zu dem, was in deinem Menü steht.
+
+ NACH DEM MEDIC KOMMT DIE FALSCHE MELDUNG
+   · Schreibt dein Server die Wiederbelebung anders, erkennt
+     der Binder sie nicht. Dafür gibt es in der Datei
+     YakuzaKeybinder.ini unter [Combat] zwei Zeilen (nach
+     dem ersten Start stehen sie dort):
+       RevivePattern    = woran man eine Wiederbelebung erkennt
+       HospitalPattern  = welche davon das Krankenhaus ist
+   · Medic-Text leer lassen = aus. Dann kommt immer die
+     normale Tod-Meldung.
+
+ DAS SPIEL HÄNGT MANCHMAL EIN PAAR SEKUNDEN
+   · Seite "Overlay": Vollbild-Modus auf "Automatisch" lassen
+     (so ist es ab Werk).
+   · Seite "Einstellungen" -> DIAGNOSE zeigt live, wie lange der
+     Binder für seine Arbeit braucht. Alles unter 5 ms ist
+     völlig unauffällig. Reißt ein Wert aus, sag Bescheid.
+   · Gegentest: Rechtsklick auf das Yakuza-Symbol -> Pause.
+     Hängt es dann immer noch, liegt es nicht am Binder.
+
+ DAS OVERLAY IST NICHT ZU SEHEN
+   · Siehe Punkt 16 - im Vollbild ist es mit Absicht aus.
+
+ KEINE BACKUP-FAHNE AUF DER KARTE
+   · Seite "Familie & Member": "Backup-Rufe als Fahne ..." an.
+   · "Chat-Tag" muss stimmen (z.B. [YAK]).
+   · "Spielspeicher lesen" muss an sein.
+   · Der rufende Member braucht ebenfalls den Binder, sonst
+     wird nur die Mitte der genannten Zone markiert.
+
+ DER STANDORT STIMMT NICHT
+   · "Spielspeicher lesen" muss an sein.
+   · In Gebäuden steht "Innenraum" - das ist normal.
+
+ ICH WILL GANZ VON VORN ANFANGEN
+   · Binder beenden, die Datei YakuzaKeybinder.ini löschen,
+     Binder neu starten. Dann sind alle Werkseinstellungen da.
+
+
+
+ EIN CHAT-BEFEHL WIRD NICHT ERKANNT
+   · Chat-Befehle gehen erst mit Enter - Kurzformen sofort.
+   · Seite "Chat-Befehle": ist der Befehl "Aktiv"?
+   · Seite "Einstellungen": "Chat-Befehle" muss an sein.
+   · Hast du beim Tippen die Pfeiltasten benutzt oder eine
+     alte Zeile mit Pfeil hoch geholt? Dann weiß der Binder
+     nicht sicher, was im Feld steht, und lässt die Zeile
+     lieber unverändert durch. Einfach neu tippen.
+
+ DIE GEGNERLISTE SAGT "NICHT LESBAR"
+   · "Spielspeicher lesen" muss an sein und GTA laufen.
+   · Die Diagnose-Zeile "Gegnernamen aus SA-MP" (Einstellungen
+     -> Diagnose) zeigt, ob die Spielerliste gefunden wurde.
+
+ ES IST EIN FEHLER AUFGETRETEN
+   · Steht neben dem Programm eine YakuzaFehler.log? Die bitte
+     mitschicken, wenn du einen Fehler meldest.
+--------------------------------------------------------------
+19. WEITERGEBEN UND UPDATE
+--------------------------------------------------------------
+ Einfach YakuzaKeybinder.exe und diese Anleitung weitergeben.
+ Keine Installation nötig.
+
+ Eigene Tasten mitgeben: die Datei YakuzaKeybinder.ini mit in
+ den Ordner legen. Der Name darin wird beim Empfänger beim
+ ersten Schreiben automatisch ersetzt.
+
+
+ DAS UPDATE - FÜR DICH ALS MEMBER
+ --------------------------------
+ Du musst dafür nichts tun. Der Binder sieht beim Start (nach
+ etwa 40 Sekunden) und danach alle 6 Stunden nach, ob es eine
+ neuere Fassung gibt.
+
+ Gibt es eine, läuft das so ab:
+   1) Er lädt sie im Hintergrund. Das Spiel merkt davon nichts.
+   2) Sobald GTA NICHT im Vordergrund ist, fragt er EINMAL:
+      "Jetzt installieren?". Mitten im Spiel fragt er nie.
+   3) Nach deinem Ja tauscht er sich selbst aus und startet neu.
+
+ DEINE EINSTELLUNGEN BLEIBEN.
+ Ausgetauscht wird nur das Programm selbst (und diese Anleitung).
+ YakuzaKeybinder.ini, YakuzaStatistik.ini und die Gegnerlisten
+ werden nicht angefasst. Vorher legt der Binder zusätzlich eine
+ Kopie an:   YakuzaKeybinder.ini.bak
+
+ Von v2 auf v3.0 geht das genauso - v2 kann sich selbst
+ austauschen. Danach zeigt v3.0 einmal kurz, was neu ist.
+
+ Willst du nicht warten: Seite "Einstellungen" -> "Update" ->
+ "Jetzt aktualisieren". Denselben Punkt gibt es im Symbol neben
+ der Uhr.
+
+ Abschalten (Einstellungen -> Update):
+   · "Automatisch prüfen" aus  = gar nicht mehr nachsehen
+   · "Neue Fassung automatisch herunterladen" aus
+                               = nur Hinweis, kein Download
+
+
+ FÜR DIE FAMILIENLEITUNG: EINE NEUE VERSION VERTEILEN
+ ----------------------------------------------------
+ Hinter der eingebauten Adresse liegt eine Textdatei (ein
+ GitHub-Gist). Für v3.0 muss darin stehen:
+
+      Version=3.0.0
+      Info=Neues Fenster, Chat-Befehle, Statistik, Gegnerlisten
+      Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.0.zip
+
+ DIE ZEILE "Url" MUSS DIREKT AUF DIE ZIP ZEIGEN. Steht dort nur
+ die Adresse des Repos (…/yakuza-keybinder.git), kann v2 nichts
+ herunterladen und bleibt beim Hinweis stehen.
+ (v3.0 selbst kommt auch mit der Repo-Adresse klar: es baut sich
+ den Link zur ZIP aus der Versionsnummer. Für den Schritt von v2
+ auf v3.0 braucht es aber den direkten Link.)
+
+ So geht es:
+   1) Die ZIP Yakuza_Keybinder_v3.0.0.zip liegt im Repo
+      marci1160/yakuza-keybinder (Zweig main).
+   2) Im Gist "Edit" klicken, die drei Zeilen oben eintragen,
+      speichern.
+   3) Fertig. Alle Member ab v2.0.0 bekommen v3.0 von selbst.
+
+ Liegt die ZIP (noch) in einem anderen Zweig, geht auch dessen
+ Link, z.B.
+   https://github.com/marci1160/yakuza-keybinder/raw/NAME-DES-ZWEIGS/Yakuza_Keybinder_v3.0.0.zip
+
+ Beim nächsten Mal änderst du nur "Version" und "Url" (bzw. nur
+ die Version, sobald alle v3.0 haben) und lädst die neue ZIP
+ ins Repo.
+
+ Eine andere Adresse benutzen (eigener Webspace o.ä.): Seite
+ "Einstellungen" -> "Update" -> "Adresse". Was dort steht, gilt
+ vor der eingebauten.
+
+
+ EINMALIG: VON v1.9.x UMSTEIGEN
+ ------------------------------
+ Fassungen VOR v2.0.0 können sich nicht selbst austauschen.
+   1) ZIP irgendwohin entpacken (NICHT über den alten Ordner).
+   2) Die entpackte YakuzaKeybinder.exe starten.
+   3) Einstellungen -> Update -> "Fassung woanders einsetzen ..."
+   4) Den alten Keybinder-Ordner auswählen - fertig.
+ Einstellungen bleiben dabei erhalten, die alte Fassung liegt
+ danach als YakuzaKeybinder.vorher.exe daneben.
+
+ In einer Zeile (z.B. für eine Verknüpfung):
+   YakuzaKeybinder.exe /einsetzen "C:\Pfad\zum\alten\Ordner"
+
+--------------------------------------------------------------
+20. WAS NEU IST
+--------------------------------------------------------------
+ ============================  v3.0.0  ========================
+
+ NEUES FENSTER
+   Links die Seiten, rechts die Einstellungen - im Stil des
+   Keybinders von Brooklyn 5.0, mit dem Yakuza-Banner und dem
+   Yakuza-Gesicht. Alles wirkt sofort und wird automatisch
+   gespeichert. Die Übersicht zeigt Kills, Tode und K/D von
+   heute, die Statistik, was im Spiel los ist, einen
+   Schnellzugriff und die letzten Meldungen.
+
+ ALLE TASTEN IN EINER LISTE
+   Eigene Tasten, Funktionen, Server- und Chat-Befehle stehen
+   auf der Seite "Tasten" zusammen. Doppelte Tasten sind mit ⚠
+   markiert; beim Übernehmen fragt der Binder, ob er die Taste
+   woanders entfernen soll. Neu: Pause-Taste und weitere
+   Funktionstasten.
+
+ CHAT-BEFEHLE AUS BROOKLYN (Punkt 12)
+   /kd, /dkd, /mkd, /infokill, /re, /cd, /stopuhr, /zeit,
+   /chillen, 7f + Leertaste ... - dazu eigene Chat-Befehle.
+   Übernommen wurde nur, was nicht von einem bestimmten Server
+   abhängt. Die Befehle von Life of Player bleiben die aus v2.
+
+ STATISTIK (Punkt 13)
+   Kills, Tode, K/D, Spielzeit, Logins, SMS - für heute, den
+   Monat und gesamt.
+
+ GEGNERLISTEN (Punkt 14)
+   Listen anlegen und sofort sehen, wer online ist.
+
+ MELDUNGEN IM SPIEL
+   Kleine Karten über dem Spiel für alles, was nur dich angeht,
+   dazu ein großer Countdown und Radio.
+
+ UPDATE VERSTEHT AUCH DEN REPO-LINK
+   Steht im Gist nur die Adresse des GitHub-Repos, baut v3.0 den
+   Link zur ZIP selbst.
+
+ UNTER DER HAUBE
+   Der Quelltext ist in Module aufgeteilt (yakuza/src/lib im
+   Repo). Kill-Erkennung, Fahnen, Kriege, Sprint, Senden und
+   Update sind unverändert aus v2.0.2 übernommen.
+
+
+ ============================  v2.0.2  ========================
+
+ DER BINDER BREMST WINDOWS NICHT MEHR AUS
+   Er lief bisher auf Wunsch mit niedriger Priorität, damit er dem
+   Spiel keine Leistung wegnimmt. Gut gemeint - aber in diesem
+   Programm hängt der Tastatur-Haken von Windows, durch den JEDER
+   Tastendruck auf dem ganzen Rechner läuft. Windows gibt ihm dafür
+   nur eine feste Frist. Ist GTA am Anschlag, kommt ein
+   heruntergestuftes Programm nicht rechtzeitig dran - und dann hakt
+   die Eingabe im ganzen System, nicht nur im Binder. Genau das
+   Gefühl "alles steht, Alt+Tab hilft nicht".
+   Der Binder läuft jetzt immer normal. Zu sparen gab es ohnehin
+   nichts: im Leerlauf kostet er ein paar Zeitabfragen pro Takt.
+   Der alte Schalter ist weg, sein Platz im Fenster gehört jetzt dem
+   Hänger-Protokoll.
+
+ EIN ZEITBUDGET FÜRS SENDEN
+   Beim Senden wartet der Binder an vier Stellen auf das Spiel.
+   Jede Stelle hatte ihr eigenes Limit, zusammen fast anderthalb
+   Sekunden - und so lange sind die Buchstabentasten gesperrt.
+   Jetzt teilen sich alle Stellen EIN Budget (ab Werk 400 ms,
+   [General] SendWaitMs). Läuft es ab, bricht der Binder sauber ab;
+   was über die Warteschlange kam, geht im nächsten Takt erneut raus.
+
+ HÄNGER-PROTOKOLL
+   Steht das Spiel, gibt es hinterher nur eine Frage: war es der
+   Binder oder der Rechner? Ab jetzt steht die Antwort in
+   YakuzaHaenger.log neben dem Programm:
+     "LANGER ABSCHNITT: Figuren hat 640 ms gebraucht"
+         -> der Binder war es, und zwar dieser Teil
+     "SYSTEM STAND 12.4 s - in dieser Zeit lief der Binder gar nicht"
+         -> der Binder kam selbst nicht dran, die Ursache liegt
+            woanders (Aufnahme-Programme, Treiber, Platte)
+   An/aus auf der Seite "Einstellungen"; die Schwelle steht in
+   [General] StallMs (ab Werk 250 ms).
+
+ UPDATE PACKT NICHT MEHR MITTEN IM SPIEL AUS
+   Das Auspacken der neuen Fassung konnte den Binder über zwanzig
+   Sekunden anhalten und lief los, ohne zu fragen, ob du gerade
+   spielst. Beides ist behoben: es passiert nur noch außerhalb des
+   Spiels und hält den Binder nicht mehr an.
+
+ ============================  v2.0.1  ========================
+
+ GTA HÄNGT NICHT MEHR, WENN DAS OVERLAY DA IST
+   v2.0.0 hat das Overlay ab Werk vor Aufnahmen versteckt.
+   Windows behandelt so ein Fenster als "geschützten Inhalt"
+   und verlässt dafür seinen schnellen Bildweg - auf manchen
+   Rechnern stand das Spielbild dann jedes Mal, wenn das
+   Overlay neu aufgebaut wurde. Der Schalter ist jetzt ab Werk
+   AUS, und im echten Vollbild wird er gar nicht mehr
+   angewendet. Damit ist das Overlay-Fenster wieder genau das,
+   was es bis v1.9.2 war - und da lief es.
+   Ein alter Eintrag aus v2.0.0 wird absichtlich nicht
+   übernommen: wer den Schalter braucht, setzt ihn einmal neu.
+   Alle anderen Einstellungen bleiben unangetastet.
+
+ KILLS IM KRIEG WERDEN ENDLICH GEZÄHLT
+   Einen eigenen Schuss hat der Binder bisher nur daran
+   erkannt, dass die Munition sinkt. In Gang- und Family-Wars
+   gibt der Server laufend Munition nach - der Zähler sinkt
+   nie, der Binder hat nie einen Schuss gesehen und folglich
+   nie einen Kill gezählt. Und weil der Server zu einem Kill
+   im Krieg auch keine Chatzeile schreibt, blieb es bei null.
+   Jetzt zählt zuerst die Auskunft, die das Spiel selbst
+   führt: an jedem Gegner steht, WER ihn zuletzt verletzt hat.
+   Steht dort deine Figur (oder dein Fahrzeug), ist es dein
+   Kill - ohne Chatzeile und ohne sinkende Munition. Zusätzlich
+   gilt jetzt "die Figur feuert" als Schuss, und ein Gegner,
+   der beim Sterben sofort aus dem Spiel verschwindet, zählt
+   ebenfalls.
+
+ ============================  v2.0.0  ========================
+
+ DAS UPDATE MACHT SICH JETZT SELBST
+   Bisher stand nur "neue Version verfügbar" da - und dann war
+   Schluss. Jetzt lädt der Binder die neue Fassung im
+   Hintergrund, fragt einmal nach (nie mitten im Spiel) und
+   tauscht sich nach einem Klick selbst aus.
+   Der Knopf "Jetzt aktualisieren" macht dasselbe sofort.
+
+   DEINE EINSTELLUNGEN BLEIBEN DABEI UNANGETASTET. Getauscht
+   wird nur das Programm; die YakuzaKeybinder.ini bleibt liegen,
+   und vorher wird sie zusätzlich als .bak gesichert. Geprüft
+   mit einer echten Einstellungsdatei quer durch ein Update:
+   240 Einträge vorher, 240 danach, keiner verändert.
+
+ WARUM v2.0.0 UND NICHT v1.10.0
+   Weil "1.10.0" sich wie "1.1.0" liest und kleiner aussieht
+   als 1.9.3. Der Binder rechnet richtig (1.10.0 IST neuer),
+   aber Menschen lesen es falsch. Mit 2.0.0 ist das erledigt.
+
+ DU SIEHST JETZT, WER DICH UMGELEGT HAT
+   Neuer Platzhalter {mörder}. Der Name kommt aus der Zeile des
+   Servers - und im Krieg, wo der Server nichts schreibt, direkt
+   aus dem Spiel. Die Tod-Meldung heißt ab Werk jetzt
+   "Getötet in ... von ...". Wer seinen Tod-Text selbst
+   angepasst hatte, behält ihn unverändert.
+
+ KILLS UND TODE STIMMEN MIT DEM SERVER ÜBEREIN
+   Drück einmal N: der Binder liest den Gesamtstand aus deinem
+   Charaktermenü ab und übernimmt ihn. Danach zeigt {kills} den
+   echten Stand, und jeder weitere Kill zählt hoch. Er liest
+   dabei nur ab - kein Klick, kein Befehl.
+
+ DIE TOD-MELDUNG KAM MANCHMAL DOPPELT
+   Der Server wiederholt "Du bist bewusstlos", solange du
+   liegst. Daraus hat der Binder bisher jedes Mal einen neuen
+   Versuch gemacht - und der dritte Hinweis zählte sogar als
+   zusätzlicher Tod. Beides ist behoben: jeder Tod wird einmal
+   gezählt und einmal gemeldet.
+
+ DAS OVERLAY KANN SICH AUS AUFNAHMEN HERAUSHALTEN
+   Auf Wunsch blendet Windows es aus Aufnahmen und
+   Bildschirmfotos aus (OBS, Windows-Spielleiste); auf dem
+   Bildschirm siehst du es weiter. In v2.0.0 war das ab Werk
+   an - genau daran hing der Fehler oben. Seit v2.0.1 ist es
+   ein Schalter, den du selbst setzt: Seite "Overlay".
+
+ HÄNGENDE TASTEN
+   Brach ein Sendevorgang ab, blieb die kurze Tastensperre
+   stehen - C (Ducken) und F (Aktion) wirkten dann nicht mehr,
+   oder die Figur lief von allein weiter. Ein Wächter räumt das
+   jetzt selbst auf, spätestens beim Wechsel aus dem Spiel, bei
+   Pause und beim Beenden. Als Notbremse gibt es den Knopf
+   "Hängende Tasten lösen" (Seite "Extras" und im Symbol neben
+   der Uhr).
+
+ KRIEGSENDE IM OVERLAY EINSTELLBAR
+   Wie lange "Gangwar gewonnen: ..." stehen bleibt, stellst du
+   jetzt selbst ein (Seite "Overlay", ab Werk 120 Sekunden,
+   0 = bis zum nächsten Krieg).
+
+ NEU: {wanteds} UND EIN LOTTO-BOT
+   Siehe Punkt 17. Der Lotto-Bot ist ab Werk aus.
+
+
+--------------------------------------------------------------
+    WAS IN v1.9.3 NEU WAR
+--------------------------------------------------------------
+ DER BINDER SAGT BESCHEID, WENN ES ETWAS NEUES GIBT
+   Die Adresse dafür steckt jetzt fest in der .exe - niemand
+   muss mehr etwas eintragen, und es muss nicht mehr jede
+   Version einzeln verschickt werden. Wie eine neue Fassung
+   bekanntgegeben wird, steht in Punkt 19.
+
+ {opfer} FUNKTIONIERT JETZT AUCH IM WAR
+   Dort schreibt der Server nichts in den Chat - der Binder
+   kannte den Namen nicht und schrieb "unbekannt". Jetzt holt
+   er ihn aus der Spielerliste von SA-MP. Dabei wird keine
+   feste Adresse geraten: die Liste wird an ihrem Aufbau
+   erkannt und der Weg zum Spieler an bekannten Figuren
+   überprüft. Passt etwas nicht, bleibt es bei "unbekannt" -
+   lieber kein Name als ein falscher.
+
+ KILLS WERDEN AUF DIE MILLISEKUNDE ENTSCHIEDEN
+   Bisher reichte EIN fremder Schuss nach deinem, um dir den
+   Kill abzusprechen. Wenn drei mit MP5 auf denselben Gegner
+   halten, war das praktisch immer der Fall - gezählt wurde
+   fast nichts. Jetzt gilt:
+     · Sagt das Spiel, dass DU zuletzt getroffen hast, zählt
+       der Kill - egal wer sonst noch feuert.
+     · Sonst nimmt ihn dir nur jemand weg, der deutlich
+       später gefeuert hat (Standard: 150 ms).
+   Die drei Zeiten stehen auf der Seite "Automatik" und lassen sich
+   in Millisekunden einstellen.
+
+
+--------------------------------------------------------------
+    WAS IN v1.9.1 NEU WAR
+--------------------------------------------------------------
+ KEIN "GEWONNEN"/"VERLOREN" MEHR BEI FREMDEN KRIEGEN
+   Family-Wars meldet der Server an alle. Der Binder hat daraus
+   bisher immer einen eigenen Krieg gemacht - am Ende stand
+   "gewonnen" oder "verloren" da, obwohl niemand von uns dort
+   war. Jetzt gilt ein Krieg nur als unserer, wenn Yakuza in
+   der Meldung steht, wenn es um ein Gebiet geht, das wir
+   selbst erobert haben, oder wenn wir eingreifen.
+
+ WER FÜHRT GERADE?
+   Bei fremden Kriegen liest der Binder den aktuellen Stand aus
+   der Anzeige des Servers rechts im Bild und zeigt, wer führt.
+   So siehst du auf einen Blick, ob sich das Eingreifen lohnt -
+   holen kann man sich die Zone ja trotzdem.
+
+ GANGWAR STAND DOPPELT IM OVERLAY
+   Manche Server zeichnen dieselbe Tafel mehrfach ins Bild
+   (Schatten, Kopie je Spieler). Daraus wurden zwei Einträge.
+   Jetzt gibt es je Krieg genau eine Zeile.
+
+ MEDIC-MELDUNG STATT TOD-MELDUNG
+   Holt dich ein Medic wieder hoch, kam bisher trotzdem "Tod in
+   ..." mit dem Sterbeort im /g an. Jetzt steht dort, dass du
+   wiederbelebt wurdest - mit deinem aktuellen Standort und
+   deinem Leben. Text änderbar unter "Automatik -> Medic-Text".
+
+ KILLS UND TODE WERDEN RICHTIG GEZÄHLT
+   · Kills: Bisher galt alles innerhalb von 2,5 Sekunden als
+     derselbe Kill. Im War, wo oft mehrere Gegner kurz
+     hintereinander fallen, fehlten dadurch Kills. Jetzt wird
+     jede Meldung einzeln zugeordnet (Figur, Name, Quelle) -
+     doppelt zählt trotzdem nichts.
+   · Kills mit "[TAG]" oder "(Fraktion)" vor dem Namen wurden
+     in der Server-Meldung gar nicht erkannt.
+   · Tode: Starb man, während eine ältere Tod-Meldung noch auf
+     eine Gelegenheit zum Senden wartete, wurde der neue Tod
+     weder gezählt noch gemeldet. Ebenso fehlte ein Tod, wenn
+     man vorher von einem Medic mit wenig Leben hochgeholt
+     wurde. Beides zählt jetzt.
+
+
+--------------------------------------------------------------
+    WAS IN v1.9.0 NEU WAR
+--------------------------------------------------------------
+ BIZFIGHT WIRD ERKANNT
+   Vorher wurde ein Angriff auf ein Business immer als
+   "Family-War" angezeigt. Jetzt gibt es Gangwar, Family-War
+   und Bizfight getrennt - und wenn der Binder sich nicht
+   sicher ist, schreibt er neutral "War".
+
+ BACKUP-FAHNE VERSCHWINDET ZUVERLÄSSIG
+   Bei Tod des Rufenden, bei Ankunft, bei Absage und
+   spätestens nach 10 Minuten. Das Overlay zieht mit: der Name
+   ist dann nicht mehr rot, es steht "† tot" oder "Ruf
+   abgelaufen". Vorher konnte eine Fahne bis zum Spielende
+   kleben bleiben.
+
+ ZIEL WÄHLEN
+   "Ich bin unterwegs zu ..." geht jetzt für jeden Member -
+   auch ohne dass er Backup gerufen hat. Per Doppelklick im
+   Fenster oder per /ykzu im Chat. Neue Platzhalter {ziel} und
+   {ziel_ort}, dazu eine eigene Fahne auf der Karte.
+
+ TOD IM KRIEG WIRD SOFORT GEMELDET
+   Im Gangwar, Family-War und Bizfight ist man nicht
+   bewusstlos, sondern spawnt sofort neu. Der Binder wartet
+   dann nicht mehr, sondern schickt die Meldung direkt - mit
+   dem richtigen Sterbeort. Vorher konnte der Tod dabei sogar
+   ganz übersehen werden, weil er nur alle 0,25 Sekunden
+   nachgesehen hat.
+
+ STANDORT KORRIGIERT
+   Es gab zwei Fehler: "Bone County (San Andreas)" (das Gebiet
+   fehlte in der Tabelle) und "Red County (Red County)" (Name
+   doppelt). Jetzt steht überall der richtige Ort, und wenn
+   Ort und Gebiet gleich sind, steht der Name nur einmal da.
+
+ TASTEN WIE #, + UND ^ FUNKTIONIEREN JETZT
+   Windows liest diese Zeichen als Sondertasten. Dadurch waren
+   solche Keybinds vorher stumm, ohne dass man es gemerkt hat.
+
+ KEINE RUCKLER MEHR
+   Das Overlay wird nicht mehr ständig neu aufgebaut, im
+   Vollbild gar nicht erst erzeugt, und der Binder liest
+   deutlich sparsamer aus dem Spiel. Dazu gibt es jetzt eine
+   Diagnose-Anzeige (Seite "Einstellungen") und die Einstellung
+   "Im Hintergrund laufen".
+
+ KILL-PROTOKOLL IST JETZT ABSCHALTBAR
+   YakuzaKills.log wird ab Werk nicht mehr geschrieben. Zum
+   Nachprüfen einer Kill-Entscheidung kannst du es unter
+   "Automatik" einschalten.
+
+ DUNKLES DESIGN
+   Mit klar getrennten Bereichen und größerer Schrift.
+
+--------------------------------------------------------------
+21. WAS DER BINDER NICHT TUT
+--------------------------------------------------------------
+ Der Binder ist ein Tastenhelfer, kein Cheat.
+
+ ER LIEST aus dem Spiel: deine Position, dein Leben, deine
+ Rüstung, dein Fahrzeug - und, nur während du zielst oder
+ schießt, die Figuren in deiner Nähe, um deine eigenen Kills
+ zu erkennen. Nach einem Kill liest er dazu den NAMEN des
+ Gegners aus der Spielerliste von SA-MP - also genau das, was
+ auch über seinem Kopf steht. Ebenso liest er, wer DICH zuletzt
+ verletzt hat, für {mörder}. Und wenn dein Charaktermenü offen
+ ist, liest er den Text darin, um Kills und Tode abzugleichen.
+ Für die Gegnerlisten und {id}/{ping} liest er die Spielerliste
+ von SA-MP (Name, ID, Level, Ping - dasselbe wie bei TAB), für
+ {geld} dein Bargeld.
+ Mehr nicht: keine Positionen, kein Leben, keine Waffen
+ anderer Spieler.
+
+ ER HOLT SICH SEINE EIGENEN UPDATES (Punkt 19): eine kleine
+ Textdatei mit der Versionsnummer und, wenn dort eine neuere
+ steht, die neue Fassung des Binders selbst. Beides von der
+ Adresse, die in der .exe steckt oder die du einträgst - von
+ sonst nirgends. Installiert wird erst nach deinem Klick, und
+ ausgetauscht wird nur der Binder selbst. Über dich wird dabei
+ nichts gesendet; wer die Datei bereitstellt, sieht wie bei
+ jeder Webseite die IP-Adresse - mehr nicht.
+ Beides lässt sich abschalten (Punkt 19).
+
+ ER SCHICKT VON SELBST BEFEHLE nur in diesen Fällen, und die
+ kennst du alle:
+   · /familymap nach dem Einloggen (abschaltbar),
+   · /wanteds, wenn du selbst {wanteds} in einen Text
+     geschrieben hast,
+   · und den Lotto-Befehl, WENN du den Lotto-Bot einschaltest
+     (ab Werk aus, siehe Punkt 17).
+ Alles andere geht nur raus, weil du eine Taste gedrückt hast.
+
+ ER SCHREIBT genau EINE Sache ins Spiel: die Fahne auf deiner
+ Karte. Das ist dieselbe Symbol-Liste, in die auch der Server
+ seine Markierungen legt. Abschaltbar unter
+ "Familie & Member".
+
+ ER TUT NICHT:
+   · keinen Code ins Spiel einschleusen,
+   · nichts an den Server schicken außer dem, was oben steht,
+   · keine Spielwerte ändern (Leben, Waffen, Tempo, Position),
+   · keine Gegner anzeigen oder markieren,
+   · keine fremden Positionen verraten - was er zur
+     Kill-Erkennung liest, bleibt im Programm und wird
+     nirgends angezeigt.
+
+ Alles, was du über andere Member siehst, haben sie selbst in
+ den Gangchat geschrieben.
+
+ Erkannte SA-MP-Versionen: 0.3.7 R1 / R3 / R5 und 0.3.DL.
+
+==============================================================
+  Viel Erfolg da draußen.   ·   Yakuza Family
+==============================================================
