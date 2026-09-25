@@ -3,7 +3,7 @@
 ;  Globale Zustandsvariablen
 ; ---------------------------------------------------------------------
 global YK_IniPath        := A_ScriptDir . "\YakuzaKeybinder.ini"
-global YK_Version        := "3.0.1"
+global YK_Version        := "3.0.2"
 global YK_GameExes       := ""      ; weitere Spielprozesse neben gta_sa.exe (Komma)
 global YK_V3Seen         := ""      ; "" = diese INI kommt noch von v2
 

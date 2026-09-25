@@ -498,7 +498,9 @@ YkGui_WhatsNew() {
 }
 
 YkGui_PatchNotes() {
-    return "NEU IN v3.0.1:`n"
+    return "NEU IN v3.0.2:`n"
+       . "·  Gegnerlisten: Namen dürfen auch unvollständig sein (/gegneradd kenji -> Kenji_Sato, wenn er online ist). Groß/klein ist egal. Der Binder sagt beim Hinzufügen, ob der Spieler gerade online ist, und meldet klar, wenn er die Spielerliste nicht lesen kann (statt ""niemand online"").`n`n"
+       . "NEU IN v3.0.1:`n"
        . "·  Chat-Befehle nach den Chats von Life of Player: der Buchstabe davor ist der Chat.`n"
        . "      /f... = Family-Chat der Organisation (/fkd, /fja, /fok, /fwo, /fpos ...)`n"
        . "      /g... = Gang-/Mafienchat (/gkd, /gja, /gok, /gwo, /gpos ...)`n"

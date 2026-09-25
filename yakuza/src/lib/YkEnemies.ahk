@@ -186,9 +186,12 @@ YkEnemy_Remove(key, name) {
     return found
 }
 
-; ID oder Name aus dem Chat -> Spielername
-YkEnemy_ResolveName(input, ByRef err) {
-    err := ""
+; ID oder Name aus dem Chat -> Spielername. Ist der Spieler online, wird
+; der Name so uebernommen, wie SA-MP ihn fuehrt (Gross/klein, ganzer Name
+; bei einem Teil wie "Kenji"). note = "online (ID 12)" / "gerade nicht
+; online" / "" (Liste nicht lesbar)
+YkEnemy_ResolveName(input, ByRef err, ByRef note := "") {
+    err := "", note := ""
     input := Trim(input)
     if input is integer
     {
@@ -197,24 +200,47 @@ YkEnemy_ResolveName(input, ByRef err) {
             err := "Spieler " . input . " ist nicht online (oder die Spielerliste ist nicht lesbar)."
             return ""
         }
+        note := "online, ID " . (input + 0)
         return n
     }
     if !YkSamp_NickOk(input) {
         err := "Bitte eine gültige ID oder einen Namen eingeben!"
         return ""
     }
-    return input
+    f := YkSamp_FindPlayer(input)
+    if (!IsObject(f))
+        return input
+    if (f.HasKey("many")) {
+        err := "Mehrere Spieler passen zu """ . input . """: " . YkJoin(f.many, ", ", 6) . " - bitte genauer oder die ID nehmen."
+        return ""
+    }
+    if (f.HasKey("none")) {
+        note := "gerade nicht online - der Name muss genau stimmen"
+        return input
+    }
+    note := "online, ID " . f.id
+    return f.name
+}
+
+YkJoin(arr, sep, max := 0) {
+    out := ""
+    for i, v in arr {
+        if (max && i > max)
+            return out . sep . "..."
+        out .= (i > 1 ? sep : "") . v
+    }
+    return out
 }
 
 YkEnemy_AddInput(key, input) {
     e := YkEnemy_Get(key)
-    name := YkEnemy_ResolveName(input, err)
+    name := YkEnemy_ResolveName(input, err, note)
     if (name = "")
         return YkMsg(err, "warn")
     if (name = YkMyName())
         return YkMsg("Du kannst dich nicht selbst hinzufügen!", "warn")
     if (YkEnemy_Add(key, name))
-        YkMsg(name . " steht jetzt in " . e.title . ".", "ok")
+        YkMsg(name . " steht jetzt in " . e.title . (note != "" ? " (" . note . ")" : "") . ".", "ok")
     else
         YkMsg(name . " steht schon in " . e.title . ".", "warn")
     YkGui_EnemyRefresh()
@@ -222,13 +248,16 @@ YkEnemy_AddInput(key, input) {
 
 YkEnemy_DelInput(key, input) {
     e := YkEnemy_Get(key)
-    name := YkEnemy_ResolveName(input, err)
-    if (name = "")
-        return YkMsg(err, "warn")
-    if (YkEnemy_Remove(key, name))
-        YkMsg(name . " wurde aus " . e.title . " entfernt.", "ok")
-    else
-        YkMsg(name . " steht nicht in " . e.title . ".", "warn")
+    name := Trim(input)
+    ; zuerst genau so, wie es in der Liste steht (auch wenn er offline ist)
+    if (!YkEnemy_Remove(key, name)) {
+        name := YkEnemy_ResolveName(input, err)
+        if (name = "")
+            return YkMsg(err, "warn")
+        if (!YkEnemy_Remove(key, name))
+            return YkMsg(name . " steht nicht in " . e.title . ".", "warn")
+    }
+    YkMsg(name . " wurde aus " . e.title . " entfernt.", "ok")
     YkGui_EnemyRefresh()
 }
 
@@ -255,24 +284,49 @@ YkEnemy_Online(key) {
             if (seen.HasKey(n))
                 continue
             seen[n] := 1
+            ; Gross/klein egal (Objekt-Schluessel in AutoHotkey v1)
             if (byName.HasKey(n)) {
                 p := byName[n]
-                out.Push({name: n, id: p.id, score: p.score, ping: p.ping, list: YkEnemy_Get(k).title})
+                out.Push({name: p.name, id: p.id, score: p.score, ping: p.ping, list: YkEnemy_Get(k).title})
             }
         }
     }
     return out
 }
 
+; Warum kann der Online-Status gerade nichts sagen? "" = alles gut
+YkEnemy_Problem() {
+    global g_PlrStat, YK_Enemies
+    if (!IsObject(g_PlrStat))
+        return "Die Spielerliste von SA-MP ist gerade nicht lesbar (läuft das Spiel? Einstellungen > Spielspeicher lesen an?)."
+    if (g_PlrStat.total = 0)
+        return "Die Spielerliste von SA-MP ist leer - bist du schon auf dem Server eingeloggt?"
+    if (g_PlrStat.named = 0)
+        return "Die Namen in der Spielerliste von SA-MP sind nicht lesbar (" . g_PlrStat.total . " Spieler gefunden, SA-MP " . YkSamp_VersionName() . "). Bitte melden!"
+    return ""
+}
+
 YkEnemy_ShowOnline(key) {
+    global g_PlrStat, YK_Enemies
     title := (key = "*") ? "Alle Gegner" : YkEnemy_Get(key).title
     on := YkEnemy_Online(key)
-    if (!IsObject(on)) {
-        YkMsg("Die Spielerliste von SA-MP ist gerade nicht lesbar (Spiel aktiv? Einstellungen > Spielspeicher lesen).", "warn")
+    prob := YkEnemy_Problem()
+    if (!IsObject(on) || prob != "") {
+        YkMsg(prob, "warn")
         return
     }
     if (!on.MaxIndex()) {
-        YkMsg(title . ": niemand online.")
+        n := 0
+        if (key = "*") {
+            for i, e in YK_Enemies
+                n += YkCnt(YkEnemy_Names(e.key))
+        } else {
+            n := YkCnt(YkEnemy_Names(key))
+        }
+        if (n = 0)
+            YkMsg(title . ": die Liste ist noch leer.")
+        else
+            YkMsg(title . ": niemand online (" . n . " auf der Liste, " . g_PlrStat.named . " Spieler auf dem Server).")
         return
     }
     txt := title . ": " . on.MaxIndex() . " online"

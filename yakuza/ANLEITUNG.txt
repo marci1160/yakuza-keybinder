@@ -1,5 +1,5 @@
 ﻿==============================================================
-   YAKUZA KEYBINDER  v3.0.1
+   YAKUZA KEYBINDER  v3.0.2
    für SA-MP / open.mp  ·  Yakuza Family  ·  Life of Player
 ==============================================================
 
@@ -729,9 +729,15 @@ INHALT
  IM SPIEL
    /vla            wer aus der Liste ist online?
    /vlaadd 12      Spieler mit der ID 12 eintragen
-   /vlaadd Name    oder über den Namen
+   /vlaadd Name    oder über den Namen - ist er online, reicht
+                   ein Teil ("kenji" -> Kenji_Sato), Groß/klein
+                   egal. Passen mehrere, fragt der Binder nach.
+                   Ist er offline, muss der Name genau stimmen
+                   (mit _ ), sonst wird er nie als online erkannt.
    /vladel 12      wieder austragen
    /gangallcheck   alle Listen auf einmal
+
+ Beim Hinzufügen steht dabei, ob der Spieler gerade online ist.
 
  Das Ergebnis erscheint als Karte im Spiel und im Fenster.
 
@@ -739,6 +745,12 @@ INHALT
  die du mit TAB siehst) - er schickt KEINEN Befehl an den
  Server. Die Listen liegen als Textdateien im Ordner
  "Gegnerlisten" neben dem Programm.
+
+ KOMMT "NAMEN NICHT LESBAR" ODER "SPIELERLISTE LEER"?
+ Dann kann der Binder die Spielerliste gerade nicht auswerten
+ (z.B. noch nicht eingeloggt). Bleibt es so: Einstellungen ->
+ Diagnose -> Zeile "Spielerliste" und die SA-MP-Version
+ an die Familienleitung schicken.
 
 --------------------------------------------------------------
 15. SPRINT (LAUFSCRIPT)
@@ -1175,11 +1187,11 @@ INHALT
  FÜR DIE FAMILIENLEITUNG: EINE NEUE VERSION VERTEILEN
  ----------------------------------------------------
  Hinter der eingebauten Adresse liegt eine Textdatei (ein
- GitHub-Gist). Für v3.0.1 muss darin stehen:
+ GitHub-Gist). Für v3.0.2 muss darin stehen:
 
-      Version=3.0.1
-      Info=Chat-Befehle für LoP (/f Family, /g Gang/Mafia), Aufnahme beenden
-      Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.1.zip
+      Version=3.0.2
+      Info=Gegnerlisten erkennen Online-Spieler zuverlässiger
+      Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.2.zip
 
  DIE ZEILE "Url" MUSS DIREKT AUF DIE ZIP ZEIGEN. Steht dort nur
  die Adresse des Repos (…/yakuza-keybinder.git), kann v2 nichts
@@ -1189,15 +1201,15 @@ INHALT
  auf v3.0 braucht es aber den direkten Link.)
 
  So geht es:
-   1) Die ZIP Yakuza_Keybinder_v3.0.1.zip liegt im Repo
+   1) Die ZIP Yakuza_Keybinder_v3.0.2.zip liegt im Repo
       marci1160/yakuza-keybinder (Zweig main).
    2) Im Gist "Edit" klicken, die drei Zeilen oben eintragen,
       speichern.
-   3) Fertig. Alle Member ab v2.0.0 bekommen v3.0.1 von selbst.
+   3) Fertig. Alle Member ab v2.0.0 bekommen v3.0.2 von selbst.
 
  Liegt die ZIP (noch) in einem anderen Zweig, geht auch dessen
  Link, z.B.
-   https://github.com/marci1160/yakuza-keybinder/raw/NAME-DES-ZWEIGS/Yakuza_Keybinder_v3.0.1.zip
+   https://github.com/marci1160/yakuza-keybinder/raw/NAME-DES-ZWEIGS/Yakuza_Keybinder_v3.0.2.zip
 
  Beim nächsten Mal änderst du nur "Version" und "Url" (bzw. nur
  die Version, sobald alle v3.0 haben) und lädst die neue ZIP
@@ -1224,6 +1236,19 @@ INHALT
 --------------------------------------------------------------
 20. WAS NEU IST
 --------------------------------------------------------------
+ ============================  v3.0.2  ========================
+
+ GEGNERLISTEN ERKENNEN ONLINE-SPIELER (Punkt 14)
+   Ein Gegner galt nur als online, wenn der eingetragene Name
+   ZEICHEN FÜR ZEICHEN stimmte - "Kenji" fand Kenji_Sato nie.
+   Jetzt: beim Hinzufügen reicht ein Teil des Namens, solange
+   der Spieler online ist, Groß/klein ist egal, und der Binder
+   sagt gleich, ob er online ist. Dazu ein zweiter Weg, die Namen
+   aus SA-MP zu lesen (derselbe wie bei den Kill-Namen), und klare
+   Meldungen, wenn die Spielerliste nicht lesbar ist - statt
+   "niemand online". Neu in der Diagnose: Zeile "Spielerliste".
+
+
  ============================  v3.0.1  ========================
 
  CHAT-BEFEHLE FÜR LIFE OF PLAYER (Punkt 12)

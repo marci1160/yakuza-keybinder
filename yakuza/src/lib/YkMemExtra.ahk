@@ -17,6 +17,7 @@
 global g_PlrListT   := 0
 global g_PlrListC   := ""     ; letzte Liste [{id, p}]
 global g_PingOff    := -1     ; Ping-Feld im Spielereintrag (+0x04 oder +0x28)
+global g_PlrStat    := ""     ; letzte Spielerliste: {total, named} (Diagnose)
 
 ; ---------------------------------------------------------------------
 ;  GTA-Werte (feste Adressen gta_sa.exe 1.0 US)
@@ -124,8 +125,32 @@ YkSamp_Players(force := false) {
     return out
 }
 
+; Name eines Listeneintrags. Erster Weg: der Aufbau aus SA-MP (Name als
+; std::string bei +0x0C). Klappt der nicht, der Weg, den der Binder fuer
+; die Kill-Namen selbst gelernt hat (YkSamp_LearnName in YkMemory.ahk) -
+; der ist im Spiel erprobt. Beides liefert nur gueltige SA-MP-Namen.
 YkSamp_PlayerNameAt(p) {
-    return YkSamp_StdString(p + 0xC)
+    global YK_PlrNameOff, YK_PlrNamePtr
+    s := YkSamp_StdString(p + 0xC)
+    if (s != "")
+        return s
+    if (YK_PlrNameOff >= 0)
+        return YkSamp_NickAt(p + YK_PlrNameOff, YK_PlrNamePtr)
+    return ""
+}
+
+; Platz des Namens nachlernen, wenn der erste Weg nicht passt (hoechstens
+; alle 10 s, damit eine leere Liste nicht dauernd sucht)
+YkSamp_NameLearnNow(list) {
+    global YK_PlrNameOff
+    static t := 0
+    if (YK_PlrNameOff >= 0 || (A_TickCount - t) < 10000)
+        return false
+    t := A_TickCount
+    ps := []
+    for i, e in list
+        ps.Push(e.p)
+    return YkSamp_LearnName(ps)
 }
 
 ; Ping-Feld lernen: in 0.3.7-R1 steht er bei +0x28 (+0x04 ist "NPC ja/nein"),
@@ -210,12 +235,36 @@ YkSamp_IdByName(name) {
     return -1
 }
 
-; Alle Spieler als [{id, name, score, ping}] (fuer Gegnerlisten)
+; Alle Spieler als [{id, name, score, ping}] (fuer Gegnerlisten).
+; g_PlrStat haelt fest, wie viele Eintraege es gab und wie viele Namen
+; lesbar waren - so meldet der Binder "Namen nicht lesbar" statt
+; "niemand online".
 YkSamp_PlayerTable() {
-    out := []
+    global g_PlrStat
     list := YkSamp_Players()
-    if (!IsObject(list))
+    if (!IsObject(list)) {
+        g_PlrStat := ""
         return ""
+    }
+    out := YkSamp_PlayerTableOf(list)
+    ; mehr als die Haelfte ohne Namen: anderen Weg lernen und neu lesen
+    if (list.MaxIndex() >= 2 && YkCnt(out) * 2 < list.MaxIndex() && YkSamp_NameLearnNow(list))
+        out := YkSamp_PlayerTableOf(list)
+    g_PlrStat := {total: YkCnt(list), named: YkCnt(out), t: A_TickCount}
+    YkDbg("Spielerliste: " . g_PlrStat.total . " Eintraege, " . g_PlrStat.named . " Namen lesbar")
+    return out
+}
+
+; fuer die Diagnose-Seite
+YkSamp_PlrStatText() {
+    global g_PlrStat
+    if (!IsObject(g_PlrStat))
+        return "noch nicht gelesen (einmal Online prüfen)"
+    return g_PlrStat.total . " Spieler, " . g_PlrStat.named . " Namen lesbar"
+}
+
+YkSamp_PlayerTableOf(list) {
+    out := []
     for i, e in list {
         nm := YkSamp_PlayerNameAt(e.p)
         if (nm = "")
@@ -223,6 +272,38 @@ YkSamp_PlayerTable() {
         out.Push({id: e.id, name: nm, score: YkSamp_PlayerScoreAt(e.p), ping: YkSamp_PlayerPingAt(e.p)})
     }
     return out
+}
+
+; Spieler zu einem eingegebenen Namen (Gross/klein egal):
+;   {name, id} bei genau einem Treffer - erst ganzer Name, sonst Teil
+;   des Namens ("Kenji" -> Kenji_Sato)
+;   {many: [Namen]} wenn mehrere passen
+;   {none: 1}   wenn keiner online passt
+;   ""          wenn die Liste nicht lesbar ist
+YkSamp_FindPlayer(input) {
+    input := Trim(input)
+    tbl := YkSamp_PlayerTable()
+    if (!IsObject(tbl))
+        return ""
+    loc := YkSamp_Local()
+    if (IsObject(loc) && loc.name != "")
+        tbl.Push({id: loc.id, name: loc.name, self: true})
+    part := []
+    for i, p in tbl {
+        if (p.name = input)
+            return p
+        if InStr(p.name, input)
+            part.Push(p)
+    }
+    if (part.MaxIndex() = 1)
+        return part[1]
+    if (part.MaxIndex() > 1) {
+        names := []
+        for i, p in part
+            names.Push(p.name)
+        return {many: names}
+    }
+    return {none: 1}
 }
 
 YkSamp_OnlineCount() {
