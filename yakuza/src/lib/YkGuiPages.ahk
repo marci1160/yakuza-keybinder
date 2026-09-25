@@ -25,7 +25,7 @@ YkGui_FieldMap() {
         , ["YkG_LottoCount", "YK_LottoCount", "n"], ["YkG_LottoGap", "YK_LottoGapMs", "n"], ["YkG_LottoCmd", "YK_LottoCmd", "t"]
         , ["YkG_LottoPat", "YK_LottoPat", "t"], ["YkG_LottoMin", "YK_LottoMin", "n"], ["YkG_LottoMax", "YK_LottoMax", "n"]
         , ["YkG_SmsCmd", "YK_SmsCmd", "t"], ["YkG_SmsPat", "YK_SmsPattern", "t"]
-        , ["YkG_RecFolder", "YK_RecFolder", "t"], ["YkG_RecKey", "YK_RecKey", "t"], ["YkG_RadioUrl", "YK_RadioUrl", "t"]
+        , ["YkG_RecFolder", "YK_RecFolder", "t"], ["YkG_RecKey", "YK_RecKey", "t"], ["YkG_RecStopKey", "YK_RecStopKey", "t"], ["YkG_RadioUrl", "YK_RadioUrl", "t"]
         , ["YkG_ChatKey", "YK_ChatKey", "t"], ["YkG_SendDelay", "YK_SendDelay", "n"], ["YkG_LineDelay", "YK_LineDelay", "n"]
         , ["YkG_ExOrder", "YK_ExtrasOrder", "t"], ["YkG_GameExes", "YK_GameExes", "t"], ["YkG_PathGame", "YK_PathGame", "t"]
         , ["YkG_Chatlog", "YK_ChatlogPath", "t"], ["YkG_WarGang", "YK_WarGangPat", "t"], ["YkG_WarFam", "YK_WarFamPat", "t"]
@@ -54,7 +54,7 @@ YkGui_BuildAuto() {
     YkUi_Text(528, 146, 60, "Kanal", 10)
     YkUi_Add("Edit", "x580 y142 w60 h24 vYkG_GangCmd gYkGui_Changed -E0x200 Border", "")
     YkGui_Field(262, 176, 110, "Text", 268, "YkG_LocText")
-    YkUi_Text(262, 210, 380, "Kanal = dein Gangchat (Standard /g). Der Standort-Text geht mit Strg+G raus.", 8, "norm", YkCol.faint, "h40")
+    YkUi_Text(262, 210, 380, "Kanal = Gang-/Mafienchat (Standard /g). Der Standort-Text geht mit Strg+G raus.", 8, "norm", YkCol.faint, "h40")
 
     YkUi_Card(680, 100, 420, 176, "/familymap beim Login", "E7FC")
     YkUi_Toggle(700, 140, 380, "YkG_FamOn", "Automatisch nach dem Einloggen senden")
@@ -64,7 +64,7 @@ YkGui_BuildAuto() {
     YkGui_Field(700, 208, 90, "Login-Zeile", 290, "YkG_FamPat")
     YkGui_Field(700, 240, 90, "Warten (ms)", 80, "YkG_FamDelay", "Number")
 
-    YkUi_Card(240, 292, 860, 408, "Kills und Tode im Gangchat", "E7C1")
+    YkUi_Card(240, 292, 860, 408, "Kills und Tode im Gang-/Mafienchat", "E7C1")
     YkUi_Toggle(262, 332, 380, "YkG_Combat", "Meldungen aktiv")
     YkGui_Field(262, 368, 110, "Dein Name", 150, "YkG_OwnName")
     YkUi_Text(530, 372, 130, "lernt der Binder selbst", 8, "norm", YkCol.faint)
@@ -437,12 +437,11 @@ YkGui_BuildExtras() {
     YkGui_Field(262, 470, 100, "Ankündigung", 278, "YkG_LottoPat")
     g_H.lottoState := YkUi_Text(262, 506, 380, "-", 9, "norm", YkCol.dim, "h40")
 
-    YkUi_Card(680, 314, 420, 240, "SMS beantworten  ·  /re", "E8BD")
-    YkGui_Field(700, 354, 90, "Befehl", 110, "YkG_SmsCmd")
-    YkGui_Field(700, 386, 90, "Erkennung", 290, "YkG_SmsPat")
-    YkUi_Text(700, 420, 380, "Die Erkennung ist ein Suchmuster: Gruppe 1 = Absender, Gruppe 2 = Nummer. Nur ändern, wenn dein Server SMS anders schreibt.", 8, "norm", YkCol.faint, "h44")
-    g_H.smsState := YkUi_Text(700, 470, 380, "", 9, "norm", YkCol.dim, "h40")
-    YkUi_Text(700, 516, 380, "Im Spiel: /re + Enter  ->  /sms <Nummer> steht im Chat, du tippst weiter", 8, "norm", YkCol.faint)
+    YkUi_Card(680, 314, 420, 184, "SMS beantworten  ·  /re", "E8BD")
+    YkGui_Field(700, 350, 90, "Befehl", 110, "YkG_SmsCmd")
+    YkGui_Field(700, 380, 90, "Erkennung", 290, "YkG_SmsPat")
+    YkUi_Text(700, 412, 380, "Suchmuster: Gruppe 1 = Absender, Gruppe 2 = Nummer. Im Spiel: /re + Enter  ->  /sms <Nummer> steht im Chat.", 8, "norm", YkCol.faint, "h32")
+    g_H.smsState := YkUi_Text(700, 450, 380, "", 9, "norm", YkCol.dim, "h36")
 
     YkUi_Card(240, 570, 420, 130, "Radio (I LOVE RADIO)", "E8D6")
     list := ""
@@ -453,11 +452,16 @@ YkGui_BuildExtras() {
     YkUi_Text(262, 652, 80, "Lautstärke", 9, "norm", YkCol.dim)
     YkUi_Add("Slider", "x340 y646 w300 h28 vYkG_RadioVol gYkGui_RadioVol Range0-100 ToolTip AltSubmit", 60)
 
-    YkUi_Card(680, 570, 420, 130, "Aufnahmen  ·  /frag  /beschwerde", "E714")
-    YkGui_Field(700, 610, 100, "Video-Ordner", 230, "YkG_RecFolder")
-    YkUi_Button(1036, 608, 44, 28, "...", "YkGui_PickRecFolder")
-    YkGui_Field(700, 644, 100, "Stopp-Taste", 80, "YkG_RecKey")
-    YkUi_Text(888, 648, 196, "Taste deines Aufnahmeprogramms", 8, "norm", YkCol.faint)
+    YkUi_Card(680, 514, 420, 186, "Aufnahmen  ·  /rec  /recstop  /frag", "E714")
+    YkGui_Field(700, 550, 80, "Start-Taste", 90, "YkG_RecKey")
+    YkGui_Field(890, 550, 84, "Stopp-Taste", 100, "YkG_RecStopKey")
+    YkGui_Cue("YkG_RecStopKey", "= Start-Taste")
+    YkUi_Text(700, 580, 380, "Tasten deines Aufnahmeprogramms, z.B. F9, Alt+F9, Strg+Shift+R, Win+Alt+R. Stopp leer = die Start-Taste schaltet um.", 8, "norm", YkCol.faint, "h30")
+    YkGui_Field(700, 614, 80, "Video-Ordner", 250, "YkG_RecFolder")
+    YkUi_Button(1036, 612, 44, 28, "...", "YkGui_PickRecFolder")
+    YkUi_Button(700, 652, 110, 32, "Starten", "YkGui_RecStart", "primary")
+    YkUi_Button(818, 652, 110, 32, "Beenden", "YkGui_RecStop")
+    g_H.recState := YkUi_Text(938, 658, 150, "", 9, "norm", YkCol.dim)
     YkUi_Font()
 }
 
@@ -465,6 +469,7 @@ YkGui_ExtrasRefresh() {
     global g_H, g_GuiBuilt
     if (!g_GuiBuilt)
         return
+    YkGui_RecRefresh()
     YkUi_Set(g_H.statsState, "Stand: " . YkStats_Text())
     YkUi_Set(g_H.lottoState, YkLotto_Text())
     n := YkCnt_Info("letztesms"), nm := YkCnt_Info("letztesmsname")
@@ -476,6 +481,31 @@ YkGui_RadioVol() {
     GuiControlGet, v, Yk:, YkG_RadioVol
     YkRadio_Volume(v)
     YkGui_Changed()
+}
+
+YkGui_RecRefresh() {
+    global g_H, g_GuiBuilt, YK_RecKey
+    if (!g_GuiBuilt || !g_H.recState)
+        return
+    d := YkRec_Running()
+    if (!IsObject(YkRec_ParseKey(YK_RecKey)))
+        YkUi_Set(g_H.recState, "⚠ Start-Taste fehlt")
+    else if (!IsObject(YkRec_ParseKey(YkRec_StopKey())))
+        YkUi_Set(g_H.recState, "⚠ Stopp-Taste unbekannt")
+    else
+        YkUi_Set(g_H.recState, (d != "") ? "● läuft  " . d : "keine Aufnahme")
+}
+
+; Knoepfe: Einstellungen vorher uebernehmen, damit die eben eingetragene
+; Taste gilt
+YkGui_RecStart() {
+    YkGui_Apply()
+    YkRec_Start()
+}
+
+YkGui_RecStop() {
+    YkGui_Apply()
+    YkRec_Stop()
 }
 
 YkGui_PickRecFolder() {
@@ -517,7 +547,7 @@ YkGui_BuildSettings() {
     YkUi_Toggle(262, 456, 380, "YkG_StartPaused", "Pausiert starten")
     YkGui_Field(262, 496, 150, "Reihenfolge Anhänge", 230, "YkG_ExOrder")
     YkUi_Text(262, 528, 380, "hp, armor (Rüstung), loc (Standort), veh (Fahrzeug) - mit Komma", 8, "norm", YkCol.faint)
-    YkUi_Text(262, 560, 380, "Chat-Kanäle: {gchat} = Kanal unter ""Meldungen"" (Standard /g), {fchat} = Family-Chat unter ""Familie"" (Standard /f).", 8, "norm", YkCol.faint, "h40")
+    YkUi_Text(262, 560, 380, "Chat-Kanäle: {fchat} = Family-Chat der Organisation (/f, Seite ""Familie""), {gchat} = Gang-/Mafienchat (/g, Seite ""Meldungen"").", 8, "norm", YkCol.faint, "h40")
 
     YkUi_Card(680, 150, 420, 550, "Speicher & Protokolle", "E8B7")
     YkUi_Toggle(700, 192, 380, "YkG_Mem", "Spielspeicher lesen", "Standort, HP, Chat-Erkennung, Kills, Spielerliste - nur lesend")
@@ -559,7 +589,7 @@ YkGui_BuildSettings() {
     YkUi_Toggle(680, 300, 400, "YkG_UpdAuto", "Neue Fassung automatisch herunterladen", "installiert wird erst nach deinem Ja - nie mitten im Spiel")
     YkUi_Text(262, 370, 120, "Adresse", 10)
     YkUi_Add("Edit", "x360 y366 w720 h24 vYkG_UpdUrl gYkGui_Changed -E0x200 Border", "")
-    YkUi_Text(262, 404, 820, "Hinter der Adresse liegt eine Textdatei (z.B. ein GitHub-Gist) mit:`n     Version=3.0.0`n     Url=https://github.com/.../raw/main/Yakuza_Keybinder_v3.0.0.zip`nDeine Einstellungen bleiben bei jedem Update unangetastet - vorher wird zusätzlich eine .bak-Kopie angelegt.", 9, "norm", YkCol.dim, "h90")
+    YkUi_Text(262, 404, 820, "Hinter der Adresse liegt eine Textdatei (z.B. ein GitHub-Gist) mit:`n     Version=3.0.1`n     Url=https://github.com/.../raw/main/Yakuza_Keybinder_v3.0.1.zip`nDeine Einstellungen bleiben bei jedem Update unangetastet - vorher wird zusätzlich eine .bak-Kopie angelegt.", 9, "norm", YkCol.dim, "h90")
     YkUi_Text(262, 506, 820, "Umstieg von einer alten Fassung: ZIP irgendwohin entpacken, die neue YakuzaKeybinder.exe starten, ""Fassung woanders einsetzen ..."" klicken und den alten Ordner wählen. Einstellungen bleiben erhalten.", 9, "norm", YkCol.faint, "h60")
 
     ; ---- 4: Diagnose ----

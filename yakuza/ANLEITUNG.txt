@@ -1,5 +1,5 @@
 ﻿==============================================================
-   YAKUZA KEYBINDER  v3.0
+   YAKUZA KEYBINDER  v3.0.1
    für SA-MP / open.mp  ·  Yakuza Family  ·  Life of Player
 ==============================================================
 
@@ -24,7 +24,7 @@ INHALT
    9.  Eigene Tasten belegen
   10.  Platzhalter - Infos automatisch einsetzen
   11.  Kurzformen im Chat
-  12.  Chat-Befehle  (/kd, /re, /cd ...)          NEU
+  12.  Chat-Befehle  (/fkd, /gkd, /re ...)       NEU
   13.  Statistik: heute, Monat, gesamt           NEU
   14.  Gegnerlisten                              NEU
   15.  Sprint (Laufscript)
@@ -45,7 +45,8 @@ INHALT
  sonst noch möchtest.
 
  Dazu meldet er deine Kills und deine Tode automatisch im
- Gangchat und zeigt dir, wo deine Member gerade sind.
+ Gang-/Mafienchat (/g) und zeigt dir, wo deine Member gerade
+ sind.
 
  WAS IST NEU IN v3.0?
    Alles aus v2 ist geblieben - deine Tasten, Texte, Server-
@@ -56,7 +57,7 @@ INHALT
 
    Dazu kommt:
      · ein neues, übersichtliches Fenster (Punkt 3)
-     · Chat-Befehle wie /kd, /dkd, /re, /cd (Punkt 12)
+     · Chat-Befehle wie /fkd, /gkd, /re, /rec (Punkt 12)
      · Statistik für heute, den Monat und gesamt (Punkt 13)
      · Gegnerlisten mit Online-Prüfung (Punkt 14)
      · kleine Meldungs-Karten im Spiel, Countdown, Radio
@@ -136,7 +137,7 @@ INHALT
 --------------------------------------------------------------
  So ist es ab Werk. Alles lässt sich ändern (Punkt 9).
 
-   Strg + G           Standort in den Gangchat schreiben
+   Strg + G           Standort in den Gang-/Mafienchat (/g)
    Strg + K           Kill melden (Notfall-Taste, normal geht
                       das von allein)
    Strg + M           /familymap
@@ -157,7 +158,8 @@ INHALT
  "Auch freie Funktionen"):
    Keybinder-Fenster öffnen · Hängende Tasten lösen · Letzte
    Chatzeile wiederholen · Gruß nach Uhrzeit · 15-Sekunden-
-   Countdown · Gegner online prüfen · Radio an/aus
+   Countdown · Gegner online prüfen · Radio an/aus ·
+   Aufnahme starten / beenden · Aufnahme als Frag ablegen
 
  DU BLEIBST DABEI NICHT STEHEN.
  Der Binder öffnet den Chat, schreibt und schickt ab - alles
@@ -544,7 +546,8 @@ INHALT
    {geld}        Geld auf der Hand   {online} Spieler online
    {fzhp}        Fahrzeugzustand     {kmh}    Geschwindigkeit
    {ort}         Zone - oder "einem Interior"
-   {fchat}       Family-Chat (/f)    {gchat}  Gangchat (/g)
+   {fchat}       Family-Chat der Organisation (/f)
+   {gchat}       Gang-/Mafienchat (/g)
    {letztesms}   Nummer der letzten SMS
    {login}       wann du dich zuletzt eingeloggt hast
    {spielzeit}   Spielzeit gesamt    {spielzeitheute}
@@ -616,17 +619,48 @@ INHALT
  Befehl, macht er daraus den fertigen Satz - sonst geht Enter
  ganz normal ans Spiel. Der Server sieht nur das Ergebnis.
 
- KILLS UND K/D
-   /kd         /f » Kills: 413 - Differenz: 120 Kills - KD: 1.41 «
-   /gkd        dasselbe im Gangchat (/g)
-   /bkd        dasselbe im normalen Chat
-   /infokill   Gesamt, Heute und Monat in drei Zeilen
-   /kills      /f Aktuelle Kills: 413      (/gkills im /g)
-   /tode       Tode - nur für dich (Karte im Spiel)
-   /dkills /dkd /gdkd /bdkd     dasselbe für HEUTE
-   /mkills /mkd /gmkd /bmkd     dasselbe für den MONAT
-   /otime      deine Spielzeit - nur für dich
-   /on /gon /fon   "Letztes Login: ..." sagen
+ DER BUCHSTABE DAVOR IST DER CHAT  (wie bei Life of Player)
+   /f...   Family-Chat der Organisation   (Standard /f)
+   /g...   Gang-/Mafienchat               (Standard /g)
+   ohne    normaler Chat (die Leute in deiner Nähe)
+
+   Beispiel:  /fkd   /f » Kills: 413 - Differenz: 120 Kills - KD: 1.41 «
+              /gkd   dasselbe im /g
+              /kd    dasselbe im normalen Chat
+
+   Welcher Befehl hinter {fchat} und {gchat} steckt, stellst du
+   auf den Seiten "Familie" (Family-Chat) und "Meldungen"
+   (Kanal) ein.
+
+ IN ALLEN DREI CHATS  (f / g / ohne)
+   /fkd      /gkd      /kd        K/D gesamt
+   /fdkd     /gdkd     /dkd       K/D von heute
+   /fmkd     /gmkd     /mkd       K/D vom Monat
+   /fkills   /gkills   /kills     "Aktuelle Kills: 413"
+   /fdkills  /gdkills  /dkills    Kills von heute
+   /fmkills  /gmkills  /mkills    Kills im Monat
+   /finfokill /ginfokill /infokill  gesamt, heute, Monat (3 Zeilen)
+   /fja      /gja      /ja        "Positiv"
+   /fnein    /gnein    /nein      "Negativ"
+   /fok      /gok      /ok        "Verstanden & bestätigt!"
+   /fon      /gon      /on        "Letztes Login: ..."
+   /fcd      /gcd      /cd        Countdown 3 - 2 - 1 - LOS!
+   /fexe     /gexe     /exe       Fake-Absturz
+
+ NUR IM FAMILY-CHAT UND IM GANG-/MAFIENCHAT
+   /fwo      /gwo                 "Wo befindest du dich?"
+   /fpos     /gpos                "Ich bin gerade in Idlewood
+                                   (Los Santos)"
+
+ NUR IM NORMALEN CHAT
+   /exe2       Fake-Absturz (10 Zeilen)
+   /ping       "Aktueller Ping: 42"
+   /re  /n     auf die letzte SMS antworten: "/sms 1234 " steht
+               im Chat, du tippst weiter (Punkt 17)
+
+ NUR FÜR DICH (der Server sieht nichts)
+   /tode       Tode (Karte im Spiel)
+   /otime      deine Spielzeit
 
  VON HAND KORRIGIEREN
    /addkill /clearkill   1 Kill dazu / weg
@@ -635,29 +669,23 @@ INHALT
    /settode 200          Tode gesamt festlegen
    Ohne Zahl fragt der Binder im Chat nach ("Kills: ").
 
- CHAT UND ANTWORTEN
-   /ja /nein /ok /wo           im Family-Chat (/f)
-   /gja /gnein /gok /gwo       im Gangchat (/g)
-   /bja /bnein /neg /null      im normalen Chat
-   /ping       "Aktueller Ping: 42"
-   /re  /n     auf die letzte SMS antworten: "/sms 1234 " steht
-               im Chat, du tippst weiter (Punkt 17)
-   /exe /exe2 /gexe   Fake-Absturz
-
  TIPPFEHLER
    7f, 7g, 7u, 7w, 7s + LEERTASTE  ->  /f , /g , /u , /w , /s
    (wer auf der deutschen Tastatur das Shift vergisst)
 
  WERKZEUGE
-   /cd          Countdown im Chat --3-- --2-- --1--
-                (mit der Taste < abbrechen)
    /stopuhr     Stoppuhr im Chat (mit < anhalten)
    /countdown   15-Sekunden-Countdown - nur für dich
    /zeit 245    "245 Sekunden sind 4 Minuten und 5 Sekunden"
    /chillen     kurz AFK: nach 10 Minuten erinnert dich der
                 Binder und holt das Spiel wieder nach vorn
    /iloveradio  /radiostop   Radio an / aus
-   /frag  /beschwerde        Aufnahme stoppen und ablegen
+
+ AUFNAHMEN  (Punkt 17)
+   /rec         Aufnahme starten
+   /recstop     Aufnahme beenden
+   /frag        beenden und als Frag ablegen
+   /beschwerde  beenden und als Beschwerde ablegen
 
  ANPASSEN (Seite "Chat-Befehle")
    · Befehl anklicken -> Text ändern -> "Übernehmen".
@@ -885,12 +913,34 @@ INHALT
    an/aus mit /iloveradio und /radiostop oder dem Knopf in der
    Übersicht.
 
- AUFNAHMEN  (/frag, /beschwerde)
-   Stoppt die Aufnahme (Stopp-Taste deines Aufnahmeprogramms,
-   ab Werk F9) und verschiebt das neueste Video in den Ordner
-   "Aufnahmen\Frags" bzw. "Aufnahmen\Beschwerden" neben dem
-   Programm. Vorher unter "Extras" den Ordner eintragen, in dem
-   dein Aufnahmeprogramm speichert.
+ AUFNAHMEN  (/rec, /recstop, /frag, /beschwerde)
+   Der Binder drückt für dich die Taste deines Aufnahme-
+   programms (OBS, NVIDIA, AMD, Xbox-Spielleiste ...).
+
+   Einstellen unter "Extras" -> "Aufnahmen":
+     Start-Taste   die Taste zum Starten, z.B. F9, Alt+F9,
+                   Strg+Shift+R oder Win+Alt+R
+     Stopp-Taste   nur nötig, wenn dein Programm zum Beenden
+                   eine ANDERE Taste hat. Leer = die Start-Taste
+                   schaltet um (so ist es bei den meisten).
+     Video-Ordner  wo dein Programm die Videos speichert (nur
+                   für /frag und /beschwerde)
+   Mit "Starten" und "Beenden" kannst du es gleich ausprobieren.
+
+   Im Spiel:
+     /rec          Aufnahme starten
+     /recstop      Aufnahme beenden - auch, wenn du sie selbst
+                   mit deiner Taste gestartet hast
+     /frag         beenden und das neueste Video nach
+                   "Aufnahmen\Frags" neben dem Programm schieben
+     /beschwerde   dasselbe nach "Aufnahmen\Beschwerden"
+   Auf einer Taste: Seite "Tasten" -> "Aufnahme starten /
+   beenden" bzw. "Aufnahme beenden und als Frag ablegen".
+
+   Beendet sich die Aufnahme nicht? Dann ist im Programm eine
+   andere Taste eingestellt als im Binder - vergleiche beide.
+   (Bis v3.0.0 hat der Binder die Taste nur ganz kurz angetippt.
+   OBS hat das oft verpasst, die Aufnahme lief weiter.)
 --------------------------------------------------------------
 18. WENN ETWAS NICHT GEHT
 --------------------------------------------------------------
@@ -1125,11 +1175,11 @@ INHALT
  FÜR DIE FAMILIENLEITUNG: EINE NEUE VERSION VERTEILEN
  ----------------------------------------------------
  Hinter der eingebauten Adresse liegt eine Textdatei (ein
- GitHub-Gist). Für v3.0 muss darin stehen:
+ GitHub-Gist). Für v3.0.1 muss darin stehen:
 
-      Version=3.0.0
-      Info=Neues Fenster, Chat-Befehle, Statistik, Gegnerlisten
-      Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.0.zip
+      Version=3.0.1
+      Info=Chat-Befehle für LoP (/f Family, /g Gang/Mafia), Aufnahme beenden
+      Url=https://github.com/marci1160/yakuza-keybinder/raw/main/Yakuza_Keybinder_v3.0.1.zip
 
  DIE ZEILE "Url" MUSS DIREKT AUF DIE ZIP ZEIGEN. Steht dort nur
  die Adresse des Repos (…/yakuza-keybinder.git), kann v2 nichts
@@ -1139,15 +1189,15 @@ INHALT
  auf v3.0 braucht es aber den direkten Link.)
 
  So geht es:
-   1) Die ZIP Yakuza_Keybinder_v3.0.0.zip liegt im Repo
+   1) Die ZIP Yakuza_Keybinder_v3.0.1.zip liegt im Repo
       marci1160/yakuza-keybinder (Zweig main).
    2) Im Gist "Edit" klicken, die drei Zeilen oben eintragen,
       speichern.
-   3) Fertig. Alle Member ab v2.0.0 bekommen v3.0 von selbst.
+   3) Fertig. Alle Member ab v2.0.0 bekommen v3.0.1 von selbst.
 
  Liegt die ZIP (noch) in einem anderen Zweig, geht auch dessen
  Link, z.B.
-   https://github.com/marci1160/yakuza-keybinder/raw/NAME-DES-ZWEIGS/Yakuza_Keybinder_v3.0.0.zip
+   https://github.com/marci1160/yakuza-keybinder/raw/NAME-DES-ZWEIGS/Yakuza_Keybinder_v3.0.1.zip
 
  Beim nächsten Mal änderst du nur "Version" und "Url" (bzw. nur
  die Version, sobald alle v3.0 haben) und lädst die neue ZIP
@@ -1174,6 +1224,33 @@ INHALT
 --------------------------------------------------------------
 20. WAS NEU IST
 --------------------------------------------------------------
+ ============================  v3.0.1  ========================
+
+ CHAT-BEFEHLE FÜR LIFE OF PLAYER (Punkt 12)
+   Die Chat-Befehle kamen aus dem Keybinder von Brooklyn und
+   waren noch nach dessen Server (RGN) sortiert: dort war /f der
+   Fraktionschat und "b" der normale Chat. Jetzt gilt wie bei
+   Life of Player - der Buchstabe davor ist der Chat:
+     /f...  Family-Chat der Organisation
+     /g...  Gang-/Mafienchat
+     ohne   normaler Chat
+   ACHTUNG: /kd, /ja, /ok ... gehen jetzt in den normalen Chat.
+   Für den Family-Chat heißt es /fkd, /fja, /fok ...
+   Neu: /fpos /gpos (Standort), /fcd /gcd /cd (Countdown
+   3 - 2 - 1 - LOS). Die Polizei-Sprüche aus Brooklyn (/neg,
+   /null, der alte /cd) sind raus.
+
+ AUFNAHMEN LASSEN SICH BEENDEN (Punkt 17)
+   Der Binder hat die Taste des Aufnahmeprogramms nur ganz kurz
+   angetippt - OBS & Co. haben das oft nicht bemerkt, die
+   Aufnahme lief weiter. Jetzt hält er die Taste wie von Hand,
+   auch mit Alt/Strg/Shift/Win (z.B. Alt+F9). Neu: /rec und
+   /recstop, eine eigene Stopp-Taste, Knöpfe zum Ausprobieren
+   und zwei Funktionstasten. /frag und /beschwerde beenden die
+   Aufnahme jetzt auch, wenn kein Video-Ordner eingetragen ist,
+   und finden Videos auch in Unterordnern (NVIDIA).
+
+
  ============================  v3.0.0  ========================
 
  NEUES FENSTER

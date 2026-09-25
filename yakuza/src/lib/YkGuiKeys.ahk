@@ -12,7 +12,7 @@ global g_EnemySel := ""
 YkGui_SysKeys() {
     global YK_LocHotkey, YK_KillHotkey, YK_FamHotkey, YK_SprintToggleHk, YK_OvHotkey, YK_MemHotkey
     global YK_LocText, YK_KillText, YK_FamCommand, YK_GangCmd
-    return [{id: "loc", label: "Standort in den Gangchat", key: YK_LocHotkey, text: YK_GangCmd . " " . YK_LocText}
+    return [{id: "loc", label: "Standort in den Gang-/Mafienchat", key: YK_LocHotkey, text: YK_GangCmd . " " . YK_LocText}
           , {id: "kill", label: "Kill melden (Notfall-Taste)", key: YK_KillHotkey, text: YK_GangCmd . " " . YK_KillText}
           , {id: "fam", label: "/familymap senden", key: YK_FamHotkey, text: YK_FamCommand}
           , {id: "sprint", label: "Sprint-Automatik an/aus", key: YK_SprintToggleHk, text: ""}
